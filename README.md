@@ -1,4 +1,4 @@
 # ROB-Deluxe
 Revenge of the fighting bastards - Deluxe edition
-Hur spelet funkar
+Hur spelet funkar \n
 Edit av Hugo
