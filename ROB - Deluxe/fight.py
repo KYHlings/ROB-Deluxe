@@ -1,6 +1,6 @@
 import pygame
 
-#testar ändring
+#testar ändringen
 pygame.init()
 # colors
 red = (255, 0, 0)
