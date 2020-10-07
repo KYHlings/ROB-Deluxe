@@ -33,7 +33,6 @@ class Player():
         self.height = height
         # how many pixels the character is moving per action
         self.vel = 5
-        self.vel_2 = 2
         # variables for the jumping mechanism
         self.is_jump = False
         self.jump_count = 10
@@ -46,9 +45,12 @@ class Player():
         self.rect = pygame.Rect(x, y, 29, 70)
 
     def check_collide(self, enemy):
-        self.hitbox = pygame.draw.rect(win, black, (self.x, self.y, 100, 100))
-        if self.hitbox.colliderect(enemy):
-            print("HIT")
+        self.hitbox = pygame.draw.rect(win, black, (self.x, self.y, 29, 70))
+        if self.hitbox == enemy.rect:
+            if self.left == True:
+                self.x += 35
+            if self.right == True:
+                self.x -= 35
 
 
 def draw_2(self, win):
