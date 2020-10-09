@@ -41,22 +41,30 @@ class Player(pygame.sprite.Sprite):
         self.left = False
         self.right = False
         self.standing = True
+        self.rect = (0, 0, 0, 0)
         self.images = []
-       # images = [pygame.image.load("pics//walking_right_2.png"),pygame.image.load("pics//walk_right_3.png")]
-        for i in range(1, 3):
-            img = pygame.image.load(os.path.join('pics', 'walking_right_' + str(i) + '.png')).convert()
-            img.convert_alpha()  # optimise alpha
-            img.set_colorkey(black)  # set alpha
-            self.images.append(img)
-            self.image = self.images[0]
-            self.rect = self.image.get_rect()
+        self.image = [pygame.image.load("pics//walking_right_2.png")]
 
+
+
+def player1_pics(self):
+    self.images = []
+    # images = [pygame.image.load("pics//walking_right_2.png"),pygame.image.load("pics//walk_right_3.png")]
+    for i in range(1, 3):
+        img = pygame.image.load(os.path.join('pics', 'walking_right_' + str(i) + '.png')).convert()
+        img.convert_alpha()  # optimise alpha
+        img.set_colorkey(black)  # set alpha
+        self.images.append(img)
+        self.image = self.images[0]
+        self.rect = self.image.get_rect()
 
 
 player1 = Player()
+player1_pics(player1)
 player1.rect.x = 300
 player1.rect.y = 150
 player2 = Player()
+player1_pics(player2)
 player2.rect.x = 200
 player2.rect.y = 50
 
@@ -67,20 +75,32 @@ player_list.add(player1, player2)
 running = True
 
 
-def player_movement(player1, self):
+def player_movement(player1, player2):
     if event.type == pygame.KEYDOWN:
         if event.key == pygame.K_LEFT:
             player1.rect.x -= 4
+            player1.image = pygame.transform.flip(player1.images[player1.frame], True, False)
+            player1.frame += 1
+            if player1.frame == 2:
+                player1.frame = 0
         if event.key == pygame.K_RIGHT:
             player1.rect.x += 4
+            player1.frame += 1
+            if player1.frame == 2:
+                player1.frame = 0
+            player1.image = player1.images[player1.frame]
         if event.key == pygame.K_a:
             player2.rect.x -= 4
+            player2.image = pygame.transform.flip(player2.images[player2.frame],True,False)
+            player2.frame += 1
+            if player2.frame == 2:
+                player2.frame = 0
         if event.key == pygame.K_d:
             player2.rect.x += 4
-            self.frame += 1
-            if self.frame == 2:
-                self.frame = 0
-            self.image = self.images[self.frame]
+            player2.frame += 1
+            if player2.frame == 2:
+                player2.frame = 0
+            player2.image = player2.images[player2.frame]
 
     pygame.display.update()
 
