@@ -48,15 +48,38 @@ class Player(pygame.sprite.Sprite):
 player1 = Player()
 player1.rect.x = 300
 player1.rect.y = 150
+player2 = Player()
+player2.rect.x = 200
+player2.rect.y = 50
+
 player_list = pygame.sprite.Group()
-player_list.add(player1)
+player_list.add(player1, player2)
+
 
 running = True
+
+
+def player1_movement():
+    if event.type == pygame.KEYDOWN:
+        if event.key == pygame.K_LEFT:
+            player1.rect.x -= 2
+        if event.key == pygame.K_RIGHT:
+            player1.rect.x += 2
+    pygame.display.update()
+
 while running:
+    black=(0, 0, 0)
+    screen.fill(black)
+    player_list.draw(screen)
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             running = False
-    player_list.draw(screen)
-    pygame.display.update()
+        player1_movement()
+
+
+
+
+
+
 
 
