@@ -19,14 +19,14 @@ class Player(pygame.sprite.Sprite):
     Spawn a player
     """
 
-    def __init__(self, start_x, start_y, width, height):
+    def __init__(self):
         pygame.sprite.Sprite.__init__(self)
         # Dessa x ocy y värdena bestämmer vart på skärmen gubben spawnar
-        self.x = start_x
-        self.y = start_y
+ #       self.x = start_x
+  #      self.y = start_y
         # width and height values that decide the size of the character
-        self.width = width
-        self.height = height
+  #      self.width = width
+  #      self.height = height
         # how many pixels the character is moving per action
         self.vel = 5
         # variables for the jumping mechanism
@@ -38,13 +38,25 @@ class Player(pygame.sprite.Sprite):
         self.left = False
         self.right = False
         self.standing = True
-        self.rect = pygame.Rect(start_x, start_y, 29, 70)
+        self.images = []
+        img = pygame.image.load("pics//walking_right_2.png")
+        self.images.append(img)
+        self.image = self.images[0]
+        self.rect = self.image.get_rect()
 
 
-player1 = Player(300, 150, 20, 20)
+player1 = Player()
+player1.rect.x = 300
+player1.rect.y = 150
+player_list = pygame.sprite.Group()
+player_list.add(player1)
+
 running = True
 while running:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             running = False
+    player_list.draw(screen)
     pygame.display.update()
+
+
