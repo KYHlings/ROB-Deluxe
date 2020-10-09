@@ -1,13 +1,15 @@
 import pygame
+import os
 
+black=(0, 0, 0)
+ani = 3
 pygame.init()
 screen_width = 800
 screen_height = 600
 screen = pygame.display.set_mode((screen_width, screen_height))
 
-walk_right = [pygame.image.load('pics//walking_right_2.png')]
-walk_left = [pygame.image.load('pics//walking_left_1.png')]
-char = [pygame.image.load('pics//look_left.png'), pygame.image.load('pics//look_right.png')]
+
+
 fps_clock = pygame.time.Clock()
 fps = 60
 
@@ -29,6 +31,7 @@ class Player(pygame.sprite.Sprite):
   #      self.height = height
         # how many pixels the character is moving per action
         self.vel = 5
+        self.frame = 0
         # variables for the jumping mechanism
         self.is_jump = False
         self.jump_count = 10
@@ -39,10 +42,15 @@ class Player(pygame.sprite.Sprite):
         self.right = False
         self.standing = True
         self.images = []
-        img = pygame.image.load("pics//walking_right_2.png")
-        self.images.append(img)
-        self.image = self.images[0]
-        self.rect = self.image.get_rect()
+       # images = [pygame.image.load("pics//walking_right_2.png"),pygame.image.load("pics//walk_right_3.png")]
+        for i in range(1, 3):
+            img = pygame.image.load(os.path.join('pics', 'walking_right_' + str(i) + '.png')).convert()
+            img.convert_alpha()  # optimise alpha
+            img.set_colorkey(black)  # set alpha
+            self.images.append(img)
+            self.image = self.images[0]
+            self.rect = self.image.get_rect()
+
 
 
 player1 = Player()
@@ -59,22 +67,31 @@ player_list.add(player1, player2)
 running = True
 
 
-def player1_movement():
+def player_movement(player1, self):
     if event.type == pygame.KEYDOWN:
         if event.key == pygame.K_LEFT:
-            player1.rect.x -= 2
+            player1.rect.x -= 4
         if event.key == pygame.K_RIGHT:
-            player1.rect.x += 2
+            player1.rect.x += 4
+        if event.key == pygame.K_a:
+            player2.rect.x -= 4
+        if event.key == pygame.K_d:
+            player2.rect.x += 4
+            self.frame += 1
+            if self.frame == 2:
+                self.frame = 0
+            self.image = self.images[self.frame]
+
     pygame.display.update()
 
 while running:
-    black=(0, 0, 0)
+
     screen.fill(black)
     player_list.draw(screen)
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             running = False
-        player1_movement()
+        player_movement(player1, player2)
 
 
 
