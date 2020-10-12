@@ -1,23 +1,21 @@
 import pygame
 import os
 
-
 vec = pygame.math.Vector2
-black=(0, 0, 0)
+black = (0, 0, 0)
 ani = 3
 pygame.init()
 screen_width = 800
 screen_height = 600
 screen = pygame.display.set_mode((screen_width, screen_height))
-
-
+bg_image = [pygame.image.load('pics//arena_bakgrund_0.png'),pygame.image.load('pics//arena_bakgrund_1.png')]
 
 fps_clock = pygame.time.Clock()
 fps = 120
 
 
-
-
+screen.blit(bg_image[0],(0, 0))
+screen.blit(bg_image[1],(0, 0))
 class Player(pygame.sprite.Sprite):
     """
     Spawn a player
@@ -40,7 +38,6 @@ class Player(pygame.sprite.Sprite):
         self.rect = (0, 0, 0, 0)
         self.images = []
         self.image = [pygame.image.load("pics//walking_right_2.png")]
-
 
 
 def player1_pics(self):
@@ -72,6 +69,7 @@ def collision(player1, player2):
     col = pygame.sprite.collide_rect(player1, player2)
     if col == True:
         return True
+
 
 def player_movement(player1, player2):
     player1.rect.y += player1.vel
@@ -178,10 +176,13 @@ def player_movement(player1, player2):
 running = True
 while running:
     fps_clock.tick(fps)
-    pygame.display.update()
+
     screen.fill(black)
+    screen.blit(bg_image[0], (0, 0))
     player_list.draw(screen)
     for keys in pygame.event.get():
         if keys.type == pygame.QUIT:
             running = False
     player_movement(player1, player2)
+    pygame.display.update()
+
