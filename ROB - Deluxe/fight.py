@@ -11,7 +11,7 @@ screen = pygame.display.set_mode((screen_width, screen_height))
 
 
 fps_clock = pygame.time.Clock()
-fps = 30
+fps = 120
 
 
 
@@ -105,12 +105,14 @@ def player_movement(player1, player2):
 
 while running:
     pygame.display.update()
+    fps_clock.tick(fps)
     screen.fill(black)
     player_list.draw(screen)
     for keys in pygame.event.get():
         if keys.type == pygame.QUIT:
             running = False
     player_movement(player1, player2)
+
 
 
 
