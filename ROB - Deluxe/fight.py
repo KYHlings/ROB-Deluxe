@@ -41,6 +41,10 @@ class Player(pygame.sprite.Sprite):
         self.rect = pygame.Rect(start_x, start_y, 29, 70)
 
 
+def draw(self, screen):
+    screen.fill(255, 255, 255)
+
+
 player1 = Player(300, 150, 20, 20)
 running = True
 while running:
