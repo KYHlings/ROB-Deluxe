@@ -96,7 +96,7 @@ def player_movement(player1, player2):
         player2.frame += 1
         if player2.frame == 2:
             player2.frame = 0
-    elif keys[pygame.K_d]:
+    elif keys[pygame.K_d] and player2.rect.x < screen_width - 40:
         player2.rect.x += 1
         player2.frame += 1
         if player2.frame == 2:
@@ -113,12 +113,3 @@ while running:
         if keys.type == pygame.QUIT:
             running = False
     player_movement(player1, player2)
-
-
-
-
-
-
-
-
-
