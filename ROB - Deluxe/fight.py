@@ -83,12 +83,13 @@ def player_movement(player1, player2):
         player1.frame += 1
         if player1.frame == 2:
             player1.frame = 0
-    elif keys[pygame.K_RIGHT]:
+    elif keys[pygame.K_RIGHT] and player1.rect.x < screen_width - 40:
         player1.rect.x += 1
         player1.frame += 1
         if player1.frame == 2:
             player1.frame = 0
         player1.image = player1.images[player1.frame]
+
     if keys[pygame.K_a] and player2.rect.x > player2.vel:
         player2.rect.x -= 1
         player2.image = pygame.transform.flip(player2.images[player2.frame], True, False)
