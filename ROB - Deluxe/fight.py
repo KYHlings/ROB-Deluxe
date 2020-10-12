@@ -1,19 +1,15 @@
 import pygame
 import os
 
-black=(0, 0, 0)
+black = (0, 0, 0)
 ani = 3
 pygame.init()
 screen_width = 800
 screen_height = 600
 screen = pygame.display.set_mode((screen_width, screen_height))
 
-
-
 fps_clock = pygame.time.Clock()
 fps = 120
-
-
 
 
 class Player(pygame.sprite.Sprite):
@@ -24,11 +20,11 @@ class Player(pygame.sprite.Sprite):
     def __init__(self):
         pygame.sprite.Sprite.__init__(self)
         # Dessa x ocy y värdena bestämmer vart på skärmen gubben spawnar
- #       self.x = start_x
-  #      self.y = start_y
+        #       self.x = start_x
+        #      self.y = start_y
         # width and height values that decide the size of the character
-  #      self.width = width
-  #      self.height = height
+        #      self.width = width
+        #      self.height = height
         # how many pixels the character is moving per action
         self.vel = 5
         self.frame = 0
@@ -44,7 +40,6 @@ class Player(pygame.sprite.Sprite):
         self.rect = (0, 0, 0, 0)
         self.images = []
         self.image = [pygame.image.load("pics//walking_right_2.png")]
-
 
 
 def player1_pics(self):
@@ -70,7 +65,6 @@ player2.rect.y = 50
 
 player_list = pygame.sprite.Group()
 player_list.add(player1, player2)
-
 
 running = True
 
@@ -104,20 +98,11 @@ def player_movement(player1, player2):
 
 
 while running:
-    fps_clock.tick(fps)
     pygame.display.update()
+    fps_clock.tick(fps)
     screen.fill(black)
     player_list.draw(screen)
-    for keys in pygame.event.get():
-        if keys.type == pygame.QUIT:
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
             running = False
     player_movement(player1, player2)
-
-
-
-
-
-
-
-
-
