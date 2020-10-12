@@ -11,7 +11,7 @@ screen = pygame.display.set_mode((screen_width, screen_height))
 
 
 fps_clock = pygame.time.Clock()
-fps = 60
+fps = 30
 
 
 
@@ -76,42 +76,41 @@ running = True
 
 
 def player_movement(player1, player2):
-    if event.type == pygame.KEYDOWN:
-        if event.key == pygame.K_LEFT:
-            player1.rect.x -= 4
-            player1.image = pygame.transform.flip(player1.images[player1.frame], True, False)
-            player1.frame += 1
-            if player1.frame == 2:
-                player1.frame = 0
-        if event.key == pygame.K_RIGHT:
-            player1.rect.x += 4
-            player1.frame += 1
-            if player1.frame == 2:
-                player1.frame = 0
-            player1.image = player1.images[player1.frame]
-        if event.key == pygame.K_a:
-            player2.rect.x -= 4
-            player2.image = pygame.transform.flip(player2.images[player2.frame],True,False)
-            player2.frame += 1
-            if player2.frame == 2:
-                player2.frame = 0
-        if event.key == pygame.K_d:
-            player2.rect.x += 4
-            player2.frame += 1
-            if player2.frame == 2:
-                player2.frame = 0
-            player2.image = player2.images[player2.frame]
+    keys = pygame.key.get_pressed()
+    if keys[pygame.K_LEFT] and player1.rect.x > player1.vel:
+        player1.rect.x -= 1
+        player1.image = pygame.transform.flip(player1.images[player1.frame], True, False)
+        player1.frame += 1
+        if player1.frame == 2:
+            player1.frame = 0
+    elif keys[pygame.K_RIGHT]:
+        player1.rect.x += 1
+        player1.frame += 1
+        if player1.frame == 2:
+            player1.frame = 0
+        player1.image = player1.images[player1.frame]
+    if keys[pygame.K_a] and player2.rect.x > player2.vel:
+        player2.rect.x -= 1
+        player2.image = pygame.transform.flip(player2.images[player2.frame],True,False)
+        player2.frame += 1
+        if player2.frame == 2:
+            player2.frame = 0
+    elif keys[pygame.K_d]:
+        player2.rect.x += 1
+        player2.frame += 1
+        if player2.frame == 2:
+            player2.frame = 0
+        player2.image = player2.images[player2.frame]
 
-    pygame.display.update()
 
 while running:
-
+    pygame.display.update()
     screen.fill(black)
     player_list.draw(screen)
-    for event in pygame.event.get():
-        if event.type == pygame.QUIT:
+    for keys in pygame.event.get():
+        if keys.type == pygame.QUIT:
             running = False
-        player_movement(player1, player2)
+    player_movement(player1, player2)
 
 
 
