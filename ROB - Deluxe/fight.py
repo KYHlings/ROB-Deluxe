@@ -1,6 +1,8 @@
 import pygame
 import os
 
+
+vec = pygame.math.Vector2
 black=(0, 0, 0)
 ani = 3
 pygame.init()
@@ -44,6 +46,7 @@ class Player(pygame.sprite.Sprite):
         self.rect = (0, 0, 0, 0)
         self.images = []
         self.image = [pygame.image.load("pics//walking_right_2.png")]
+        self.grav = vec(0, 0.5)
 
 
 
@@ -106,6 +109,25 @@ def player_movement(player1, player2):
             player1.frame = 0
         player1.image = player1.images[player1.frame]
 
+    if not player1.is_jump:
+        if keys[pygame.K_SPACE]:
+            player1.grav = vec(0, 0.5)
+            player1.is_jump = True
+            player1.left = False
+            player1.right = False
+    else:
+        if player1.jump_count >= -10:
+            neg_1 = 1
+            if player1.jump_count < 0:
+                neg_1 = -1
+            # hastigeten på hoppet, höjd på hoppet,
+
+            player1.rect.y -= (player1.jump_count ** 2) * 0.5 * neg_1
+            player1.jump_count -= 1
+        else:
+            player1.is_jump = False
+            player1.jump_count = 10
+            player1.rect.y = 150
     if keys[pygame.K_a] and player2.rect.x > player2.vel:
         player2.left = True
         player2.right = False
@@ -130,7 +152,6 @@ def player_movement(player1, player2):
         if player2.frame == 2:
             player2.frame = 0
         player2.image = player2.images[player2.frame]
-
 
 running = True
 while running:
