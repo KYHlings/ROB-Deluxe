@@ -8,13 +8,8 @@ screen_width = 800
 screen_height = 600
 screen = pygame.display.set_mode((screen_width, screen_height))
 
-
-
 fps_clock = pygame.time.Clock()
 fps = 120
-
-
-
 
 class Player(pygame.sprite.Sprite):
     """
@@ -83,15 +78,18 @@ def player_movement(player1, player2):
         player1.frame += 1
         if player1.frame == 2:
             player1.frame = 0
-    elif keys[pygame.K_RIGHT]:
+    if keys[pygame.K_RIGHT] and player1.rect.x < screen_width - 40:
+        print(player1.rect.x)
         player1.rect.x += 1
         player1.frame += 1
         if player1.frame == 2:
             player1.frame = 0
         player1.image = player1.images[player1.frame]
+
+
     if keys[pygame.K_a] and player2.rect.x > player2.vel:
         player2.rect.x -= 1
-        player2.image = pygame.transform.flip(player2.images[player2.frame], True, False)
+        player2.image = pygame.transform.flip(player2.images[player2.frame],True,False)
         player2.frame += 1
         if player2.frame == 2:
             player2.frame = 0
@@ -104,20 +102,11 @@ def player_movement(player1, player2):
 
 
 while running:
-    fps_clock.tick(fps)
     pygame.display.update()
+    fps_clock.tick(fps)
     screen.fill(black)
     player_list.draw(screen)
-    for keys in pygame.event.get():
-        if keys.type == pygame.QUIT:
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
             running = False
     player_movement(player1, player2)
-
-
-
-
-
-
-
-
-
