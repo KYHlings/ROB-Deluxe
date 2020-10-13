@@ -1,6 +1,7 @@
 import pygame
 import os
 from ROB.main_menu import main_menu
+from ROB.lobby import lobby
 
 vec = pygame.math.Vector2
 black = (0, 0, 0)
@@ -177,6 +178,7 @@ def player_movement(player1, player2):
 
 # run order
 main_menu()
+lobby()
 
 
 running = True
