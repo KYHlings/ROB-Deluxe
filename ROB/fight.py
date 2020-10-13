@@ -47,15 +47,16 @@ def player1_pics(self):
         self.images.append(img)
         self.image = self.images[0]
         self.rect = self.image.get_rect()
+        player1.image = pygame.transform.flip(player1.images[player1.frame], True, False)
 
 
 player1 = Player()
 player1_pics(player1)
-player1.rect.x = 300
+player1.rect.x = 720
 player1.rect.y = 200
 player2 = Player()
 player1_pics(player2)
-player2.rect.x = 200
+player2.rect.x = 60
 player2.rect.y = 200
 
 player_list = pygame.sprite.Group()
