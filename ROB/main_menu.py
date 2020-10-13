@@ -1,4 +1,5 @@
 import pygame
+import sys
 
 pygame.init()
 
@@ -40,6 +41,8 @@ def main_menu():
                     if play_button.collidepoint(mx, my):
                         # stänger programmet
                         running = False
+                    if quit_button.collidepoint(mx, my):
+                        sys.exit()
 
         # uppdaterar displayen
         pygame.display.update()

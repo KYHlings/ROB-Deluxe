@@ -3,6 +3,7 @@ import os
 from ROB.main_menu import main_menu
 from ROB.lobby import lobby
 
+os.environ["SDL_VIDEO_CENTERED"] = "1"
 vec = pygame.math.Vector2
 black = (0, 0, 0)
 ani = 3
