@@ -4,9 +4,7 @@ from ROB.main_menu import main_menu
 from ROB.lobby import lobby
 
 os.environ["SDL_VIDEO_CENTERED"] = "1"
-vec = pygame.math.Vector2
 black = (0, 0, 0)
-ani = 3
 pygame.init()
 screen_width = 800
 screen_height = 600
@@ -16,9 +14,11 @@ bg_image = [pygame.image.load('pics//arena_bakgrund_0.png'),pygame.image.load('p
 fps_clock = pygame.time.Clock()
 fps = 120
 
-
+#TODO loopa bakrundsbilderna
 screen.blit(bg_image[0],(0, 0))
 screen.blit(bg_image[1],(0, 0))
+
+
 class Player(pygame.sprite.Sprite):
     """
     Spawn a player
@@ -29,15 +29,9 @@ class Player(pygame.sprite.Sprite):
         # how many pixels the character is moving per action
         self.vel = 5
         self.frame = 0
-        # variables for the jumping mechanism
-        self.is_jump = False
-        self.jump_count = 10
-        # counter for walking animation
-        self.walk_count = 0
         # stating left and right
         self.left = False
         self.right = False
-        self.standing = True
         self.rect = (0, 0, 0, 0)
         self.images = []
         self.image = [pygame.image.load("pics//walking_right_2.png")]
@@ -89,13 +83,13 @@ def player_movement(player1, player2):
         if collision(player1, player2) == True:
             if player1.left == True:
                 player1.rect.x += 5
-                # det finns en bug där man flyger utanför skärmen om spelarna kolliderar och går åt ett håll tillsammans
-
+                #TODO det finns en bug där man flyger utanför skärmen om spelarna kolliderar och går åt ett håll tillsammans
         player1.rect.x -= 1
         player1.image = pygame.transform.flip(player1.images[player1.frame], True, False)
         player1.frame += 1
         if player1.frame == 2:
             player1.frame = 0
+
     if keys[pygame.K_RIGHT] and player1.rect.x < screen_width - 40:
         player1.left = False
         player1.right = True
@@ -108,68 +102,50 @@ def player_movement(player1, player2):
         if player1.frame == 2:
             player1.frame = 0
         player1.image = player1.images[player1.frame]
+
     if keys[pygame.K_UP]:
         # hoppets höjd
         player1.rect.y -= 15
         # dragningskraft
         player1.vel = 3
         # invisible border max hopphöjd
-        if player1.rect.y < 100:
+        if player1.rect.y < 200:
             player1.vel = 20
-    # lägsta punkt
+        # lägsta punkt
     if player1.rect.y > 500:
         player1.rect.y = 500
 
-    # if not player1.is_jump:
-    #     if keys[pygame.K_SPACE]:
-    #         player1.grav = vec(0, 0.5)
-    #         player1.is_jump = True
-    #         player1.left = False
-    #         player1.right = False
-    # else:
-    #     if player1.jump_count >= -10:
-    #         neg_1 = 1
-    #         if player1.jump_count < 0:
-    #             neg_1 = -1
-    #         # hastigeten på hoppet, höjd på hoppet,
-    #
-    #         player1.rect.y -= (player1.jump_count ** 2) * 0.5 * neg_1
-    #         player1.jump_count -= 1
-    #     else:
-    #         player1.is_jump = False
-    #         player1.jump_count = 10
-    #         player1.rect.y = 150
     if keys[pygame.K_a] and player2.rect.x > player2.vel:
         player2.left = True
         player2.right = False
         if collision(player1, player2) == True:
             if player2.left == True:
                 player2.rect.x += 5
-
         player2.rect.x -= 1
         player2.image = pygame.transform.flip(player2.images[player2.frame], True, False)
         player2.frame += 1
         if player2.frame == 2:
             player2.frame = 0
+
     if keys[pygame.K_d] and player2.rect.x < screen_width - 40:
         player2.left = False
         player2.right = True
         if collision(player1, player2) == True:
             if player2.right == True:
                 player2.rect.x -= 5
-
         player2.rect.x += 1
         player2.frame += 1
         if player2.frame == 2:
             player2.frame = 0
         player2.image = player2.images[player2.frame]
+
     if keys[pygame.K_SPACE]:
         # hoppets höjd
         player2.rect.y -= 15
         # dragningskraft
         player2.vel = 3
         # invisible border max hopphöjd
-        if player2.rect.y < 100:
+        if player2.rect.y < 200:
             player2.vel = 20
     # lägsta punkt
     if player2.rect.y > 500:
@@ -184,8 +160,6 @@ lobby()
 
 running = True
 while running:
-
-
     fps_clock.tick(fps)
     screen.fill(black)
     screen.blit(bg_image[0], (0, 0))
