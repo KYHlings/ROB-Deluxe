@@ -1,10 +1,9 @@
 import pygame
 import os
-import sys
 from ROB.main_menu import main_menu
 from ROB.lobby import lobby
 
-
+os.environ["SDL_VIDEO_CENTERED"] = "1"
 vec = pygame.math.Vector2
 black = (0, 0, 0)
 ani = 3
@@ -185,13 +184,15 @@ lobby()
 
 running = True
 while running:
+
+
     fps_clock.tick(fps)
     screen.fill(black)
     screen.blit(bg_image[0], (0, 0))
     player_list.draw(screen)
     for keys in pygame.event.get():
         if keys.type == pygame.QUIT:
-            sys.exit()
+            running = False
     player_movement(player1, player2)
     pygame.display.update()
 
