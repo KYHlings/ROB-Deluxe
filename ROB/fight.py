@@ -1,6 +1,9 @@
 import pygame
 import os
+import sys
 from ROB.main_menu import main_menu
+from ROB.lobby import lobby
+
 
 vec = pygame.math.Vector2
 black = (0, 0, 0)
@@ -177,19 +180,18 @@ def player_movement(player1, player2):
 
 # run order
 main_menu()
+lobby()
 
 
 running = True
 while running:
-
-
     fps_clock.tick(fps)
     screen.fill(black)
     screen.blit(bg_image[0], (0, 0))
     player_list.draw(screen)
     for keys in pygame.event.get():
         if keys.type == pygame.QUIT:
-            running = False
+            sys.exit()
     player_movement(player1, player2)
     pygame.display.update()
 
