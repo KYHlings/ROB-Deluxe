@@ -58,11 +58,11 @@ def player1_pics(self):
 player1 = Player()
 player1_pics(player1)
 player1.rect.x = 300
-player1.rect.y = 150
+player1.rect.y = 200
 player2 = Player()
 player1_pics(player2)
 player2.rect.x = 200
-player2.rect.y = 150
+player2.rect.y = 200
 
 player_list = pygame.sprite.Group()
 player_list.add(player1, player2)
@@ -77,9 +77,9 @@ def collision(player1, player2):
 def player_movement(player1, player2):
     player1.rect.y += player1.vel
     player2.rect.y += player2.vel
-    if player1.rect.y == 400:
+    if player1.rect.y == 500:
         player1.vel = 0
-    if player2.rect.y == 400:
+    if player2.rect.y == 500:
         player2.vel = 0
 
     keys = pygame.key.get_pressed()
@@ -117,8 +117,8 @@ def player_movement(player1, player2):
         if player1.rect.y < 100:
             player1.vel = 20
     # lägsta punkt
-    if player1.rect.y > 400:
-        player1.rect.y = 400
+    if player1.rect.y > 500:
+        player1.rect.y = 500
 
     # if not player1.is_jump:
     #     if keys[pygame.K_SPACE]:
@@ -172,8 +172,8 @@ def player_movement(player1, player2):
         if player2.rect.y < 100:
             player2.vel = 20
     # lägsta punkt
-    if player2.rect.y > 400:
-        player2.rect.y = 400
+    if player2.rect.y > 500:
+        player2.rect.y = 500
 
 
 
