@@ -108,7 +108,7 @@ def player_movement(player1, player2):
             player1.frame = 0
         player1.image = player1.images[player1.frame]
 
-    if keys[pygame.K_UP]:
+    if keys[pygame.K_RCTRL]:
         # hoppets höjd
         player1.rect.y -= 15
         # dragningskraft
@@ -180,18 +180,31 @@ lobby()
 # pygame.mixer.music.play(-1)
 
 def punch_and_kick():
-
+    # fighter2 slag och spark
         if keys.type == pygame.KEYDOWN:
-            if keys.key == pygame.K_RCTRL:
+            if keys.key == pygame.K_UP:
                 if collision(player1, player2) == True:
-                    print("hit")
-                    player1.hp -= 10
-                    print(player1.hp)
-            if keys.key == pygame.K_RSHIFT:
+                    print("slag")
+                    player2.hp -= 10
+                    print(player2.hp)
+            if keys.key == pygame.K_DOWN:
+                if collision(player1, player2) == True:
+                    print("spark")
+                    player2.hp -= 10
+                    print(player2.hp)
+
+            #fighter1 slag och spark
+            if keys.type == pygame.K_w:
                 if collision(player1, player2) == True:
                     print("slag")
                     player1.hp -= 10
                     print(player1.hp)
+            if keys.type == pygame.K_s:
+                if collision(player1, player2) == True:
+                    print("spark")
+                    player1.hp -= 10
+                    print(player1.hp)
+
 
 
 running = True
