@@ -168,9 +168,9 @@ def player_movement(player1, player2):
 # run order
 main_menu()
 lobby()
-# pygame.mixer.music.stop()
-# pygame.mixer.music.load('music//fight_music.ogg')
-# pygame.mixer.music.play(-1)
+pygame.mixer.music.stop()
+pygame.mixer.music.load('music//fight_music.ogg')
+pygame.mixer.music.play(-1)
 
 def punch_and_kick():
     # fighter2 slag och spark

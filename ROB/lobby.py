@@ -5,9 +5,9 @@ pygame.init()
 
 
 def lobby():
-	# pygame.mixer.music.stop()
-	# pygame.mixer.music.load("music//casino_music.mp3")
-	# pygame.mixer.music.play(-1)
+	pygame.mixer.music.stop()
+	pygame.mixer.music.load("music//casino_music.mp3")
+	pygame.mixer.music.play(-1)
 	screen = pygame.display.set_mode((800, 600))
 	casino_bg = pygame.image.load('pics//casino.png')
 	statistics = pygame.image.load('pics//scoreboard.png')

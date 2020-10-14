@@ -5,8 +5,8 @@ pygame.init()
 
 
 def main_menu():
-    # pygame.mixer.music.load("music//menu_music.ogg")
-    # pygame.mixer.music.play(-1)
+    pygame.mixer.music.load("music//menu_music.ogg")
+    pygame.mixer.music.play(-1)
     screen = pygame.display.set_mode((800, 600))
 
     logo = pygame.image.load('pics//logga.png')
