@@ -5,7 +5,8 @@ pygame.init()
 
 
 def lobby():
-	pygame.mixer.music.load("pics//lobby_music.ogg")
+	pygame.mixer.music.stop()
+	pygame.mixer.music.load("pics//menu_music.ogg")
 	pygame.mixer.music.play(-1)
 	screen = pygame.display.set_mode((800, 600))
 	casino_bg = pygame.image.load('pics//casino.png')
@@ -33,6 +34,7 @@ def lobby():
 					if fight_button.collidepoint(mx, my):
 						# stänger programmet
 						running = False
+
 
 			# uppdaterar displayen
 			pygame.display.update()
