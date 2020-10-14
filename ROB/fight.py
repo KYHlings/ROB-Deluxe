@@ -162,20 +162,36 @@ def player_movement(player1, player2):
     if player2.rect.y > 500:
         player2.rect.y = 500
 
-    if keys[pygame.K_RCTRL]:
-        if collision(player1, player2) == True:
-            print("hit")
-            player1.hp -= 10
-            print(player1.hp)
+
+
+    # if keys[pygame.K_RCTRL]:
+        # if collision(player1, player2) == True:
+        #     print("hit")
+        #     player1.hp -= 10
+        #     print(player1.hp)
 
 
 
 # run order
 main_menu()
 lobby()
-pygame.mixer.music.stop()
-pygame.mixer.music.load('music//fight_music.ogg')
-pygame.mixer.music.play(-1)
+# pygame.mixer.music.stop()
+# pygame.mixer.music.load('music//fight_music.ogg')
+# pygame.mixer.music.play(-1)
+
+def punch_and_kick():
+
+        if keys.type == pygame.KEYDOWN:
+            if keys.key == pygame.K_RCTRL:
+                if collision(player1, player2) == True:
+                    print("hit")
+                    player1.hp -= 10
+                    print(player1.hp)
+            if keys.key == pygame.K_RSHIFT:
+                if collision(player1, player2) == True:
+                    print("slag")
+                    player1.hp -= 10
+                    print(player1.hp)
 
 
 running = True
@@ -187,6 +203,7 @@ while running:
     for keys in pygame.event.get():
         if keys.type == pygame.QUIT:
             running = False
+        punch_and_kick()
     player_movement(player1, player2)
     pygame.display.update()
 
