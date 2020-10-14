@@ -157,7 +157,7 @@ def player_movement(player1, player2):
 # run order
 main_menu()
 lobby()
-
+pygame.mixer.music.stop()
 
 running = True
 while running:
