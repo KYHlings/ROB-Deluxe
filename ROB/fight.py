@@ -178,25 +178,25 @@ def punch_and_kick():
             if keys.key == pygame.K_UP:
                 if collision(player1, player2) == True:
                     print("slag")
-                    player2.hp -= 10
-                    print(player2.hp)
+                    player1.hp -= 10
+                    print(player1.hp)
             if keys.key == pygame.K_DOWN:
                 if collision(player1, player2) == True:
                     print("spark")
-                    player2.hp -= 10
-                    print(player2.hp)
+                    player1.hp -= 10
+                    print(player1.hp)
 
             #fighter1 slag och spark
             if keys.type == pygame.K_w:
                 if collision(player1, player2) == True:
                     print("slag")
-                    player1.hp -= 10
-                    print(player1.hp)
+                    player2.hp -= 10
+                    print(player2.hp)
             if keys.type == pygame.K_s:
-                if collision(player1, player2) == True:
+                if collision(player2, player2) == True:
                     print("spark")
-                    player1.hp -= 10
-                    print(player1.hp)
+                    player2.hp -= 10
+                    print(player2.hp)
 
 
 
