@@ -108,6 +108,7 @@ def player_movement(player1, player2):
             player1.frame = 0
         player1.image = player1.images[player1.frame]
 
+
     if keys[pygame.K_RCTRL]:
         # hoppets höjd
         player1.rect.y -= 15
@@ -161,14 +162,6 @@ def player_movement(player1, player2):
     # lägsta punkt
     if player2.rect.y > 500:
         player2.rect.y = 500
-
-
-
-    # if keys[pygame.K_RCTRL]:
-        # if collision(player1, player2) == True:
-        #     print("hit")
-        #     player1.hp -= 10
-        #     print(player1.hp)
 
 
 
