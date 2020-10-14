@@ -35,6 +35,7 @@ class Player(pygame.sprite.Sprite):
         self.rect = (0, 0, 0, 0)
         self.images = []
         self.image = [pygame.image.load("pics//walking_right_2.png")]
+        self.hp = 100
 
 
 def player1_pics(self):
@@ -70,14 +71,17 @@ def collision(player1, player2):
 
 
 def player_movement(player1, player2):
+    # Grund inställningar
     player1.rect.y += player1.vel
     player2.rect.y += player2.vel
     if player1.rect.y == 500:
         player1.vel = 0
     if player2.rect.y == 500:
         player2.vel = 0
-
     keys = pygame.key.get_pressed()
+
+
+    # FIGHTER 1
     if keys[pygame.K_LEFT] and player1.rect.x > player1.vel:
         player1.left = True
         player1.right = False
@@ -116,6 +120,11 @@ def player_movement(player1, player2):
     if player1.rect.y > 500:
         player1.rect.y = 500
 
+
+
+
+
+    # FIGTER 2
     if keys[pygame.K_a] and player2.rect.x > player2.vel:
         player2.left = True
         player2.right = False
@@ -140,6 +149,7 @@ def player_movement(player1, player2):
             player2.frame = 0
         player2.image = player2.images[player2.frame]
 
+    # hopp
     if keys[pygame.K_SPACE]:
         # hoppets höjd
         player2.rect.y -= 15
@@ -152,12 +162,21 @@ def player_movement(player1, player2):
     if player2.rect.y > 500:
         player2.rect.y = 500
 
+    if keys[pygame.K_RCTRL]:
+        if collision(player1, player2) == True:
+            print("hit")
+            player1.hp -= 10
+            print(player1.hp)
+
 
 
 # run order
 main_menu()
 lobby()
 pygame.mixer.music.stop()
+pygame.mixer.music.load('music//fight_music.ogg')
+pygame.mixer.music.play(-1)
+
 
 running = True
 while running:
