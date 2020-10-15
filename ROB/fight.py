@@ -67,6 +67,12 @@ player1_pics(player2)
 player2.rect.x = 60
 player2.rect.y = 200
 
+
+# lägger alla spelare i en sprite grupp
+player_list = pygame.sprite.Group()
+player_list.add(player1, player2)
+
+
 def healthbar(player1, player2):
     if player1.hp > -10:
         bg_bar1 = pygame.Rect(550, 50, 200, 50)
@@ -80,10 +86,6 @@ def healthbar(player1, player2):
         pygame.draw.rect(screen, (255, 0, 0), bg_bar2)
         pygame.draw.rect(screen, (0, 255, 0), hp_bar2)
     pygame.display.update()
-
-# lägger alla spelare i en sprite grupp
-player_list = pygame.sprite.Group()
-player_list.add(player1, player2)
 
 
 def collision(player1, player2):
