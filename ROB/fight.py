@@ -14,6 +14,8 @@ bg_image = [pygame.image.load('pics//arena_bakgrund_0.png'), pygame.image.load('
 
 # ljudeffekter
 effect_punch = pygame.mixer.Sound('music//PUNCH.wav')
+effect_dead = pygame.mixer.Sound('music//Wilhelm_Scream.ogg')
+effect_KICK = pygame.mixer.Sound('music//KICK.mp3')
 
 # fps
 fps_clock = pygame.time.Clock()
@@ -206,6 +208,7 @@ def punch_and_kick():
         if keys.key == pygame.K_s:
             if collision(player2, player2) == True:
                 print("spark")
+                effect_KICK.play(0)
                 player2.hp -= 10
                 print(f"HP PLAYER 2: {player2.hp}")
 
@@ -219,6 +222,7 @@ def punch_and_kick():
         if keys.key == pygame.K_DOWN:
             if collision(player1, player2) == True:
                 print("spark")
+                effect_KICK.play(0)
                 player1.hp -= 10
                 print(f"HP PLAYER 1: {player1.hp}")
 
