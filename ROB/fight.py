@@ -2,6 +2,7 @@ import pygame
 import os
 from ROB.main_menu import main_menu
 from ROB.lobby import lobby
+from ROB.win import win
 
 # grundinställningar
 os.environ["SDL_VIDEO_CENTERED"] = "1"
@@ -15,7 +16,7 @@ bg_image = [pygame.image.load('pics//arena_bakgrund_0.png'), pygame.image.load('
 # ljudeffekter
 effect_punch = pygame.mixer.Sound('music//PUNCH.wav')
 effect_dead = pygame.mixer.Sound('music//Wilhelm_Scream.ogg')
-effect_KICK = pygame.mixer.Sound('music//KICK.mp3')
+effect_KICK = pygame.mixer.Sound('music//KICK.wav')
 
 # fps
 fps_clock = pygame.time.Clock()
@@ -24,6 +25,12 @@ fps = 120
 # TODO loopa bakrundsbilderna
 screen.blit(bg_image[0], (0, 0))
 screen.blit(bg_image[1], (0, 0))
+
+
+def fight_music():
+    pygame.mixer.music.stop()
+    pygame.mixer.music.load('music//fight_music.ogg')
+    pygame.mixer.music.play(-1)
 
 
 class Player(pygame.sprite.Sprite):
@@ -43,6 +50,7 @@ class Player(pygame.sprite.Sprite):
         self.images = []
         self.image = [pygame.image.load("pics//walking_right_2.png")]
         self.hp = 100
+        self.dead = False
 
 
 def player1_pics(self):
@@ -188,15 +196,11 @@ def player_movement(player1, player2):
         player2.rect.y = 500
 
 
-# run order
-main_menu()
-lobby()
-pygame.mixer.music.stop()
-pygame.mixer.music.load('music//fight_music.ogg')
-pygame.mixer.music.play(-1)
-
-
 def punch_and_kick():
+    player_dead(player1, player2)
+    if player1.dead == True or player2.dead == True:
+        win()
+
     # kollar om en knapp är nedtryckt
     if keys.type == pygame.KEYDOWN:
 
@@ -209,9 +213,9 @@ def punch_and_kick():
                 print(f"HP PLAYER 2: {player2.hp}")
 
         if keys.key == pygame.K_s:
-            if collision(player2, player2) == True:
-                print("spark")
+            if collision(player1, player2) == True:
                 effect_KICK.play(0)
+                print("spark")
                 player2.hp -= 10
                 print(f"HP PLAYER 2: {player2.hp}")
 
@@ -229,15 +233,27 @@ def punch_and_kick():
                 player1.hp -= 10
                 print(f"HP PLAYER 1: {player1.hp}")
 
-    player_dead(player1, player2)
+
 def player_dead(player1, player2):
     dead = pygame.image.load("pics//player_dead.png")
-    if player2.hp == 0:
-        screen.blit(dead)
+    if player1.hp == 0:
+        screen.blit(dead, (player1.rect.x, 550))
         effect_dead.play(0)
+        player1.dead = True
+
+    if player2.hp == 0:
+        screen.blit(dead, (player2.rect.x, 550))
+        effect_dead.play(0)
+        player2.dead = True
 
 
 
+
+
+# run order
+main_menu()
+lobby()
+fight_music()
 
 running = True
 while running:
