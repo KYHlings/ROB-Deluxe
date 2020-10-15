@@ -205,46 +205,46 @@ def punch_and_kick():
     if keys.type == pygame.KEYDOWN:
 
         # fighter1 slag och spark
-        if keys.key == pygame.K_w:
+        if keys.key == pygame.K_UP:
             if collision(player1, player2) == True:
                 effect_punch.play(0)
                 print("slag")
                 player2.hp -= 10
                 print(f"HP PLAYER 2: {player2.hp}")
+        if keys.key == pygame.K_DOWN:
+            if collision(player1, player2) == True:
+                print("spark")
+                effect_KICK.play(0)
+                player2.hp -= 10
+                print(f"HP PLAYER 2: {player2.hp}")
+        # fighter2 slag och spark
+        if keys.key == pygame.K_w:
+            if collision(player1, player2) == True:
+                effect_punch.play(0)
+                print("slag")
+                player1.hp -= 10
+                print(f"HP PLAYER 1: {player1.hp}")
 
         if keys.key == pygame.K_s:
             if collision(player1, player2) == True:
                 effect_KICK.play(0)
                 print("spark")
-                player2.hp -= 10
-                print(f"HP PLAYER 2: {player2.hp}")
+                player1.hp -= 10
+                print(f"HP PLAYER 1: {player1.hp}")
 
-        # fighter2 slag och spark
-        if keys.key == pygame.K_UP:
-            if collision(player1, player2) == True:
-                effect_punch.play(0)
-                print("slag")
-                player1.hp -= 10
-                print(f"HP PLAYER 1: {player1.hp}")
-        if keys.key == pygame.K_DOWN:
-            if collision(player1, player2) == True:
-                print("spark")
-                effect_KICK.play(0)
-                player1.hp -= 10
-                print(f"HP PLAYER 1: {player1.hp}")
 
 
 def player_dead(player1, player2):
     dead = pygame.image.load("pics//player_dead.png")
     if player1.hp == 0:
+        player1.dead = True
         screen.blit(dead, (player1.rect.x, 550))
         effect_dead.play(0)
-        player1.dead = True
 
     if player2.hp == 0:
+        player2.dead = True
         screen.blit(dead, (player2.rect.x, 550))
         effect_dead.play(0)
-        player2.dead = True
 
 
 
@@ -271,6 +271,4 @@ def fight():
             punch_and_kick()
         player_movement(player1, player2)
 
-
 fight()
-
