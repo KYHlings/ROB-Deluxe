@@ -255,16 +255,22 @@ main_menu()
 lobby()
 fight_music()
 
-running = True
-while running:
-    healthbar(player1, player2)
-    fps_clock.tick(fps)
-    screen.fill(black)
-    screen.blit(bg_image[0], (0, 0))
-    player_list.draw(screen)
-    for keys in pygame.event.get():
-        if keys.type == pygame.QUIT:
-            running = False
-        punch_and_kick()
-    player_movement(player1, player2)
+
+def fight():
+    global keys
+    running = True
+    while running:
+        healthbar(player1, player2)
+        fps_clock.tick(fps)
+        screen.fill(black)
+        screen.blit(bg_image[0], (0, 0))
+        player_list.draw(screen)
+        for keys in pygame.event.get():
+            if keys.type == pygame.QUIT:
+                running = False
+            punch_and_kick()
+        player_movement(player1, player2)
+
+
+fight()
 
