@@ -199,7 +199,7 @@ def player_movement(player1, player2):
 def punch_and_kick():
     player_dead(player1, player2)
     if player1.dead == True or player2.dead == True:
-        win()
+        lobby()
 
     # kollar om en knapp är nedtryckt
     if keys.type == pygame.KEYDOWN:
@@ -247,16 +247,8 @@ def player_dead(player1, player2):
         effect_dead.play(0)
 
 
-
-
-
-# run order
-main_menu()
-lobby()
-fight_music()
-
-
 def fight():
+    fight_music()
     global keys
     running = True
     while running:
@@ -270,5 +262,3 @@ def fight():
                 running = False
             punch_and_kick()
         player_movement(player1, player2)
-
-fight()
