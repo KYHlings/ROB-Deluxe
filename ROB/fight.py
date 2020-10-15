@@ -207,6 +207,7 @@ def punch_and_kick():
                 print("slag")
                 player2.hp -= 10
                 print(f"HP PLAYER 2: {player2.hp}")
+
         if keys.key == pygame.K_s:
             if collision(player2, player2) == True:
                 print("spark")
@@ -227,6 +228,15 @@ def punch_and_kick():
                 effect_KICK.play(0)
                 player1.hp -= 10
                 print(f"HP PLAYER 1: {player1.hp}")
+
+    player_dead(player1, player2)
+def player_dead(player1, player2):
+    dead = pygame.image.load("pics//player_dead.png")
+    if player2.hp == 0:
+        screen.blit(dead)
+        effect_dead.play(0)
+
+
 
 
 running = True
