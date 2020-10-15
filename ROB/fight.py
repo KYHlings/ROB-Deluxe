@@ -65,6 +65,20 @@ player1_pics(player2)
 player2.rect.x = 60
 player2.rect.y = 200
 
+def healthbar(player1, player2):
+    if player1.hp > -10:
+        bg_bar1 = pygame.Rect(550, 50, 200, 50)
+        hp_bar1 = pygame.Rect(550, 50, 200*(player1.hp*0.01), 50)
+        pygame.draw.rect(screen, (255, 0, 0), bg_bar1)
+        pygame.draw.rect(screen, (0, 255, 0), hp_bar1)
+
+    if player2.hp > -10:
+        bg_bar2 = pygame.Rect(50, 50, 200, 50)
+        hp_bar2 = pygame.Rect(50, 50, 200*(player2.hp*0.01), 50)
+        pygame.draw.rect(screen, (255, 0, 0), bg_bar2)
+        pygame.draw.rect(screen, (0, 255, 0), hp_bar2)
+    pygame.display.update()
+
 # lägger alla spelare i en sprite grupp
 player_list = pygame.sprite.Group()
 player_list.add(player1, player2)
@@ -211,6 +225,7 @@ def punch_and_kick():
 
 running = True
 while running:
+    healthbar(player1, player2)
     fps_clock.tick(fps)
     screen.fill(black)
     screen.blit(bg_image[0], (0, 0))
@@ -220,4 +235,4 @@ while running:
             running = False
         punch_and_kick()
     player_movement(player1, player2)
-    pygame.display.update()
+
