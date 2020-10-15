@@ -64,6 +64,22 @@ player_list = pygame.sprite.Group()
 player_list.add(player1, player2)
 
 
+def healthbar(player1, player2):
+    if player1.hp > -10:
+        bg_bar1 = pygame.Rect(550, 50, 200, 50)
+        hp_bar1 = pygame.Rect(550, 50, 200*(player1.hp*0.01), 50)
+        pygame.draw.rect(screen, (255, 0, 0), bg_bar1)
+        pygame.draw.rect(screen, (0, 255, 0), hp_bar1)
+
+    if player2.hp > -10:
+        bg_bar2 = pygame.Rect(50, 50, 200, 50)
+        hp_bar2 = pygame.Rect(50, 50, 200*(player2.hp*0.01), 50)
+        pygame.draw.rect(screen, (255, 0, 0), bg_bar2)
+        pygame.draw.rect(screen, (0, 255, 0), hp_bar2)
+    pygame.display.update()
+
+
+
 def collision(player1, player2):
     col = pygame.sprite.collide_rect(player1, player2)
     if col == True:
@@ -180,20 +196,23 @@ def punch_and_kick():
                     print("slag")
                     player1.hp -= 10
                     print(f"HP PLAYER 1: {player1.hp}")
+
             if keys.key == pygame.K_DOWN:
                 if collision(player1, player2) == True:
                     print("spark")
                     player1.hp -= 10
                     print(f"HP PLAYER 1: {player1.hp}")
 
+
             #fighter1 slag och spark
             if keys.key == pygame.K_w:
-                if collision(player1, player2) == True:
+                if collision(player2, player1) == True:
                     print("slag")
                     player2.hp -= 10
                     print(f"HP PLAYER 2: {player2.hp}")
+
             if keys.key == pygame.K_s:
-                if collision(player2, player2) == True:
+                if collision(player2, player1) == True:
                     print("spark")
                     player2.hp -= 10
                     print(f"HP PLAYER 2: {player2.hp}")
@@ -202,6 +221,7 @@ def punch_and_kick():
 
 running = True
 while running:
+    healthbar(player1, player2)
     fps_clock.tick(fps)
     screen.fill(black)
     screen.blit(bg_image[0], (0, 0))
@@ -211,5 +231,3 @@ while running:
             running = False
         punch_and_kick()
     player_movement(player1, player2)
-    pygame.display.update()
-
