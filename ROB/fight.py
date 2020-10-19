@@ -101,14 +101,14 @@ def healthbar(player1, player2):
 
 
 def collision(player1, player2):
-    # kollar om kollision har skett
+ # kollar om kollision har skett
     col = pygame.sprite.collide_rect(player1, player2)
     if col == True:
         return True
 
 
 def player_movement(player1, player2):
-    # Grund inställningar för position
+# Grund inställningar för position
     player1.rect.y += player1.vel
     player2.rect.y += player2.vel
     if player1.rect.y == 500:
@@ -120,7 +120,7 @@ def player_movement(player1, player2):
 
 # TODO det finns en bug där man flyger utanför skärmen om spelarna kolliderar och går åt ett håll tillsammans
 # FIGHTER 1
-    # vänster
+# vänster
     if keys[pygame.K_LEFT] and player1.rect.x > player1.vel:
         player1.left = True
         player1.right = False
@@ -133,7 +133,7 @@ def player_movement(player1, player2):
         if player1.frame == 2:
             player1.frame = 0
 
-    # höger
+# höger
     if keys[pygame.K_RIGHT] and player1.rect.x < screen_width - 40:
         player1.left = False
         player1.right = True
@@ -148,19 +148,19 @@ def player_movement(player1, player2):
 
 # HOPP
     if keys[pygame.K_RCTRL]:
-        # hoppets höjd
+# hoppets höjd
         player1.rect.y -= 15
-        # dragningskraft
+# dragningskraft
         player1.vel = 3
-        # invisible border max hopphöjd
+# invisible border max hopphöjd
         if player1.rect.y < 200:
             player1.vel = 20
-        # lägsta punkt
+# lägsta punkt
     if player1.rect.y > 500:
         player1.rect.y = 500
 
 # FIGTER 2
-    # vänster
+# vänster
     if keys[pygame.K_a] and player2.rect.x > player2.vel:
         player2.left = True
         player2.right = False
@@ -173,7 +173,7 @@ def player_movement(player1, player2):
         if player2.frame == 2:
             player2.frame = 0
 
-    # höger
+# höger
     if keys[pygame.K_d] and player2.rect.x < screen_width - 40:
         player2.left = False
         player2.right = True
@@ -188,14 +188,14 @@ def player_movement(player1, player2):
 
 # HOPP
     if keys[pygame.K_SPACE]:
-        # hoppets höjd
+# hoppets höjd
         player2.rect.y -= 15
-        # dragningskraft
+# dragningskraft
         player2.vel = 3
-        # invisible border max hopphöjd
+# invisible border max hopphöjd
         if player2.rect.y < 200:
             player2.vel = 20
-    # lägsta punkt
+# lägsta punkt
     if player2.rect.y > 500:
         player2.rect.y = 500
 
@@ -203,7 +203,6 @@ def player_movement(player1, player2):
 def punch_and_kick():
     # kollar om en knapp är nedtryckt
     if keys.type == pygame.KEYDOWN:
-
         # fighter1 slag och spark
         if keys.key == pygame.K_UP:
             if collision(player1, player2) == True:
@@ -233,7 +232,6 @@ def punch_and_kick():
                 print(f"HP PLAYER 1: {player1.hp}")
 
 
-
 def player_dead(player1, player2):
     dead = pygame.image.load("pics//player_dead.png")
     if player1.hp == 0:
@@ -246,8 +244,8 @@ def player_dead(player1, player2):
         screen.blit(dead, (player2.rect.x, 550))
         effect_dead.play(0)
 
-def fight():
 
+def fight():
     fight_music()
     global keys
     running = True
