@@ -24,6 +24,8 @@ def lobby():
 	screen.blit(fight_sign, (250, 50))
 	running = True
 	matchup = 0
+	score_player1 = 0
+	score_player2 = 0
 	while running:
 		for event in pygame.event.get():
 			if event.type == pygame.QUIT:
@@ -41,6 +43,11 @@ def lobby():
 						result = fight()
 						print("Winner is player " + str(result))
 						# måla upp lobbyn igen
+						if result == 1:
+							score_player1 += 100
+						if result == 2:
+							score_player2 += 100
+						print(f"P1: {score_player1}, P2: {score_player2}" )
 						pygame.mixer.music.stop()
 						pygame.mixer.music.load("music//casino_music.wav")
 						pygame.mixer.music.play(-1)

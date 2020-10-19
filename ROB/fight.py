@@ -1,3 +1,5 @@
+import sys
+
 import pygame
 import os
 
@@ -33,8 +35,8 @@ def fight_music():
 
 class Player(pygame.sprite.Sprite):
     """
-    Spawn a player
-    """
+   Spawn a player
+   """
 
     def __init__(self):
         pygame.sprite.Sprite.__init__(self)
@@ -251,7 +253,12 @@ def fight():
     running = True
     while running:
         player_dead(player1, player2)
+        if player1.dead == True:
+            winner = 2
+        if player2.dead == True:
+            winner = 1
         if player1.dead == True or player2.dead == True:
+
             player1.rect.x = 720
             player1.rect.y = 200
             player2.rect.x = 60
@@ -261,9 +268,10 @@ def fight():
             player1.dead = False
             player2.dead = False
             #om en spelare är död returnera vinnarens nummer
-            winner = 2 if player1.dead else 1
+
             running = False
-            return winner, player1.hp, player2.hp
+            # låt stå, funkar trots varning
+            return winner
 
         healthbar(player1, player2)
         fps_clock.tick(fps)
@@ -272,6 +280,6 @@ def fight():
         player_list.draw(screen)
         for keys in pygame.event.get():
             if keys.type == pygame.QUIT:
-                running = False
+                sys.exit()
             punch_and_kick()
         player_movement(player1, player2)

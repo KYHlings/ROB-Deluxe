@@ -2,6 +2,7 @@ import pygame
 import sys
 from ROB.lobby import lobby
 
+
 def main_menu():
     pygame.init()
     pygame.mixer.init()
