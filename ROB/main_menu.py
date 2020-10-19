@@ -1,5 +1,6 @@
 import pygame
 import sys
+from ROB.lobby import lobby
 
 pygame.init()
 
@@ -41,8 +42,8 @@ def main_menu():
                 if event.button == 1:
                     # kollar om musens position vid knapptryckningen kolliderar med playbutton
                     if play_button.collidepoint(mx, my):
-                        # stänger programmet
-                        running = False
+                        # startar lobby
+                        lobby()
                     if quit_button.collidepoint(mx, my):
                         sys.exit()
 
