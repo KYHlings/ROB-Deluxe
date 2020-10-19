@@ -6,7 +6,6 @@ matches = ["1,2", "3,4", "1,3", "2,4", "1,4", "2,3"]
 
 
 def lobby():
-	p = Player()
 	pygame.init()
 	pygame.mixer.init()
 	fight_button = lobby_window()
@@ -14,36 +13,33 @@ def lobby():
 	matchup = 0
 	score_player1 = 0
 	score_player2 = 0
+	score_player3 = 0
+	score_player4 = 0
 	while running:
 		for event in pygame.event.get():
 			if event.type == pygame.QUIT:
 				sys.exit()
 			if event.type == pygame.MOUSEBUTTONDOWN:
-				#
+			# kollar position på musen
 				mx, my = pygame.mouse.get_pos()
-				# kollar vilken knapp på musen som tryckts ned
+			# kollar vilken knapp på musen som tryckts ned
 				if event.button == 1:
-					# kollar om musens position vid knapptryckningen kolliderar med playbutton
+			# kollar om musens position vid knapptryckningen kolliderar med playbutton
 					if fight_button.collidepoint(mx, my):
-						# initera en ny instans av Fight
-
-						# starta en fight och få resultatet tillbaka
+			# starta en fight och få resultatet tillbaka
 						result = fight()
 						print("Winner is player " + str(result))
-						# måla upp lobbyn igen
 						if result == 1:
 							score_player1 += 100
 						if result == 2:
 							score_player2 += 100
 						print(f"P1: {score_player1}, P2: {score_player2}")
+			# måla upp lobbyn igen
 						lobby_window()
-
-						# gå vidare till nästa match
+			# gå vidare till nästa match
 						matchup += matchup
-
-
-			# uppdaterar displayen
-			pygame.display.update()
+		# uppdaterar displayen
+		pygame.display.update()
 
 
 def lobby_window():
