@@ -256,13 +256,15 @@ def fight():
         if player2.dead == True:
             winner = 1
         if player1.dead == True or player2.dead == True:
-
+    # återställer position till startposition för vardera spelare
             player1.rect.x = 720
-            player1.rect.y = 200
+            player1.rect.y = 500
             player2.rect.x = 60
-            player2.rect.y = 200
+            player2.rect.y = 500
+    # återställer hp för båda
             player1.hp = 100
             player2.hp = 100
+    # återställer tillstånd
             player1.dead = False
             player2.dead = False
             #om en spelare är död returnera vinnarens nummer
