@@ -11,10 +11,7 @@ def lobby():
 	fight_button = lobby_window()
 	running = True
 	matchup = 0
-	score_player1 = 0
-	score_player2 = 0
-	score_player3 = 0
-	score_player4 = 0
+
 	while running:
 		for event in pygame.event.get():
 			if event.type == pygame.QUIT:
@@ -27,19 +24,36 @@ def lobby():
 			# kollar om musens position vid knapptryckningen kolliderar med playbutton
 					if fight_button.collidepoint(mx, my):
 			# starta en fight och få resultatet tillbaka
-						result = fight()
-						print("Winner is player " + str(result))
-						if result == 1:
-							score_player1 += 100
-						if result == 2:
-							score_player2 += 100
-						print(f"P1: {score_player1}, P2: {score_player2}")
+						winner, loser = fight()
+						print("Winner is player " + str(winner))
+
+			# printar score
+						print(f"P{winner}: {scoring(winner)}, P{loser}: 0")
 			# måla upp lobbyn igen
 						lobby_window()
 			# gå vidare till nästa match
 						matchup += matchup
 		# uppdaterar displayen
 		pygame.display.update()
+
+
+def scoring(result):
+	score_player1 = 0
+	score_player2 = 0
+	score_player3 = 0
+	score_player4 = 0
+	if result == 1:
+		score_player1 += 100
+		return score_player1
+	if result == 2:
+		score_player2 += 100
+		return score_player2
+	if result == 3:
+		score_player3 += 100
+		return score_player3
+	if result == 4:
+		score_player4 += 100
+		return score_player4
 
 
 def lobby_window():
