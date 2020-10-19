@@ -1,8 +1,5 @@
 import pygame
 import os
-from ROB.main_menu import main_menu
-from ROB.lobby import lobby
-from ROB.win import win
 
 # grundinställningar
 os.environ["SDL_VIDEO_CENTERED"] = "1"
@@ -12,6 +9,7 @@ screen_width = 800
 screen_height = 600
 screen = pygame.display.set_mode((screen_width, screen_height))
 bg_image = [pygame.image.load('pics//arena_bakgrund_0.png'), pygame.image.load('pics//arena_bakgrund_1.png')]
+
 
 # ljudeffekter
 effect_punch = pygame.mixer.Sound('music//PUNCH.wav')
@@ -65,15 +63,19 @@ def player1_pics(self):
         player1.image = pygame.transform.flip(player1.images[player1.frame], True, False)
 
 
-# spawnar spelare
 player1 = Player()
 player1_pics(player1)
 player1.rect.x = 720
 player1.rect.y = 200
+player1.hp = 100
 player2 = Player()
 player1_pics(player2)
 player2.rect.x = 60
 player2.rect.y = 200
+player2.hp = 100
+
+
+# spawnar spelare
 
 
 # lägger alla spelare i en sprite grupp
@@ -197,10 +199,6 @@ def player_movement(player1, player2):
 
 
 def punch_and_kick():
-    player_dead(player1, player2)
-    if player1.dead == True or player2.dead == True:
-        lobby()
-
     # kollar om en knapp är nedtryckt
     if keys.type == pygame.KEYDOWN:
 
@@ -246,12 +244,18 @@ def player_dead(player1, player2):
         screen.blit(dead, (player2.rect.x, 550))
         effect_dead.play(0)
 
-
 def fight():
+
     fight_music()
     global keys
     running = True
     while running:
+        player_dead(player1, player2)
+        if player1.dead == True or player2.dead == True:
+            #om en spelare är död returnera vinnarens nummer
+            winner = 2 if player1.dead else 1
+            running = False
+            return winner
         healthbar(player1, player2)
         fps_clock.tick(fps)
         screen.fill(black)

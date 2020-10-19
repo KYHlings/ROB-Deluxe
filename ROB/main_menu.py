@@ -1,10 +1,10 @@
 import pygame
 import sys
-
-pygame.init()
-
+from lobby import lobby
 
 def main_menu():
+    pygame.init()
+    pygame.mixer.init()
     pygame.mixer.music.load("music//menu_music.ogg")
     pygame.mixer.music.play(-1)
     screen = pygame.display.set_mode((800, 600))
@@ -24,6 +24,7 @@ def main_menu():
     screen.blit(logo, (50, 50))
 
 
+
     # running gör så att programmet fortsätter köra för alltid tills running = False
     running = True
     while running:
@@ -41,8 +42,8 @@ def main_menu():
                 if event.button == 1:
                     # kollar om musens position vid knapptryckningen kolliderar med playbutton
                     if play_button.collidepoint(mx, my):
-                        # stänger programmet
-                        running = False
+                        # starta en lobby
+                        lobby()
                     if quit_button.collidepoint(mx, my):
                         sys.exit()
 
