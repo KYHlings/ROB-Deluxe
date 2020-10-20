@@ -261,10 +261,10 @@ def fight():
         player_dead(player1, player2)
         if player1.dead == True:
             winner = 2
-            loser = 1
+            loser = 5
         if player2.dead == True:
             winner = 1
-            loser = 2
+            loser = 6
         if player1.dead == True or player2.dead == True:
     # återställer position till startposition för vardera spelare
             player1.rect.x = 720
