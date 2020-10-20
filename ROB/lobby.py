@@ -72,6 +72,3 @@ def lobby_window():
 	screen.blit(make_bets, (350, 200))
 	screen.blit(fight_sign, (250, 50))
 	return fight_button
-
-
-

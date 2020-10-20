@@ -83,6 +83,8 @@ player2.hp = 100
 # lägger alla spelare i en sprite grupp
 player_list = pygame.sprite.Group()
 player_list.add(player1, player2)
+
+
 def player_bars(which):
     font = pygame.font.SysFont("Arial", 20)
     if which == 1:
