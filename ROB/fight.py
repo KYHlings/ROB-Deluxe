@@ -279,7 +279,7 @@ def fight():
 
             running = False
             # låt stå, funkar trots varning
-            return winner, loser
+            return winner
 
         healthbar(player1, player2)
         fps_clock.tick(fps)
