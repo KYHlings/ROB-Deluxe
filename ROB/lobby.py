@@ -31,7 +31,7 @@ def lobby():
 						print(f"P{winner}: {scoring(winner)}, P{loser}: 0")
 						# måla upp lobbyn igen
 						lobby_window()
-						player_bars(scoring(winner), scoring(loser))
+						player_bars(scoring(winner), scoring(loser), winner)
 						# gå vidare till nästa match
 						matchup += matchup
 		# uppdaterar displayen
@@ -39,10 +39,10 @@ def lobby():
 
 
 def scoring(result):
-	score_player1 = 0
-	score_player2 = 0
-	score_player3 = 0
-	score_player4 = 0
+	score_player1 = 100
+	score_player2 = 100
+	score_player3 = 100
+	score_player4 = 100
 	if result == 1:
 		score_player1 += 100
 		return score_player1
@@ -55,15 +55,13 @@ def scoring(result):
 	if result == 4:
 		score_player4 += 100
 		return score_player4
-
-
-def loser_points(score_player1, score_player2, result):
 	if result == 5:
 		score_player1 += 0
 		return score_player1
 	if result == 6:
 		score_player2 += 0
 		return score_player2
+
 
 def lobby_window():
 	pygame.mixer.music.stop()
@@ -82,8 +80,20 @@ def lobby_window():
 	return fight_button
 
 
-def player_bars(score1, score2):
+def player_bars(score1, score2, winner):
+	player1 = 0
+	player2 = 0
+	player3 = 0
+	player4 = 0
+	if winner == 1:
+		player1 += winner
+	if winner == 2:
+		player2 += winner
+	if winner == 3:
+		player3 += winner
+	if winner == 4:
+		player4 += winner
 	font = pygame.font.SysFont("Arial", 30, True)
-	screen.blit(font.render(f"Player 1 score: {score1} Player 2 score: {score2}", True, (255, 255, 255)), (150, 530))
+	screen.blit(font.render(f"Winner is Player: {winner}", True, (255, 255, 255)), (150, 530))
 	pygame.display.update()
 
