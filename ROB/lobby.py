@@ -3,7 +3,7 @@ import sys
 from ROB.fight import fight, Player
 
 matches = ["1,2", "3,4", "1,3", "2,4", "1,4", "2,3"]
-
+screen = pygame.display.set_mode((800, 600))
 
 def lobby():
 	pygame.init()
@@ -17,21 +17,22 @@ def lobby():
 			if event.type == pygame.QUIT:
 				sys.exit()
 			if event.type == pygame.MOUSEBUTTONDOWN:
-			# kollar position på musen
+				# kollar position på musen
 				mx, my = pygame.mouse.get_pos()
-			# kollar vilken knapp på musen som tryckts ned
+				# kollar vilken knapp på musen som tryckts ned
 				if event.button == 1:
-			# kollar om musens position vid knapptryckningen kolliderar med playbutton
+					# kollar om musens position vid knapptryckningen kolliderar med playbutton
 					if fight_button.collidepoint(mx, my):
-			# starta en fight och få resultatet tillbaka
+						# starta en fight och få resultatet tillbaka
 						winner, loser = fight()
 						print("Winner is player " + str(winner))
 
-			# printar score
+						# printar score
 						print(f"P{winner}: {scoring(winner)}, P{loser}: 0")
-			# måla upp lobbyn igen
+						# måla upp lobbyn igen
 						lobby_window()
-			# gå vidare till nästa match
+						player_bars(scoring(winner), scoring(loser))
+						# gå vidare till nästa match
 						matchup += matchup
 		# uppdaterar displayen
 		pygame.display.update()
@@ -56,11 +57,18 @@ def scoring(result):
 		return score_player4
 
 
+def loser_points(score_player1, score_player2, result):
+	if result == 5:
+		score_player1 += 0
+		return score_player1
+	if result == 6:
+		score_player2 += 0
+		return score_player2
+
 def lobby_window():
 	pygame.mixer.music.stop()
 	pygame.mixer.music.load("music//casino_music.wav")
 	pygame.mixer.music.play(-1)
-	screen = pygame.display.set_mode((800, 600))
 	casino_bg = pygame.image.load('pics//casino.png')
 	statistics = pygame.image.load('pics//scoreboard.png')
 	make_bets = pygame.image.load('pics//make_your_bets.png')
@@ -74,4 +82,8 @@ def lobby_window():
 	return fight_button
 
 
+def player_bars(score1, score2):
+	font = pygame.font.SysFont("Arial", 30, True)
+	screen.blit(font.render(f"Player 1 score: {score1} Player 2 score: {score2}", True, (255, 255, 255)), (150, 530))
+	pygame.display.update()
 
