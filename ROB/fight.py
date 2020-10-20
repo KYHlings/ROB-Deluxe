@@ -83,15 +83,21 @@ player2.hp = 100
 # lägger alla spelare i en sprite grupp
 player_list = pygame.sprite.Group()
 player_list.add(player1, player2)
-
+def player_bars(which):
+    font = pygame.font.SysFont("Arial", 20)
+    if which == 1:
+        screen.blit(font.render("Player 2", True, (255, 255, 255)), (50, 20))
+    if which == 2: 
+        screen.blit(font.render("Player 1", True, (255, 255, 255)), (550, 20))
 
 def healthbar(player1, player2):
+    player_bars(1)
     if player1.hp > -10:
         bg_bar1 = pygame.Rect(550, 50, 200, 50)
         hp_bar1 = pygame.Rect(550, 50, 200*(player1.hp*0.01), 50)
         pygame.draw.rect(screen, (255, 0, 0), bg_bar1)
         pygame.draw.rect(screen, (0, 255, 0), hp_bar1)
-
+    player_bars(2)
     if player2.hp > -10:
         bg_bar2 = pygame.Rect(50, 50, 200, 50)
         hp_bar2 = pygame.Rect(50, 50, 200*(player2.hp*0.01), 50)
