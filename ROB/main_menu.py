@@ -1,7 +1,7 @@
-
 import pygame
 import sys
 from ROB.lobby import lobby
+
 
 def main_menu():
     pygame.init()
@@ -50,5 +50,3 @@ def main_menu():
 
         # uppdaterar displayen
         pygame.display.update()
-
-
