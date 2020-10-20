@@ -92,6 +92,7 @@ def player_bars(which):
     if which == 2: 
         screen.blit(font.render("Player 1", True, (255, 255, 255)), (550, 20))
 
+
 def healthbar(player1, player2):
     player_bars(1)
     if player1.hp > -10:
@@ -261,10 +262,8 @@ def fight():
         player_dead(player1, player2)
         if player1.dead == True:
             winner = 2
-            loser = 5
         if player2.dead == True:
             winner = 1
-            loser = 6
         if player1.dead == True or player2.dead == True:
     # återställer position till startposition för vardera spelare
             player1.rect.x = 720
@@ -277,11 +276,9 @@ def fight():
     # återställer tillstånd
             player1.dead = False
             player2.dead = False
-            #om en spelare är död returnera vinnarens nummer
-
-            running = False
+            # om en spelare är död returnera vinnarens nummer
             # låt stå, funkar trots varning
-            return winner, loser
+            return winner
 
         healthbar(player1, player2)
         fps_clock.tick(fps)
