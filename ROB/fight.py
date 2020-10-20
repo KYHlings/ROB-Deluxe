@@ -83,12 +83,15 @@ player2.hp = 100
 # lägger alla spelare i en sprite grupp
 player_list = pygame.sprite.Group()
 player_list.add(player1, player2)
+
+
 def player_bars(which):
     font = pygame.font.SysFont("Arial", 20)
     if which == 1:
         screen.blit(font.render("Player 2", True, (255, 255, 255)), (50, 20))
     if which == 2: 
         screen.blit(font.render("Player 1", True, (255, 255, 255)), (550, 20))
+
 
 def healthbar(player1, player2):
     player_bars(1)
@@ -259,10 +262,8 @@ def fight():
         player_dead(player1, player2)
         if player1.dead == True:
             winner = 2
-            loser = 5
         if player2.dead == True:
             winner = 1
-            loser = 6
         if player1.dead == True or player2.dead == True:
     # återställer position till startposition för vardera spelare
             player1.rect.x = 720
