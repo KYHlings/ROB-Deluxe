@@ -276,9 +276,7 @@ def fight():
     # återställer tillstånd
             player1.dead = False
             player2.dead = False
-            #om en spelare är död returnera vinnarens nummer
-
-            running = False
+            # om en spelare är död returnera vinnarens nummer
             # låt stå, funkar trots varning
             return winner
 
