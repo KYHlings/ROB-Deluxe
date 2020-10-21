@@ -1,6 +1,7 @@
 import pygame
 import sys
 from ROB.fight import fight
+from ROB.winner_screen import winner_screen
 
 matches = ["1,2", "3,4", "1,3", "2,4", "1,4", "2,3"]
 font = pygame.font.SysFont("Arial", 30, True)
@@ -90,6 +91,7 @@ def lobby():
 						winner = fight(current_match)
 						print("Winner is player " + str(winner))
 						current_match += 1
+						winner_screen(winner)
 						# printar score
 						if winner == 1:
 							print(show_score(score_player1, score_player2, score_player3, score_player4, winner))
