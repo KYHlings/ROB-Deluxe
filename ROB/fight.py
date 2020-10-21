@@ -261,9 +261,9 @@ def fight(current_match):
         player_bars(2, current_match)
         player_dead(player1, player2)
         if player1.dead == True:
-            winner = 2
+            winner = matchup[current_match][1]
         if player2.dead == True:
-            winner = 1
+            winner = matchup[current_match][0]
         if player1.dead == True or player2.dead == True:
     # återställer position till startposition för vardera spelare
             player1.rect.x = 720

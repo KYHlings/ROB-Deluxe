@@ -6,6 +6,8 @@ from ROB.lobby import lobby
 def main_menu():
     pygame.init()
     pygame.mixer.init()
+
+
     pygame.mixer.music.load("music//menu_music.ogg")
     pygame.mixer.music.play(-1)
     screen = pygame.display.set_mode((800, 600))
