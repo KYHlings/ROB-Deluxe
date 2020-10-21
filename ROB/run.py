@@ -2,6 +2,7 @@ import pygame
 import sys
 from ROB.main_menu import main_menu
 
+
 def main():
     pygame.init()
     screen = pygame.display.set_mode((800, 600))
