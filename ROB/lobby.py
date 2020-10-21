@@ -53,9 +53,9 @@ def lobby():
 	pygame.init()
 	pygame.mixer.init()
 	running = True
-	matchup = 0
 	score = 100
 	volume = 0.5
+	current_match = 0
 	score_player1 = score
 	score_player2 = score
 	score_player3 = score
@@ -87,9 +87,9 @@ def lobby():
 					# kollar om musens position vid knapptryckningen kolliderar med playbutton
 					if fight_button.collidepoint(mx, my):
 						# starta en fight och få resultatet tillbaka
-						winner = fight()
+						winner = fight(current_match)
 						print("Winner is player " + str(winner))
-
+						current_match += 1
 						# printar score
 						if winner == 1:
 							print(show_score(score_player1, score_player2, score_player3, score_player4, winner))
