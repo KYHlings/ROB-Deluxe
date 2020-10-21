@@ -33,19 +33,19 @@ def lobby_window():
 
 
 def player_bars(winner):
-	player1 = 0
-	player2 = 0
-	player3 = 0
-	player4 = 0
-	if winner == 1:
-		player1 += winner
-	if winner == 2:
-		player2 += winner
-	if winner == 3:
-		player3 += winner
-	if winner == 4:
-		player4 += winner
-	screen.blit(font.render(f"Winner is Player: {winner}", True, (255, 255, 255)), (150, 530))
+	# player1 = 0
+	# player2 = 0
+	# player3 = 0
+	# player4 = 0
+	# if winner == 1:
+	# 	player1 += winner
+	# if winner == 2:
+	# 	player2 += winner
+	# if winner == 3:
+	# 	player3 += winner
+	# if winner == 4:
+	# 	player4 += winner
+	screen.blit(font.render(f"Winner is: {winner}", True, (255, 255, 255)), (150, 530))
 	pygame.display.update()
 
 
@@ -114,13 +114,13 @@ def volume_buttons():
 
 
 def show_score(score_player1, score_player2, score_player3, score_player4, winner):
-	if winner == 1:
+	if winner == "Slaktar Sune":
 		score_player1 += 100
-	if winner == 2:
+	if winner == "Boxare Bob":
 		score_player2 += 100
-	if winner == 3:
+	if winner == "Bråkiga Berit":
 		score_player3 += 100
-	if winner == 4:
+	if winner == "Hänsynslöse Hannes":
 		score_player4 += 100
 	screen.blit(font.render(f"SCORE: ", True, (255, 255, 255)), (50, 150))
 	screen.blit(font.render(f"Slaktar Sune: {score_player1}", True, (255, 255, 255)), (50, 200))
