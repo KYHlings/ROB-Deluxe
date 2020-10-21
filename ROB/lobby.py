@@ -1,6 +1,6 @@
 import pygame
 import sys
-from ROB.fight import fight, Player
+from ROB.fight import fight
 
 matches = ["1,2", "3,4", "1,3", "2,4", "1,4", "2,3"]
 font = pygame.font.SysFont("Arial", 30, True)
@@ -12,6 +12,9 @@ def show_stats(score1, score2, score3, score4):
 	screen.blit(font.render(f"Player 2 score: {score2}", True, (255, 255, 255)), (50, 250))
 	screen.blit(font.render(f"Player 3 score: {score3}", True, (255, 255, 255)), (50, 300))
 	screen.blit(font.render(f"Player 4 score: {score4}", True, (255, 255, 255)), (50, 350))
+	screen.blit(font.render(f"VOLUME: ", True, (255, 255, 255)), (550, 10))
+	screen.blit(font.render(f"Vol+ : [ U ]", True, (255, 255, 255)), (680, 10))
+	screen.blit(font.render(f"Vol- : [ J ]", True, (255, 255, 255)), (680, 40))
 
 
 def lobby_window():

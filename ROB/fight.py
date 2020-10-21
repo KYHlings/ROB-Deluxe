@@ -14,6 +14,7 @@ bg_image = [pygame.image.load('pics//arena_bakgrund_0.png'), pygame.image.load('
 
 
 # ljudeffekter
+pygame.mixer.music.set_volume(0.5)
 effect_punch = pygame.mixer.Sound('music//PUNCH.wav')
 effect_dead = pygame.mixer.Sound('music//Wilhelm_Scream.ogg')
 effect_KICK = pygame.mixer.Sound('music//KICK.wav')
