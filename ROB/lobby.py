@@ -8,10 +8,11 @@ screen = pygame.display.set_mode((800, 600))
 
 
 def show_stats(score1, score2, score3, score4):
-	screen.blit(font.render(f"Slaktar Sune score: {score1}", True, (255, 255, 255)), (50, 200))
-	screen.blit(font.render(f"Boxare Bob score: {score2}", True, (255, 255, 255)), (50, 250))
-	screen.blit(font.render(f"Bråkiga Berit score: {score3}", True, (255, 255, 255)), (50, 300))
-	screen.blit(font.render(f"Hänsynslöse Hannes score: {score4}", True, (255, 255, 255)), (50, 350))
+	screen.blit(font.render(f"SCORE: ", True, (255, 255, 255)), (50, 150))
+	screen.blit(font.render(f"Slaktar Sune: {score1}", True, (255, 255, 255)), (50, 200))
+	screen.blit(font.render(f"Boxare Bob: {score2}", True, (255, 255, 255)), (50, 250))
+	screen.blit(font.render(f"Bråkiga Berit: {score3}", True, (255, 255, 255)), (50, 300))
+	screen.blit(font.render(f"Hänsynslöse Hannes: {score4}", True, (255, 255, 255)), (50, 350))
 	screen.blit(font.render(f"MUSIC: ", True, (255, 255, 255)), (550, 10))
 	minus, mute, plus = volume_buttons()
 
@@ -21,12 +22,12 @@ def lobby_window():
 	pygame.mixer.music.load("music//casino_music.wav")
 	pygame.mixer.music.play(-1)
 	casino_bg = pygame.image.load('pics//casino.png')
-	make_bets = pygame.image.load('pics//make_your_bets.png')
+	# make_bets = pygame.image.load('pics//make_your_bets.png')
 	fight_sign = pygame.image.load('pics//fight_sign.png')
 	fight_button = pygame.Rect(250, 50, 300, 100)
 	pygame.draw.rect(screen, (0, 0, 0), fight_button)
 	screen.blit(casino_bg, (0, 0))
-	screen.blit(make_bets, (350, 200))
+	# screen.blit(make_bets, (350, 200))
 	screen.blit(fight_sign, (250, 50))
 	return fight_button
 
@@ -61,9 +62,9 @@ def lobby():
 	score_player4 = score
 	fight_button = lobby_window()
 	minus, mute, plus = volume_buttons()
+	show_stats(score_player1, score_player2, score_player3, score_player4)
 	while running:
 		pygame.mixer.music.set_volume(volume)
-		show_stats(score_player1, score_player2, score_player3, score_player4)
 		for event in pygame.event.get():
 			if event.type == pygame.QUIT:
 				sys.exit()
@@ -121,9 +122,10 @@ def show_score(score_player1, score_player2, score_player3, score_player4, winne
 		score_player3 += 100
 	if winner == 4:
 		score_player4 += 100
-	screen.blit(font.render(f"Player 1 score: {score_player1}", True, (255, 255, 255)), (50, 200))
-	screen.blit(font.render(f"Player 2 score: {score_player2}", True, (255, 255, 255)), (50, 250))
-	screen.blit(font.render(f"Player 3 score: {score_player3}", True, (255, 255, 255)), (50, 300))
-	screen.blit(font.render(f"Player 4 score: {score_player4}", True, (255, 255, 255)), (50, 350))
+	screen.blit(font.render(f"SCORE: ", True, (255, 255, 255)), (50, 150))
+	screen.blit(font.render(f"Slaktar Sune: {score_player1}", True, (255, 255, 255)), (50, 200))
+	screen.blit(font.render(f"Boxare Bob: {score_player2}", True, (255, 255, 255)), (50, 250))
+	screen.blit(font.render(f"Bråkiga Berit: {score_player3}", True, (255, 255, 255)), (50, 300))
+	screen.blit(font.render(f"Hänsynslöse Hannes: {score_player4}", True, (255, 255, 255)), (50, 350))
 	return score_player1, score_player2, score_player3, score_player4
 

@@ -1,5 +1,4 @@
 import sys
-
 import pygame
 import os
 
@@ -12,6 +11,7 @@ screen_height = 600
 screen = pygame.display.set_mode((screen_width, screen_height))
 bg_image = [pygame.image.load('pics//arena_bakgrund_0.png'), pygame.image.load('pics//arena_bakgrund_1.png')]
 
+matchup = [["Slaktar Sune", "Boxare Bob"], ["Hänsynslöse Hannes", "Bråkiga Berit"]]
 
 # ljudeffekter
 
@@ -89,9 +89,9 @@ player_list.add(player1, player2)
 def player_bars(which):
     font = pygame.font.SysFont("Arial", 20)
     if which == 1:
-        screen.blit(font.render("Slaktar Sune", True, (255, 255, 255)), (50, 20))
+        screen.blit(font.render(f"{matchup[0][0]}", True, (255, 255, 255)), (50, 20))
     if which == 2: 
-        screen.blit(font.render("Boxare Bob", True, (255, 255, 255)), (550, 20))
+        screen.blit(font.render(f"{matchup[0][1]}", True, (255, 255, 255)), (550, 20))
 
 
 def healthbar(player1, player2):
