@@ -8,10 +8,10 @@ screen = pygame.display.set_mode((800, 600))
 
 
 def show_stats(score1, score2, score3, score4):
-	screen.blit(font.render(f"Player 1 score: {score1}", True, (255, 255, 255)), (50, 200))
-	screen.blit(font.render(f"Player 2 score: {score2}", True, (255, 255, 255)), (50, 250))
-	screen.blit(font.render(f"Player 3 score: {score3}", True, (255, 255, 255)), (50, 300))
-	screen.blit(font.render(f"Player 4 score: {score4}", True, (255, 255, 255)), (50, 350))
+	screen.blit(font.render(f"Slaktar Sune score: {score1}", True, (255, 255, 255)), (50, 200))
+	screen.blit(font.render(f"Boxare Bob score: {score2}", True, (255, 255, 255)), (50, 250))
+	screen.blit(font.render(f"Bråkiga Berit score: {score3}", True, (255, 255, 255)), (50, 300))
+	screen.blit(font.render(f"Hänsynslöse Hannes score: {score4}", True, (255, 255, 255)), (50, 350))
 	screen.blit(font.render(f"MUSIC: ", True, (255, 255, 255)), (550, 10))
 	minus, mute, plus = volume_buttons()
 

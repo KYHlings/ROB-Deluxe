@@ -89,9 +89,9 @@ player_list.add(player1, player2)
 def player_bars(which):
     font = pygame.font.SysFont("Arial", 20)
     if which == 1:
-        screen.blit(font.render("Player 2", True, (255, 255, 255)), (50, 20))
+        screen.blit(font.render("Slaktar Sune", True, (255, 255, 255)), (50, 20))
     if which == 2: 
-        screen.blit(font.render("Player 1", True, (255, 255, 255)), (550, 20))
+        screen.blit(font.render("Boxare Bob", True, (255, 255, 255)), (550, 20))
 
 
 def healthbar(player1, player2):
