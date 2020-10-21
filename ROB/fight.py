@@ -11,7 +11,7 @@ screen_height = 600
 screen = pygame.display.set_mode((screen_width, screen_height))
 bg_image = [pygame.image.load('pics//arena_bakgrund_0.png'), pygame.image.load('pics//arena_bakgrund_1.png')]
 
-matchup = [["Slaktar Sune", "Boxare Bob"], ["Bråkiga Berit", "Hänsynslöse Hannes"], ["Slaktar Sune, Bråkiga Berit"], ["Boxare Bob", "Hänsynslöse Hannes"], ["Slaktar Sune", "Hänsynslöse Hannes"], ["Boxare Bob", "Bråkiga Berit"]]
+matchup = [["Slaktar Sune", "Boxare Bob"], ["Bråkiga Berit", "Hänsynslöse Hannes"], ["Slaktar Sune", "Bråkiga Berit"], ["Boxare Bob", "Hänsynslöse Hannes"], ["Slaktar Sune", "Hänsynslöse Hannes"], ["Boxare Bob", "Bråkiga Berit"]]
 
 # ljudeffekter
 effect_punch = pygame.mixer.Sound('music//PUNCH.wav')
@@ -240,15 +240,12 @@ def punch_and_kick():
 
 
 def player_dead(player1, player2):
-    dead = pygame.image.load("pics//player_dead.png")
     if player1.hp == 0:
         player1.dead = True
-        screen.blit(dead, (player1.rect.x, 550))
         effect_dead.play(0)
 
     if player2.hp == 0:
         player2.dead = True
-        screen.blit(dead, (player2.rect.x, 550))
         effect_dead.play(0)
 
 
