@@ -1,5 +1,4 @@
 import sys
-
 import pygame
 import os
 
@@ -12,6 +11,7 @@ screen_height = 600
 screen = pygame.display.set_mode((screen_width, screen_height))
 bg_image = [pygame.image.load('pics//arena_bakgrund_0.png'), pygame.image.load('pics//arena_bakgrund_1.png')]
 
+matchup = [["Slaktar Sune", "Boxare Bob"], ["Bråkiga Berit", "Hänsynslöse Hannes"], ["Slaktar Sune, Bråkiga Berit"], ["Boxare Bob", "Hänsynslöse Hannes"], ["Slaktar Sune", "Hänsynslöse Hannes"], ["Boxare Bob", "Bråkiga Berit"]]
 
 # ljudeffekter
 effect_punch = pygame.mixer.Sound('music//PUNCH.wav')
@@ -85,22 +85,20 @@ player_list = pygame.sprite.Group()
 player_list.add(player1, player2)
 
 
-def player_bars(which):
+def player_bars(which, current_match):
     font = pygame.font.SysFont("Arial", 20)
     if which == 1:
-        screen.blit(font.render("Player 2", True, (255, 255, 255)), (50, 20))
+        screen.blit(font.render(f"{matchup[current_match][0]}", True, (255, 255, 255)), (50, 20))
     if which == 2: 
-        screen.blit(font.render("Player 1", True, (255, 255, 255)), (550, 20))
+        screen.blit(font.render(f"{matchup[current_match][1]}", True, (255, 255, 255)), (550, 20))
 
 
 def healthbar(player1, player2):
-    player_bars(1)
     if player1.hp > -10:
         bg_bar1 = pygame.Rect(550, 50, 200, 50)
         hp_bar1 = pygame.Rect(550, 50, 200*(player1.hp*0.01), 50)
         pygame.draw.rect(screen, (255, 0, 0), bg_bar1)
         pygame.draw.rect(screen, (0, 255, 0), hp_bar1)
-    player_bars(2)
     if player2.hp > -10:
         bg_bar2 = pygame.Rect(50, 50, 200, 50)
         hp_bar2 = pygame.Rect(50, 50, 200*(player2.hp*0.01), 50)
@@ -254,11 +252,13 @@ def player_dead(player1, player2):
         effect_dead.play(0)
 
 
-def fight():
+def fight(current_match):
     fight_music()
     global keys
     running = True
     while running:
+        player_bars(1, current_match)
+        player_bars(2, current_match)
         player_dead(player1, player2)
         if player1.dead == True:
             winner = 2
