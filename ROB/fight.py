@@ -51,12 +51,13 @@ class Player(pygame.sprite.Sprite):
         #self.image = [pygame.image.load("pics//walking_right_2.png")]
         self.hp = 100
         self.dead = False
-        self.match = 0
 
-def player2_pics(self):
+
+def player2_pics(self, match):
     # Sune är röd, Bob är grön, Berit är gul, Hannes är lila
     # Sune vs Bob
-    if self.match == 0:
+    if match == 0:
+        print("hej match 1")
         self.images = []
         for i in range(1, 3):
             img = pygame.image.load(os.path.join('pics', 'walking_right_' + str(i) + '.png')).convert()
@@ -66,9 +67,12 @@ def player2_pics(self):
             self.image = self.images[0]
             self.rect = self.image.get_rect()
             player1.image = pygame.transform.flip(player1.images[player1.frame], True, False)
+            print(len(player1.images))
+            print(player1.frame)
 
     # Berit vs Hannes
-    if self.match == 1:
+    if match == 1:
+        print("hej match 2")
         self.images = []
         for i in range(1, 3):
             img = pygame.image.load(os.path.join('pics', 'walking_right_yellow_' + str(i) + '.png')).convert()
@@ -78,11 +82,13 @@ def player2_pics(self):
             self.image = self.images[0]
             self.rect = self.image.get_rect()
             player1.image = pygame.transform.flip(player1.images[player1.frame], True, False)
+            print(len(player1.images))
+            print(player1.frame)
 
 
     # Sune vs Berit
-    if self.match == 2:
-
+    if match == 2:
+        print("hej match 3")
         self.images = []
         for i in range(1, 3):
             img = pygame.image.load(os.path.join('pics', 'walking_right_' + str(i) + '.png')).convert()
@@ -92,10 +98,13 @@ def player2_pics(self):
             self.image = self.images[0]
             self.rect = self.image.get_rect()
             player1.image = pygame.transform.flip(player1.images[player1.frame], True, False)
+            print(len(player1.images))
+            print(player1.frame)
 
 
     # Bob vs Hannes
-    if self.match == 3:
+    if match == 3:
+        print("hej match 4")
         self.images = []
         for i in range(1, 3):
             img = pygame.image.load(os.path.join('pics', 'walking_right_green_' + str(i) + '.png')).convert()
@@ -105,10 +114,13 @@ def player2_pics(self):
             self.image = self.images[0]
             self.rect = self.image.get_rect()
             player1.image = pygame.transform.flip(player1.images[player1.frame], True, False)
+            print(len(player1.images))
+            print(player1.frame)
 
 
     # Sune vs Hannes
-    if self.match == 4:
+    if match == 4:
+        print("hej match 5")
         self.images = []
         for i in range(1, 3):
             img = pygame.image.load(os.path.join('pics', 'walking_right_' + str(i) + '.png')).convert()
@@ -118,10 +130,13 @@ def player2_pics(self):
             self.image = self.images[0]
             self.rect = self.image.get_rect()
             player1.image = pygame.transform.flip(player1.images[player1.frame], True, False)
+            print(len(player1.images))
+            print(player1.frame)
 
 
     # Bob vs Berit
-    if self.match == 5:
+    if match == 5:
+        print("hej match 6")
         self.images = []
         for i in range(1, 3):
             img = pygame.image.load(os.path.join('pics', 'walking_right_green_' + str(i) + '.png')).convert()
@@ -131,12 +146,15 @@ def player2_pics(self):
             self.image = self.images[0]
             self.rect = self.image.get_rect()
             player1.image = pygame.transform.flip(player1.images[player1.frame], True, False)
+            print(len(player1.images))
+            print(player1.frame)
 
 
-def player1_pics(self):
+def player1_pics(self, match):
     # Sune är röd, Bob är grön, Berit är gul, Hannes är lila
     # Sune vs Bob
-    if self.match == 0:
+    if match == 0:
+        print("hej match 1")
         self.images = []
         for i in range(1, 3):
             img = pygame.image.load(os.path.join('pics', 'walking_right_green_' + str(i) + '.png')).convert()
@@ -146,10 +164,13 @@ def player1_pics(self):
             self.image = self.images[0]
             self.rect = self.image.get_rect()
             player1.image = pygame.transform.flip(player1.images[player1.frame], True, False)
+            print(len(player1.images))
+            print(player1.frame)
 
     # Berit vs Hannes
 
-    if self.match == 1:
+    if match == 1:
+        print("hej match 2")
         self.images = []
         for i in range(1, 3):
             img = pygame.image.load(os.path.join('pics', 'walking_right_purple_' + str(i) + '.png')).convert()
@@ -159,10 +180,13 @@ def player1_pics(self):
             self.image = self.images[0]
             self.rect = self.image.get_rect()
             player1.image = pygame.transform.flip(player1.images[player1.frame], True, False)
+            print(len(player1.images))
+            print(player1.frame)
 
     # Sune vs Berit
 
-    if self.match == 2:
+    if match == 2:
+        print("hej match 3")
         self.images = []
         for i in range(1, 3):
             img = pygame.image.load(os.path.join('pics', 'walking_right_yellow_' + str(i) + '.png')).convert()
@@ -172,10 +196,13 @@ def player1_pics(self):
             self.image = self.images[0]
             self.rect = self.image.get_rect()
             player1.image = pygame.transform.flip(player1.images[player1.frame], True, False)
+            print(len(player1.images))
+            print(player1.frame)
 
     #Bob vs Hannes
 
-    if self.match == 3:
+    if match == 3:
+        print("hej match 4")
         self.images = []
         for i in range(1, 3):
             img = pygame.image.load(os.path.join('pics', 'walking_right_purple_' + str(i) + '.png')).convert()
@@ -185,9 +212,14 @@ def player1_pics(self):
             self.image = self.images[0]
             self.rect = self.image.get_rect()
             player1.image = pygame.transform.flip(player1.images[player1.frame], True, False)
+            print(len(player1.images))
+            print(player1.frame)
+
+
     #Sune vs Hannes
 
-    if self.match == 4:
+    if match == 4:
+        print("hej match 5")
         self.images = []
         for i in range(1, 3):
             img = pygame.image.load(os.path.join('pics', 'walking_right_purple_' + str(i) + '.png')).convert()
@@ -197,9 +229,13 @@ def player1_pics(self):
             self.image = self.images[0]
             self.rect = self.image.get_rect()
             player1.image = pygame.transform.flip(player1.images[player1.frame], True, False)
+            print(len(player1.images))
+            print(player1.frame)
+
 
     # Bob vs Berit
-    if self.match == 5:
+    if match == 5:
+        print("hej match 6")
         self.images = []
         for i in range(1, 3):
             img = pygame.image.load(os.path.join('pics', 'walking_right_yellow_' + str(i) + '.png')).convert()
@@ -209,17 +245,19 @@ def player1_pics(self):
             self.image = self.images[0]
             self.rect = self.image.get_rect()
             player1.image = pygame.transform.flip(player1.images[player1.frame], True, False)
+            print(len(player1.images))
+            print(player1.frame)
 
 
 player1 = Player()
-player1_pics(player1)
-player1.rect.x = 720
-player1.rect.y = 200
+# player1_pics(player1)
+# player1.rect.x = 720
+# player1.rect.y = 200
 player1.hp = 100
 player2 = Player()
-player2_pics(player2)
-player2.rect.x = 60
-player2.rect.y = 200
+# player2_pics(player2)
+# player2.rect.x = 60
+# player2.rect.y = 200
 player2.hp = 100
 
 
@@ -400,7 +438,16 @@ def fight(current_match):
     fight_music()
     global keys
     running = True
+    player1_pics(player1, current_match)
+    player1.rect.x = 720
+    player1.rect.y = 200
+
+    player2_pics(player2, current_match)
+    player2.rect.x = 60
+    player2.rect.y = 200
     while running:
+
+
         player_bars(1, current_match)
         player_bars(2, current_match)
         player_dead(player1, player2)
@@ -420,9 +467,7 @@ def fight(current_match):
     # återställer tillstånd
             player1.dead = False
             player2.dead = False
-            player1.match += 1
-            player2.match += 1
-            print(player1.match, player2.match)
+
             # om en spelare är död returnera vinnarens nummer
             # låt stå, funkar trots varning
             return winner
