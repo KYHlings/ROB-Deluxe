@@ -51,12 +51,12 @@ class Player(pygame.sprite.Sprite):
         #self.image = [pygame.image.load("pics//walking_right_2.png")]
         self.hp = 100
         self.dead = False
-        self.match = 0
 
-def player2_pics(self):
+
+def player2_pics(self, match):
     # Sune är röd, Bob är grön, Berit är gul, Hannes är lila
     # Sune vs Bob
-    if self.match == 0:
+    if match == 0:
         self.images = []
         for i in range(1, 3):
             img = pygame.image.load(os.path.join('pics', 'walking_right_' + str(i) + '.png')).convert()
@@ -68,7 +68,7 @@ def player2_pics(self):
             player1.image = pygame.transform.flip(player1.images[player1.frame], True, False)
 
     # Berit vs Hannes
-    if self.match == 1:
+    if match == 1:
         self.images = []
         for i in range(1, 3):
             img = pygame.image.load(os.path.join('pics', 'walking_right_yellow_' + str(i) + '.png')).convert()
@@ -81,7 +81,7 @@ def player2_pics(self):
 
 
     # Sune vs Berit
-    if self.match == 2:
+    if match == 2:
 
         self.images = []
         for i in range(1, 3):
@@ -95,7 +95,7 @@ def player2_pics(self):
 
 
     # Bob vs Hannes
-    if self.match == 3:
+    if match == 3:
         self.images = []
         for i in range(1, 3):
             img = pygame.image.load(os.path.join('pics', 'walking_right_green_' + str(i) + '.png')).convert()
@@ -108,7 +108,7 @@ def player2_pics(self):
 
 
     # Sune vs Hannes
-    if self.match == 4:
+    if match == 4:
         self.images = []
         for i in range(1, 3):
             img = pygame.image.load(os.path.join('pics', 'walking_right_' + str(i) + '.png')).convert()
@@ -121,7 +121,7 @@ def player2_pics(self):
 
 
     # Bob vs Berit
-    if self.match == 5:
+    if match == 5:
         self.images = []
         for i in range(1, 3):
             img = pygame.image.load(os.path.join('pics', 'walking_right_green_' + str(i) + '.png')).convert()
@@ -133,10 +133,10 @@ def player2_pics(self):
             player1.image = pygame.transform.flip(player1.images[player1.frame], True, False)
 
 
-def player1_pics(self):
+def player1_pics(self, match):
     # Sune är röd, Bob är grön, Berit är gul, Hannes är lila
     # Sune vs Bob
-    if self.match == 0:
+    if match == 0:
         self.images = []
         for i in range(1, 3):
             img = pygame.image.load(os.path.join('pics', 'walking_right_green_' + str(i) + '.png')).convert()
@@ -149,7 +149,7 @@ def player1_pics(self):
 
     # Berit vs Hannes
 
-    if self.match == 1:
+    if match == 1:
         self.images = []
         for i in range(1, 3):
             img = pygame.image.load(os.path.join('pics', 'walking_right_purple_' + str(i) + '.png')).convert()
@@ -162,7 +162,7 @@ def player1_pics(self):
 
     # Sune vs Berit
 
-    if self.match == 2:
+    if match == 2:
         self.images = []
         for i in range(1, 3):
             img = pygame.image.load(os.path.join('pics', 'walking_right_yellow_' + str(i) + '.png')).convert()
@@ -175,7 +175,7 @@ def player1_pics(self):
 
     #Bob vs Hannes
 
-    if self.match == 3:
+    if match == 3:
         self.images = []
         for i in range(1, 3):
             img = pygame.image.load(os.path.join('pics', 'walking_right_purple_' + str(i) + '.png')).convert()
@@ -187,7 +187,7 @@ def player1_pics(self):
             player1.image = pygame.transform.flip(player1.images[player1.frame], True, False)
     #Sune vs Hannes
 
-    if self.match == 4:
+    if match == 4:
         self.images = []
         for i in range(1, 3):
             img = pygame.image.load(os.path.join('pics', 'walking_right_purple_' + str(i) + '.png')).convert()
@@ -199,7 +199,7 @@ def player1_pics(self):
             player1.image = pygame.transform.flip(player1.images[player1.frame], True, False)
 
     # Bob vs Berit
-    if self.match == 5:
+    if match == 5:
         self.images = []
         for i in range(1, 3):
             img = pygame.image.load(os.path.join('pics', 'walking_right_yellow_' + str(i) + '.png')).convert()
@@ -212,9 +212,9 @@ def player1_pics(self):
 
 
 player1 = Player()
-player1_pics(player1)
-player1.rect.x = 720
-player1.rect.y = 200
+# player1_pics(player1)
+# player1.rect.x = 720
+# player1.rect.y = 200
 player1.hp = 100
 player2 = Player()
 # player2_pics(player2)
@@ -400,6 +400,13 @@ def fight(current_match):
     global keys
     running = True
     while running:
+        player1_pics(player1, current_match)
+        player1.rect.x = 720
+        player1.rect.y = 200
+        player2_pics(player2, current_match)
+        player2.rect.x = 60
+        player2.rect.y = 200
+
         player_bars(1, current_match)
         player_bars(2, current_match)
         player_dead(player1, player2)
