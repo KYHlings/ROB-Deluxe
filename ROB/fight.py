@@ -217,9 +217,9 @@ player1.rect.x = 720
 player1.rect.y = 200
 player1.hp = 100
 player2 = Player()
-player2_pics(player2)
-player2.rect.x = 60
-player2.rect.y = 200
+# player2_pics(player2)
+# player2.rect.x = 60
+# player2.rect.y = 200
 player2.hp = 100
 
 
@@ -389,7 +389,6 @@ def player_dead(player1, player2):
     if player1.hp == 0:
         player1.dead = True
         effect_dead.play(0)
-
 
     if player2.hp == 0:
         player2.dead = True
