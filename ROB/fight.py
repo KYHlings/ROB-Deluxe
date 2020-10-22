@@ -53,6 +53,7 @@ class Player(pygame.sprite.Sprite):
         self.dead = False
         self.match = 0
 
+
 def player2_pics(self):
     # Sune är röd, Bob är grön, Berit är gul, Hannes är lila
     # Sune vs Bob
@@ -82,7 +83,6 @@ def player2_pics(self):
 
     # Sune vs Berit
     if self.match == 2:
-
         self.images = []
         for i in range(1, 3):
             img = pygame.image.load(os.path.join('pics', 'walking_right_' + str(i) + '.png')).convert()
