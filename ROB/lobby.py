@@ -34,18 +34,6 @@ def lobby_window():
 
 
 def player_bars(winner):
-	# player1 = 0
-	# player2 = 0
-	# player3 = 0
-	# player4 = 0
-	# if winner == 1:
-	# 	player1 += winner
-	# if winner == 2:
-	# 	player2 += winner
-	# if winner == 3:
-	# 	player3 += winner
-	# if winner == 4:
-	# 	player4 += winner
 	screen.blit(font.render(f"Winner is: {winner}", True, (255, 255, 255)), (150, 530))
 	pygame.display.update()
 
