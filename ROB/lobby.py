@@ -2,6 +2,7 @@ import pygame
 import sys
 from ROB.fight import fight
 from ROB.winner_screen import winner_screen
+from ROB.end_screen import end_screen
 
 matchup = [["Slaktar Sune", "Boxare Bob"], ["Bråkiga Berit", "Hänsynslöse Hannes"], ["Slaktar Sune", "Bråkiga Berit"], ["Boxare Bob", "Hänsynslöse Hannes"], ["Slaktar Sune", "Hänsynslöse Hannes"], ["Boxare Bob", "Bråkiga Berit"]]
 font = pygame.font.SysFont("Arial", 30, True)
@@ -77,6 +78,9 @@ def lobby():
 					# kollar om musens position vid knapptryckningen kolliderar med playbutton
 					if fight_button.collidepoint(mx, my):
 						# starta en fight och få resultatet tillbaka
+						if current_match == 6:
+							end_screen(score_player1, score_player2, score_player3, score_player4)
+
 						winner = fight(current_match)
 						print("Winner is player " + str(winner))
 						current_match += 1
@@ -88,7 +92,8 @@ def lobby():
 							print(show_score(score_player1, score_player2, score_player3, score_player4, winner))
 						# måla upp lobbyn igen
 						lobby_window()
-						#player_bars(winner)
+
+							#player_bars(winner)
 						score_player1, score_player2, score_player3, score_player4 = show_score(score_player1, score_player2, score_player3, score_player4, winner)
 					# show_stats(scoring_p1(winner, score_player1), scoring_p2(winner, score_player2), scoring_p3(winner, score_player3), scoring_p4(winner, score_player4))
 
