@@ -11,8 +11,36 @@ screen_width = 800
 screen_height = 600
 screen = pygame.display.set_mode((screen_width, screen_height))
 bg_image = [pygame.image.load('pics//arena_bakgrund_0.png'), pygame.image.load('pics//arena_bakgrund_1.png')]
-
+hannes = pygame.image.load('pics//walking_right_purple_0.png')
+berit = pygame.image.load('pics//walking_right_yellow_0.png')
+sune = pygame.image.load('pics//walking_right_0.png')
+bob = pygame.image.load('pics//walking_right_green_0.png')
 matchup = [["Slaktar Sune", "Boxare Bob"], ["Bråkiga Berit", "Hänsynslöse Hannes"], ["Slaktar Sune", "Bråkiga Berit"], ["Boxare Bob", "Hänsynslöse Hannes"], ["Slaktar Sune", "Hänsynslöse Hannes"], ["Boxare Bob", "Bråkiga Berit"]]
+
+def audience(current_match):
+    hannes = pygame.image.load('pics//walking_right_purple_0.png')
+    berit = pygame.image.load('pics//walking_right_yellow_0.png')
+    sune = pygame.image.load('pics//walking_right_0.png')
+    bob = pygame.image.load('pics//walking_right_green_0.png')
+    if current_match == 0:
+       screen.blit(hannes, (200, 200))
+       screen.blit(berit, (400, 200))
+    if current_match == 1:
+        screen.blit(sune, (200, 200))
+        screen.blit(bob, (400, 200))
+    if current_match == 2:
+        screen.blit(hannes, (200, 200))
+        screen.blit(bob, (400, 200))
+    if current_match == 3:
+        screen.blit(sune, (200, 200))
+        screen.blit(berit, (400, 200))
+    if current_match == 4:
+        screen.blit(bob, (200, 200))
+        screen.blit(berit, (400, 200))
+    if current_match == 5:
+        screen.blit(sune, (200, 200))
+        screen.blit(hannes, (400, 200))
+    pygame.display.update()
 
 # ljudeffekter
 effect_punch = pygame.mixer.Sound('music//PUNCH.wav')
@@ -462,6 +490,7 @@ def player_dead(player1, player2):
 
 
 def fight(current_match):
+    audience(current_match)
     fight_music()
     global keys
     running = True
