@@ -454,11 +454,11 @@ def fight(current_match):
     running = True
     player1_pics(player1, current_match)
     player1.rect.x = 720
-    player1.rect.y = 200
+    player1.rect.y = 500
 
     player2_pics(player2, current_match)
     player2.rect.x = 60
-    player2.rect.y = 200
+    player2.rect.y = 500
     while running:
 
 
