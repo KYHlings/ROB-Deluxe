@@ -64,4 +64,4 @@ def end_screen(first, second, third, fourth):
 		pygame.display.update()
 
 if __name__ == '__main__':
-	end_screen(1, 2, 3, 4)
+	end_screen(7, 4, 3, 1)
