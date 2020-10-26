@@ -467,8 +467,10 @@ def fight(current_match):
         player_dead(player1, player2)
         if player1.dead == True:
             winner = matchup[current_match][0]
+            loser = matchup[current_match][1]
         if player2.dead == True:
             winner = matchup[current_match][1]
+            loser = matchup[current_match][0]
         if player1.dead == True or player2.dead == True:
     # återställer position till startposition för vardera spelare
             player1.rect.x = 720
@@ -486,7 +488,7 @@ def fight(current_match):
 
             # om en spelare är död returnera vinnarens nummer
             # låt stå, funkar trots varning
-            return winner
+            return winner, loser
 
         healthbar(player1, player2)
         fps_clock.tick(fps)
