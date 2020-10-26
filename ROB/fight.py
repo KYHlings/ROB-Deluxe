@@ -1,6 +1,7 @@
 import sys
 import pygame
 import os
+import time
 
 # grundinställningar
 os.environ["SDL_VIDEO_CENTERED"] = "1"
@@ -25,6 +26,7 @@ fps = 120
 # TODO loopa bakrundsbilderna
 screen.blit(bg_image[0], (0, 0))
 screen.blit(bg_image[1], (0, 0))
+font = pygame.font.SysFont("Arial", 15)
 
 
 def fight_music():
@@ -411,14 +413,23 @@ def punch_and_kick(current_match):
         # fighter1 slag och spark
         if keys.key == pygame.K_UP:
             if collision(player1, player2) == True:
-                pic_hit_2(current_match)
+                # hit = pygame.time.get_ticks()
+                # print(hit)
+                #
+                # while True:
+                #     if hit:
+                #         time_since_click = pygame.time.get_ticks() - hit
+                #         print(time_since_click)
+                #         screen.blit(font.render("Hit!", True, (255, 255, 255)), (player2.rect.x, 400))
+                #         if time_since_click > 1000:
+                #             break
+
                 effect_punch.play(0)
                 print("slag")
                 player2.hp -= 10
                 print(f"HP PLAYER 2: {player2.hp}")
         if keys.key == pygame.K_DOWN:
             if collision(player1, player2) == True:
-                pic_hit_2(current_match)
                 print("spark")
                 effect_KICK.play(0)
                 player2.hp -= 10
@@ -426,7 +437,6 @@ def punch_and_kick(current_match):
         # fighter2 slag och spark
         if keys.key == pygame.K_w:
             if collision(player1, player2) == True:
-                pic_hit_1(current_match)
                 effect_punch.play(0)
                 print("slag")
                 player1.hp -= 10
@@ -434,41 +444,10 @@ def punch_and_kick(current_match):
 
         if keys.key == pygame.K_s:
             if collision(player1, player2) == True:
-                pic_hit_1(current_match)
                 effect_KICK.play(0)
                 print("spark")
                 player1.hp -= 10
                 print(f"HP PLAYER 1: {player1.hp}")
-
-
-def pic_hit_1(current_match):
-    if current_match == 0:
-        player1.image = pygame.image.load("pics//bob_hit.png")
-    if current_match == 1:
-        player1.image = pygame.image.load("pics//hannes_hit.png")
-    if current_match == 2:
-        player1.image = pygame.image.load("pics//berit_hit.png")
-    if current_match == 3:
-        player1.image = pygame.image.load("pics//hannes_hit.png")
-    if current_match == 4:
-        player1.image = pygame.image.load("pics//hannes_hit.png")
-    if current_match == 5:
-        player1.image = pygame.image.load("pics//berit_hit.png")
-
-
-def pic_hit_2(current_match):
-    if current_match == 0:
-        player2.image = pygame.image.load("pics//sune_hit.png")
-    if current_match == 1:
-        player2.image = pygame.image.load("pics//berit_hit.png")
-    if current_match == 2:
-        player2.image = pygame.image.load("pics//sune_hit.png")
-    if current_match == 3:
-        player2.image = pygame.image.load("pics//bob_hit.png")
-    if current_match == 4:
-        player2.image = pygame.image.load("pics//sune_hit.png")
-    if current_match == 5:
-        player2.image = pygame.image.load("pics//bob_hit.png")
 
 
 def player_dead(player1, player2):
@@ -494,7 +473,6 @@ def fight(current_match):
     player2.rect.x = 60
     player2.rect.y = 500
     while running:
-
 
         player_bars(1, current_match)
         player_bars(2, current_match)
