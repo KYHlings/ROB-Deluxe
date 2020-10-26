@@ -472,11 +472,6 @@ def fight(current_match):
             winner = matchup[current_match][1]
             loser = matchup[current_match][0]
         if player1.dead == True or player2.dead == True:
-    # återställer position till startposition för vardera spelare
-            player1.rect.x = 720
-            player1.rect.y = 500
-            player2.rect.x = 60
-            player2.rect.y = 500
     # återställer hp för båda
             player1.hp = 100
             player2.hp = 100

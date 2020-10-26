@@ -1,10 +1,10 @@
 import pygame
 import sys
 
+pygame.init()
 font = pygame.font.SysFont("Arial", 40, True)
 font2 = pygame.font.SysFont("Arial", 15)
 black = (0, 0, 0)
-pygame.init()
 screen_width = 800
 screen_height = 600
 screen = pygame.display.set_mode((screen_width, screen_height))
@@ -20,50 +20,51 @@ hannes_dead = pygame.image.load("pics//Hannes_dead.png")
 
 
 def winner_screen(winner, loser):
-	winner_char = pygame.image.load("pics//winner.png")
-	sune_winner = pygame.image.load("pics//winner.png")
-	berit_winner = pygame.image.load("pics//winner_berit.png")
-	bob_winner = pygame.image.load("pics//winner_bob.png")
-	hannes_winner = pygame.image.load("pics//winner_hannes.png")
-	running = True
-	while running:
-		screen.blit(bg_image[0],(0, 0))
-		for event in pygame.event.get():
-			if event.type == pygame.QUIT:
-				sys.exit()
-			if event.type == pygame.KEYDOWN:
-				if event.key == pygame.K_RETURN:
-					return
-				if event.key == pygame.K_SPACE:
-					if winner == "Slaktar Sune":
-						sune_winner = pygame.transform.flip(sune_winner, True, False)
-					if winner == "Boxare Bob":
-						bob_winner = pygame.transform.flip(bob_winner, True, False)
-					if winner == "Hänsynslöse Hannes":
-						hannes_winner = pygame.transform.flip(hannes_winner, True, False)
-					if winner == "Bråkiga Berit":
-						berit_winner = pygame.transform.flip(berit_winner, True, False)
+    winner_char = pygame.image.load("pics//winner.png")
+    sune_winner = pygame.image.load("pics//winner.png")
+    berit_winner = pygame.image.load("pics//winner_berit.png")
+    bob_winner = pygame.image.load("pics//winner_bob.png")
+    hannes_winner = pygame.image.load("pics//winner_hannes.png")
+    running = True
+    while running:
+        screen.blit(bg_image[0],(0, 0))
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                sys.exit()
+            if event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_RETURN:
+                    return
+                if event.key == pygame.K_SPACE:
+                    if winner == "Slaktar Sune":
+                        sune_winner = pygame.transform.flip(sune_winner, True, False)
+                    if winner == "Boxare Bob":
+                        bob_winner = pygame.transform.flip(bob_winner, True, False)
+                    if winner == "Hänsynslöse Hannes":
+                        hannes_winner = pygame.transform.flip(hannes_winner, True, False)
+                    if winner == "Bråkiga Berit":
+                        berit_winner = pygame.transform.flip(berit_winner, True, False)
 
 
-		screen.blit(font.render(f"Winner is: {winner}", True, (255, 255, 255)), (screen_width/4, 50))
-		screen.blit(font2.render(f"Press [SPACE] to celebrate", True, (255, 255, 255)), (screen_width/3, 90))
-		if loser == "Slaktar Sune":
-			screen.blit(sune_dead, (400, 550))
-		if loser == "Boxare Bob":
-			screen.blit(bob_dead, (400, 550))
-		if loser == "Hänsynslöse Hannes":
-			screen.blit(hannes_dead, (400, 550))
-		if loser == "Bråkiga Berit":
-			screen.blit(berit_dead, (400, 550))
-		if winner == "Slaktar Sune":
-			screen.blit(sune_winner, (400, 500))
-		if winner == "Boxare Bob":
-			screen.blit(bob_winner, (400, 500))
-		if winner == "Hänsynslöse Hannes":
-			screen.blit(hannes_winner, (400, 500))
-		if winner == "Bråkiga Berit":
-			screen.blit(berit_winner, (400, 500))
-		#for pix in range(550, 400):
+        screen.blit(font.render(f"Winner is: {winner}", True, (255, 255, 255)), (screen_width/4, 50))
+        screen.blit(font2.render(f"Press [SPACE] to celebrate", True, (255, 255, 255)), (screen_width/3, 90))
+        screen.blit(font2.render("Press [ENTER] to continue", True, (255, 255, 255)), (screen_width/3, 105))
+        if loser == "Slaktar Sune":
+            screen.blit(sune_dead, (400, 550))
+        if loser == "Boxare Bob":
+            screen.blit(bob_dead, (400, 550))
+        if loser == "Hänsynslöse Hannes":
+            screen.blit(hannes_dead, (400, 550))
+        if loser == "Bråkiga Berit":
+            screen.blit(berit_dead, (400, 550))
+        if winner == "Slaktar Sune":
+            screen.blit(sune_winner, (400, 500))
+        if winner == "Boxare Bob":
+            screen.blit(bob_winner, (400, 500))
+        if winner == "Hänsynslöse Hannes":
+            screen.blit(hannes_winner, (400, 500))
+        if winner == "Bråkiga Berit":
+            screen.blit(berit_winner, (400, 500))
+        #for pix in range(550, 400):
 
-			#pygame.display.update()
-		pygame.display.update()
+            #pygame.display.update()
+        pygame.display.update()
