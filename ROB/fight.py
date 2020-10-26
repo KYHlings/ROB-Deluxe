@@ -405,18 +405,20 @@ def player_movement(player1, player2):
         player2.rect.y = 500
 
 
-def punch_and_kick():
+def punch_and_kick(current_match):
     # kollar om en knapp är nedtryckt
     if keys.type == pygame.KEYDOWN:
         # fighter1 slag och spark
         if keys.key == pygame.K_UP:
             if collision(player1, player2) == True:
+                pic_hit_2(current_match)
                 effect_punch.play(0)
                 print("slag")
                 player2.hp -= 10
                 print(f"HP PLAYER 2: {player2.hp}")
         if keys.key == pygame.K_DOWN:
             if collision(player1, player2) == True:
+                pic_hit_2(current_match)
                 print("spark")
                 effect_KICK.play(0)
                 player2.hp -= 10
@@ -424,6 +426,7 @@ def punch_and_kick():
         # fighter2 slag och spark
         if keys.key == pygame.K_w:
             if collision(player1, player2) == True:
+                pic_hit_1(current_match)
                 effect_punch.play(0)
                 print("slag")
                 player1.hp -= 10
@@ -431,10 +434,41 @@ def punch_and_kick():
 
         if keys.key == pygame.K_s:
             if collision(player1, player2) == True:
+                pic_hit_1(current_match)
                 effect_KICK.play(0)
                 print("spark")
                 player1.hp -= 10
                 print(f"HP PLAYER 1: {player1.hp}")
+
+
+def pic_hit_1(current_match):
+    if current_match == 0:
+        player1.image = pygame.image.load("pics//bob_hit.png")
+    if current_match == 1:
+        player1.image = pygame.image.load("pics//hannes_hit.png")
+    if current_match == 2:
+        player1.image = pygame.image.load("pics//berit_hit.png")
+    if current_match == 3:
+        player1.image = pygame.image.load("pics//hannes_hit.png")
+    if current_match == 4:
+        player1.image = pygame.image.load("pics//hannes_hit.png")
+    if current_match == 5:
+        player1.image = pygame.image.load("pics//berit_hit.png")
+
+
+def pic_hit_2(current_match):
+    if current_match == 0:
+        player2.image = pygame.image.load("pics//sune_hit.png")
+    if current_match == 1:
+        player2.image = pygame.image.load("pics//berit_hit.png")
+    if current_match == 2:
+        player2.image = pygame.image.load("pics//sune_hit.png")
+    if current_match == 3:
+        player2.image = pygame.image.load("pics//bob_hit.png")
+    if current_match == 4:
+        player2.image = pygame.image.load("pics//sune_hit.png")
+    if current_match == 5:
+        player2.image = pygame.image.load("pics//bob_hit.png")
 
 
 def player_dead(player1, player2):
@@ -493,5 +527,5 @@ def fight(current_match):
         for keys in pygame.event.get():
             if keys.type == pygame.QUIT:
                 sys.exit()
-            punch_and_kick()
+            punch_and_kick(current_match)
         player_movement(player1, player2)
