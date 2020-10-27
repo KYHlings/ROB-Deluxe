@@ -5,6 +5,7 @@ from ROB.winner_screen import winner_screen
 from ROB.end_screen import end_screen
 
 matchup = [["Slaktar Sune", "Boxare Bob"], ["Bråkiga Berit", "Hänsynslöse Hannes"], ["Slaktar Sune", "Bråkiga Berit"], ["Boxare Bob", "Hänsynslöse Hannes"], ["Slaktar Sune", "Hänsynslöse Hannes"], ["Boxare Bob", "Bråkiga Berit"]]
+bet_list = [["Bråkiga Berit", "Hänsynslöse Hannes" ],["Slaktar Sune", "Boxare Bob"],["Boxare Bob", "Hänsynslöse Hannes"], ["Slaktar Sune", "Bråkiga Berit"],["Boxare Bob", "Bråkiga Berit"],["Slaktar Sune", "Hänsynslöse Hannes"]]
 font = pygame.font.SysFont("Arial", 30, True)
 screen = pygame.display.set_mode((800, 600))
 
@@ -58,6 +59,7 @@ def lobby():
 		if current_match > 5:
 			end_screen(score_player1, score_player2, score_player3, score_player4)
 		screen.blit(font.render(f"Next match:{matchup[current_match][0]} vs {matchup[current_match][1]} ", True, (255, 255, 255)), (200, 500))
+		screen.blit(font.render(f"Betters: {bet_list[current_match][0]} and {bet_list[current_match][1]}", True, (255, 255, 255)), (400, 150))
 		for event in pygame.event.get():
 			if event.type == pygame.QUIT:
 				sys.exit()

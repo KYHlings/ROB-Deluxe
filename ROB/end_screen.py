@@ -1,16 +1,16 @@
-import pygame
-import sys
+
+from ROB.run import *
 pygame.init()
 
 font = pygame.font.SysFont("Arial", 40, True)
-font2 = pygame.font.SysFont("Arial", 15)
+font2 = pygame.font.SysFont("Arial", 25)
 black = (0, 0, 0)
 gold = (207, 181, 59)
 
 screen_width = 800
 screen_height = 600
 screen = pygame.display.set_mode((screen_width, screen_height))
-bg_image = [pygame.image.load('pics//end_screen.png')]
+bg_image = [pygame.image.load('pics//end_screen_0.png')]
 player1 = pygame.image.load('pics//walking_right_0.png')
 player2 = pygame.image.load('pics//walking_right_green_0.png')
 player3 = pygame.image.load('pics//walking_right_yellow_0.png')
@@ -33,8 +33,10 @@ def end_screen(first, second, third, fourth):
 			if event.type == pygame.QUIT:
 				sys.exit()
 			if event.type == pygame.KEYDOWN:
-				if event.key == pygame.K_RETURN:
-					return
+				if event.key == pygame.K_q:
+					sys.exit()
+				if event.key == pygame.K_p:
+					main()
 
 		if first > second and third and fourth:
 			screen.blit(font.render(f"Winner is: Slaktar Sune", True, (gold)), (screen_width/4, 50))
@@ -63,7 +65,8 @@ def end_screen(first, second, third, fourth):
 
 
 
-		#screen.blit(font2.render(f"Press [SPACE] to celebrate", True, (black)), (screen_width/3, 90))
+		screen.blit(font2.render(f"Press [Q] to QUIT", True, (black)), (200, 90))
+		screen.blit(font2.render(f"Press [P] to PLAY AGAIN", True, (black)), (200, 110))
 
 		pygame.display.update()
 
