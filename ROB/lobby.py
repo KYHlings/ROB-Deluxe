@@ -83,8 +83,8 @@ def lobby():
 
 						winner, loser = fight(current_match)
 						print("Winner is player " + str(winner))
+						winner_screen(winner, loser, current_match)
 						current_match += 1
-						winner_screen(winner, loser)
 						# printar score
 						if winner == 1:
 							print(show_score(score_player1, score_player2, score_player3, score_player4, winner))

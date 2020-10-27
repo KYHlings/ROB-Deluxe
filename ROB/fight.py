@@ -15,7 +15,10 @@ hannes = pygame.image.load('pics//walking_right_purple_0.png')
 berit = pygame.image.load('pics//walking_right_yellow_0.png')
 sune = pygame.image.load('pics//walking_right_0.png')
 bob = pygame.image.load('pics//walking_right_green_0.png')
-matchup = [["Slaktar Sune", "Boxare Bob"], ["Bråkiga Berit", "Hänsynslöse Hannes"], ["Slaktar Sune", "Bråkiga Berit"], ["Boxare Bob", "Hänsynslöse Hannes"], ["Slaktar Sune", "Hänsynslöse Hannes"], ["Boxare Bob", "Bråkiga Berit"]]
+matchup = [["Slaktar Sune", "Boxare Bob"], ["Bråkiga Berit", "Hänsynslöse Hannes"], ["Slaktar Sune", "Bråkiga Berit"],
+           ["Boxare Bob", "Hänsynslöse Hannes"], ["Slaktar Sune", "Hänsynslöse Hannes"],
+           ["Boxare Bob", "Bråkiga Berit"]]
+
 
 def audience(current_match):
     hannes = pygame.image.load('pics//walking_right_purple_0.png')
@@ -23,24 +26,25 @@ def audience(current_match):
     sune = pygame.image.load('pics//walking_right_0.png')
     bob = pygame.image.load('pics//walking_right_green_0.png')
     if current_match == 0:
-       screen.blit(hannes, (200, 200))
-       screen.blit(berit, (400, 200))
+        screen.blit(hannes, (40, 170))
+        screen.blit(berit, (70, 170))
     if current_match == 1:
-        screen.blit(sune, (200, 200))
-        screen.blit(bob, (400, 200))
+        screen.blit(sune, (40, 170))
+        screen.blit(bob, (70, 170))
     if current_match == 2:
-        screen.blit(hannes, (200, 200))
-        screen.blit(bob, (400, 200))
+        screen.blit(hannes, (40, 170))
+        screen.blit(bob, (70, 170))
     if current_match == 3:
-        screen.blit(sune, (200, 200))
-        screen.blit(berit, (400, 200))
+        screen.blit(sune, (40, 170))
+        screen.blit(berit, (70, 170))
     if current_match == 4:
-        screen.blit(bob, (200, 200))
-        screen.blit(berit, (400, 200))
+        screen.blit(bob, (40, 170))
+        screen.blit(berit, (70, 170))
     if current_match == 5:
-        screen.blit(sune, (200, 200))
-        screen.blit(hannes, (400, 200))
-    pygame.display.update()
+        screen.blit(sune, (40, 170))
+        screen.blit(hannes, (70, 170))
+
+
 
 # ljudeffekter
 effect_punch = pygame.mixer.Sound('music//PUNCH.wav')
@@ -78,7 +82,7 @@ class Player(pygame.sprite.Sprite):
         self.right = False
         self.rect = (0, 0, 0, 0)
         self.images = []
-        #self.image = [pygame.image.load("pics//walking_right_2.png")]
+        # self.image = [pygame.image.load("pics//walking_right_2.png")]
         self.hp = 100
         self.dead = False
 
@@ -100,7 +104,6 @@ def player2_pics(self, match):
             self.rect = self.image.get_rect()
             player1.image = pygame.transform.flip(player1.images[player1.frame], True, False)
 
-
     # Berit vs Hannes
     if match == 1:
         print("hej match 2")
@@ -115,8 +118,6 @@ def player2_pics(self, match):
             self.image = self.images[0]
             self.rect = self.image.get_rect()
             player1.image = pygame.transform.flip(player1.images[player1.frame], True, False)
-
-
 
     # Sune vs Berit
     if match == 2:
@@ -133,8 +134,6 @@ def player2_pics(self, match):
             self.rect = self.image.get_rect()
             player1.image = pygame.transform.flip(player1.images[player1.frame], True, False)
 
-
-
     # Bob vs Hannes
     if match == 3:
         print("hej match 4")
@@ -149,8 +148,6 @@ def player2_pics(self, match):
             self.image = self.images[0]
             self.rect = self.image.get_rect()
             player1.image = pygame.transform.flip(player1.images[player1.frame], True, False)
-
-
 
     # Sune vs Hannes
     if match == 4:
@@ -167,8 +164,6 @@ def player2_pics(self, match):
             self.rect = self.image.get_rect()
             player1.image = pygame.transform.flip(player1.images[player1.frame], True, False)
 
-
-
     # Bob vs Berit
     if match == 5:
         print("hej match 6")
@@ -183,7 +178,6 @@ def player2_pics(self, match):
             self.image = self.images[0]
             self.rect = self.image.get_rect()
             player1.image = pygame.transform.flip(player1.images[player1.frame], True, False)
-
 
 
 def player1_pics(self, match):
@@ -205,7 +199,6 @@ def player1_pics(self, match):
             self.rect = self.image.get_rect()
             player1.image = pygame.transform.flip(player1.images[player1.frame], True, False)
 
-
     # Berit vs Hannes
 
     if match == 1:
@@ -221,7 +214,6 @@ def player1_pics(self, match):
             self.image = self.images[0]
             self.rect = self.image.get_rect()
             player1.image = pygame.transform.flip(player1.images[player1.frame], True, False)
-
 
     # Sune vs Berit
 
@@ -239,8 +231,7 @@ def player1_pics(self, match):
             self.rect = self.image.get_rect()
             player1.image = pygame.transform.flip(player1.images[player1.frame], True, False)
 
-
-    #Bob vs Hannes
+    # Bob vs Hannes
 
     if match == 3:
         print("hej match 4")
@@ -256,9 +247,7 @@ def player1_pics(self, match):
             self.rect = self.image.get_rect()
             player1.image = pygame.transform.flip(player1.images[player1.frame], True, False)
 
-
-
-    #Sune vs Hannes
+    # Sune vs Hannes
 
     if match == 4:
         print("hej match 5")
@@ -273,8 +262,6 @@ def player1_pics(self, match):
             self.image = self.images[0]
             self.rect = self.image.get_rect()
             player1.image = pygame.transform.flip(player1.images[player1.frame], True, False)
-
-
 
     # Bob vs Berit
     if match == 5:
@@ -292,7 +279,6 @@ def player1_pics(self, match):
             player1.image = pygame.transform.flip(player1.images[player1.frame], True, False)
 
 
-
 player1 = Player()
 # player1_pics(player1)
 # player1.rect.x = 720
@@ -303,7 +289,6 @@ player2 = Player()
 # player2.rect.x = 60
 # player2.rect.y = 200
 player2.hp = 100
-
 
 # spawnar spelare
 
@@ -324,26 +309,26 @@ def player_bars(which, current_match):
 def healthbar(player1, player2):
     if player1.hp > -10:
         bg_bar1 = pygame.Rect(550, 50, 200, 50)
-        hp_bar1 = pygame.Rect(550, 50, 200*(player1.hp*0.01), 50)
+        hp_bar1 = pygame.Rect(550, 50, 200 * (player1.hp * 0.01), 50)
         pygame.draw.rect(screen, (255, 0, 0), bg_bar1)
         pygame.draw.rect(screen, (0, 255, 0), hp_bar1)
     if player2.hp > -10:
         bg_bar2 = pygame.Rect(50, 50, 200, 50)
-        hp_bar2 = pygame.Rect(50, 50, 200*(player2.hp*0.01), 50)
+        hp_bar2 = pygame.Rect(50, 50, 200 * (player2.hp * 0.01), 50)
         pygame.draw.rect(screen, (255, 0, 0), bg_bar2)
         pygame.draw.rect(screen, (0, 255, 0), hp_bar2)
     pygame.display.update()
 
 
 def collision(player1, player2):
- # kollar om kollision har skett
+    # kollar om kollision har skett
     col = pygame.sprite.collide_rect(player1, player2)
     if col == True:
         return True
 
 
 def player_movement(player1, player2):
-# Grund inställningar för position
+    # Grund inställningar för position
     player1.rect.y += player1.vel
     player2.rect.y += player2.vel
     if player1.rect.y == 500:
@@ -352,10 +337,9 @@ def player_movement(player1, player2):
         player2.vel = 0
     keys = pygame.key.get_pressed()
 
-
-# TODO det finns en bug där man flyger utanför skärmen om spelarna kolliderar och går åt ett håll tillsammans
-# FIGHTER 1
-# vänster
+    # TODO det finns en bug där man flyger utanför skärmen om spelarna kolliderar och går åt ett håll tillsammans
+    # FIGHTER 1
+    # vänster
     if keys[pygame.K_LEFT] and player1.rect.x > player1.vel:
         player1.left = True
         player1.right = False
@@ -368,7 +352,7 @@ def player_movement(player1, player2):
         if player1.frame == 2:
             player1.frame = 0
 
-# höger
+    # höger
     if keys[pygame.K_RIGHT] and player1.rect.x < screen_width - 40:
         player1.left = False
         player1.right = True
@@ -381,21 +365,21 @@ def player_movement(player1, player2):
             player1.frame = 0
         player1.image = player1.images[player1.frame]
 
-# HOPP
+    # HOPP
     if keys[pygame.K_RCTRL]:
-# hoppets höjd
+        # hoppets höjd
         player1.rect.y -= 15
-# dragningskraft
+        # dragningskraft
         player1.vel = 3
-# invisible border max hopphöjd
+        # invisible border max hopphöjd
         if player1.rect.y < 200:
             player1.vel = 20
-# lägsta punkt
+    # lägsta punkt
     if player1.rect.y > 500:
         player1.rect.y = 500
 
-# FIGTER 2
-# vänster
+    # FIGTER 2
+    # vänster
     if keys[pygame.K_a] and player2.rect.x > player2.vel:
         player2.left = True
         player2.right = False
@@ -408,7 +392,7 @@ def player_movement(player1, player2):
         if player2.frame == 2:
             player2.frame = 0
 
-# höger
+    # höger
     if keys[pygame.K_d] and player2.rect.x < screen_width - 40:
         player2.left = False
         player2.right = True
@@ -421,16 +405,16 @@ def player_movement(player1, player2):
             player2.frame = 0
         player2.image = player2.images[player2.frame]
 
-# HOPP
+    # HOPP
     if keys[pygame.K_SPACE]:
-# hoppets höjd
+        # hoppets höjd
         player2.rect.y -= 15
-# dragningskraft
+        # dragningskraft
         player2.vel = 3
-# invisible border max hopphöjd
+        # invisible border max hopphöjd
         if player2.rect.y < 200:
             player2.vel = 20
-# lägsta punkt
+    # lägsta punkt
     if player2.rect.y > 500:
         player2.rect.y = 500
 
@@ -483,14 +467,12 @@ def player_dead(player1, player2):
         player1.dead = True
         effect_dead.play(0)
 
-
     if player2.hp == 0:
         player2.dead = True
         effect_dead.play(0)
 
 
 def fight(current_match):
-    audience(current_match)
     fight_music()
     global keys
     running = True
@@ -513,10 +495,10 @@ def fight(current_match):
             winner = matchup[current_match][1]
             loser = matchup[current_match][0]
         if player1.dead == True or player2.dead == True:
-    # återställer hp för båda
+            # återställer hp för båda
             player1.hp = 100
             player2.hp = 100
-    # återställer tillstånd
+            # återställer tillstånd
             player1.dead = False
             player2.dead = False
             player1.frame = 0
@@ -531,6 +513,7 @@ def fight(current_match):
         screen.fill(black)
         screen.blit(bg_image[0], (0, 0))
         player_list.draw(screen)
+        audience(current_match)
         for keys in pygame.event.get():
             if keys.type == pygame.QUIT:
                 sys.exit()
