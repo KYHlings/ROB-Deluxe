@@ -16,6 +16,7 @@ def main():
                 # stänger programmet
                 sys.exit()
             # uppdaterar displayen
+        pygame.display.update()
 
 
 if __name__ == '__main__':
