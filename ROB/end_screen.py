@@ -102,10 +102,10 @@ def end_screen(first, second, third, fourth):
 			screen.blit(player3_l, (690, 435))
 		elif third == fourth == second == first:
 			screen.blit(font.render(f"It's a tie", True, (gold)), (screen_width / 4, 50))
-			screen.blit(player4_l, (720, 435))
-			screen.blit(player1_l, (725, 435))
-			screen.blit(player2_l, (730, 435))
-			screen.blit(player3_l, (735, 435))
+			screen.blit(player4_l, (680, 435))
+			screen.blit(player1_l, (700, 435))
+			screen.blit(player2_l, (720, 435))
+			screen.blit(player3_l, (740, 435))
 
 
 
