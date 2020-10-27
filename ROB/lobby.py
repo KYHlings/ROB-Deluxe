@@ -84,6 +84,8 @@ def lobby():
 		pygame.draw.rect(screen, (0, 0, 0), total1)
 		total2 = pygame.Rect(630, 350, 146, 50)
 		pygame.draw.rect(screen, (0, 0, 0), total2)
+		screen.blit(font.render("Total", True, (255, 255, 255)), (445, 360))
+		screen.blit(font.render("Total", True, (255, 255, 255)), (645, 360))
 		# confirm rects
 		black_bg_rect = pygame.Rect(430, 405, 146, 50)
 		pygame.draw.rect(screen, (0, 0, 0), black_bg_rect)
