@@ -36,7 +36,7 @@ def lobby_window():
 
 
 def player_bars(winner):
-	screen.blit(font.render(f"Winner is: {winner}", True, (255, 255, 255)), (150, 530))
+	screen.blit(font.render(f"Previous winnner: {winner}", True, (255, 255, 255)), (100, 530))
 	pygame.display.update()
 
 
@@ -60,7 +60,17 @@ def lobby():
 			end_screen(score_player1, score_player2, score_player3, score_player4)
 			return
 		screen.blit(font.render(f"Next match:{matchup[current_match][0]} vs {matchup[current_match][1]} ", True, (255, 255, 255)), (200, 500))
-		screen.blit(font.render(f"Betters: {bet_list[current_match][0]} and {bet_list[current_match][1]}", True, (255, 255, 255)), (400, 150))
+		# betting ruta
+		screen.blit(font.render("Betters:", True, (255, 255, 255)), (400, 150))
+		screen.blit(font.render(f"{bet_list[current_match][0]} --- {bet_list[current_match][1]}", True, (255, 255, 255)), (400, 200))
+		# screen.blit(10_button, (420, 250))
+		# screen.blit(10_button_minus, (420, 300))
+		# screen.blit(50_button, (420, 350))
+		# screen.blit(50_button_minus, (420, 400))
+		# screen.blit(10_button, (620, 250))
+		# screen.blit(10_button_minus, (620, 300))
+		# screen.blit(50_button, (620, 350))
+		# screen.blit(50_button_minus, (620, 400))
 		for event in pygame.event.get():
 			if event.type == pygame.QUIT:
 				sys.exit()
