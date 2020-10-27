@@ -9,6 +9,12 @@ bet_list = [["Bråkiga Berit", "Hänsynslöse Hannes" ],["Slaktar Sune", "Boxare
 font = pygame.font.SysFont("Arial", 30, True)
 screen = pygame.display.set_mode((800, 600))
 
+ten_button = pygame.image.load("pics//10$.png")
+minus_ten_button = pygame.image.load("pics//-10$.png")
+fifty_button = pygame.image.load("pics//50$.png")
+minus_fifty_button = pygame.image.load("pics//-50$.png")
+
+
 
 def show_stats(score1, score2, score3, score4):
 	screen.blit(font.render(f"SCORE: ", True, (255, 255, 255)), (50, 150))
@@ -59,18 +65,33 @@ def lobby():
 		if current_match > 5:
 			end_screen(score_player1, score_player2, score_player3, score_player4)
 			return
-		screen.blit(font.render(f"Next match:{matchup[current_match][0]} vs {matchup[current_match][1]} ", True, (255, 255, 255)), (200, 500))
+		screen.blit(font.render(f"Next match:{matchup[current_match][0]} vs {matchup[current_match][1]} ", True, (255, 255, 255)), (50, 550))
 		# betting ruta
 		screen.blit(font.render("Betters:", True, (255, 255, 255)), (400, 150))
 		screen.blit(font.render(f"{bet_list[current_match][0]} --- {bet_list[current_match][1]}", True, (255, 255, 255)), (400, 200))
-		# screen.blit(10_button, (420, 250))
-		# screen.blit(10_button_minus, (420, 300))
-		# screen.blit(50_button, (420, 350))
-		# screen.blit(50_button_minus, (420, 400))
-		# screen.blit(10_button, (620, 250))
-		# screen.blit(10_button_minus, (620, 300))
-		# screen.blit(50_button, (620, 350))
-		# screen.blit(50_button_minus, (620, 400))
+		# bets 1
+		screen.blit(ten_button, (430, 250))
+		screen.blit(minus_ten_button, (505, 250))
+		screen.blit(fifty_button, (430, 300))
+		screen.blit(minus_fifty_button, (505, 300))
+		# bets 2
+		screen.blit(ten_button, (630, 250))
+		screen.blit(minus_ten_button, (705, 250))
+		screen.blit(fifty_button, (630, 300))
+		screen.blit(minus_fifty_button, (705, 300))
+		# total rects
+		total1 = pygame.Rect(430, 350, 146, 50)
+		pygame.draw.rect(screen, (0, 0, 0), total1)
+		total2 = pygame.Rect(630, 350, 146, 50)
+		pygame.draw.rect(screen, (0, 0, 0), total2)
+		# confirm rects
+		black_bg_rect = pygame.Rect(430, 405, 146, 50)
+		pygame.draw.rect(screen, (0, 0, 0), black_bg_rect)
+		black_bg_rect2 = pygame.Rect(630, 405, 146, 50)
+		pygame.draw.rect(screen, (0, 0, 0), black_bg_rect2)
+		screen.blit(font.render("Confirm", True, (255, 255, 255)), (445, 410))
+		screen.blit(font.render("Confirm", True, (255, 255, 255)), (645, 410))
+
 		for event in pygame.event.get():
 			if event.type == pygame.QUIT:
 				sys.exit()
