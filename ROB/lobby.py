@@ -58,6 +58,7 @@ def lobby():
 		pygame.mixer.music.set_volume(volume)
 		if current_match > 5:
 			end_screen(score_player1, score_player2, score_player3, score_player4)
+			return
 		screen.blit(font.render(f"Next match:{matchup[current_match][0]} vs {matchup[current_match][1]} ", True, (255, 255, 255)), (200, 500))
 		screen.blit(font.render(f"Betters: {bet_list[current_match][0]} and {bet_list[current_match][1]}", True, (255, 255, 255)), (400, 150))
 		for event in pygame.event.get():
