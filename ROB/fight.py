@@ -432,7 +432,7 @@ def punch_and_kick(current_match):
                 #     if hit:
                 #         time_since_click = pygame.time.get_ticks() - hit
                 #         print(time_since_click)
-                #         screen.blit(font.render("Hit!", True, (255, 255, 255)), (player2.rect.x, 400))
+                screen.blit(font.render("Hit!", True, (255, 255, 255)), (player2.rect.x, 400))
                 #         if time_since_click > 1000:
                 #             break
 
@@ -442,6 +442,7 @@ def punch_and_kick(current_match):
                 print(f"HP PLAYER 2: {player2.hp}")
         if keys.key == pygame.K_DOWN:
             if collision(player1, player2) == True:
+                screen.blit(font.render("Hit!", True, (255, 255, 255)), (player2.rect.x, 400))
                 print("spark")
                 effect_KICK.play(0)
                 player2.hp -= 10
@@ -449,6 +450,7 @@ def punch_and_kick(current_match):
         # fighter2 slag och spark
         if keys.key == pygame.K_w:
             if collision(player1, player2) == True:
+                screen.blit(font.render("Hit!", True, (255, 255, 255)), (player1.rect.x, 400))
                 effect_punch.play(0)
                 print("slag")
                 player1.hp -= 10
@@ -456,6 +458,7 @@ def punch_and_kick(current_match):
 
         if keys.key == pygame.K_s:
             if collision(player1, player2) == True:
+                screen.blit(font.render("Hit!", True, (255, 255, 255)), (player1.rect.x, 400))
                 effect_KICK.play(0)
                 print("spark")
                 player1.hp -= 10

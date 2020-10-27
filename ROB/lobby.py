@@ -55,6 +55,8 @@ def lobby():
 	show_stats(score_player1, score_player2, score_player3, score_player4)
 	while running:
 		pygame.mixer.music.set_volume(volume)
+		if current_match > 5:
+			end_screen(score_player1, score_player2, score_player3, score_player4)
 		screen.blit(font.render(f"Next match:{matchup[current_match][0]} vs {matchup[current_match][1]} ", True, (255, 255, 255)), (200, 500))
 		for event in pygame.event.get():
 			if event.type == pygame.QUIT:
@@ -78,8 +80,8 @@ def lobby():
 					# kollar om musens position vid knapptryckningen kolliderar med playbutton
 					if fight_button.collidepoint(mx, my):
 						# starta en fight och få resultatet tillbaka
-						if current_match == 6:
-							end_screen(score_player1, score_player2, score_player3, score_player4)
+						#if current_match > 5:
+							#end_screen(score_player1, score_player2, score_player3, score_player4)
 
 						winner, loser = fight(current_match)
 						print("Winner is player " + str(winner))
