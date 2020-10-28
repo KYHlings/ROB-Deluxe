@@ -9,10 +9,25 @@ bet_list = [["Bråkiga Berit", "Hänsynslöse Hannes" ],["Slaktar Sune", "Boxare
 font = pygame.font.SysFont("Arial", 30, True)
 screen = pygame.display.set_mode((800, 600))
 
-ten_button = pygame.image.load("pics//10$.png")
-minus_ten_button = pygame.image.load("pics//-10$.png")
-fifty_button = pygame.image.load("pics//50$.png")
-minus_fifty_button = pygame.image.load("pics//-50$.png")
+ten = pygame.image.load("pics//10$.png")
+minus_ten = pygame.image.load("pics//-10$.png")
+fifty = pygame.image.load("pics//50$.png")
+minus_fifty = pygame.image.load("pics//-50$.png")
+ten_button = pygame.Rect(430, 250, 71, 42)
+minus_ten_button = pygame.Rect(505, 250, 71, 42)
+fifty_button = pygame.Rect(430, 300, 71, 42)
+minus_fifty_button = pygame.Rect(505, 300, 71, 42)
+ten_button_2 = pygame.Rect(630, 250, 71, 42)
+minus_ten_button_2 = pygame.Rect(705, 250, 71, 42)
+fifty_button_2 = pygame.Rect(630, 300, 71, 42)
+minus_fifty_button_2 = pygame.Rect(705, 300, 71, 42)
+
+
+
+# ten_button_2 = pygame.image.load("pics//10$.png")
+# minus_ten_button_2 = pygame.image.load("pics//-10$.png")
+# fifty_button_2 = pygame.image.load("pics//50$.png")
+# minus_fifty_button_2 = pygame.image.load("pics//-50$.png")
 
 
 
@@ -53,6 +68,8 @@ def lobby():
 	score = 100
 	volume = 0.5
 	current_match = 0
+	better_1 = 0
+	better_2 = 0
 	score_player1 = score
 	score_player2 = score
 	score_player3 = score
@@ -60,39 +77,51 @@ def lobby():
 	fight_button = lobby_window()
 	minus, mute, plus = volume_buttons()
 	show_stats(score_player1, score_player2, score_player3, score_player4)
+
 	while running:
 		pygame.mixer.music.set_volume(volume)
 		if current_match > 5:
 			end_screen(score_player1, score_player2, score_player3, score_player4)
 			return
+
 		screen.blit(font.render(f"Next match:{matchup[current_match][0]} vs {matchup[current_match][1]} ", True, (255, 255, 255)), (50, 550))
 		# betting ruta
 		screen.blit(font.render("Betters:", True, (255, 255, 255)), (400, 150))
 		screen.blit(font.render(f"{bet_list[current_match][0]} --- {bet_list[current_match][1]}", True, (255, 255, 255)), (400, 200))
 		# bets 1
-		screen.blit(ten_button, (430, 250))
-		screen.blit(minus_ten_button, (505, 250))
-		screen.blit(fifty_button, (430, 300))
-		screen.blit(minus_fifty_button, (505, 300))
+		pygame.draw.rect(screen, (0, 0, 0), ten_button)
+		pygame.draw.rect(screen, (0, 0, 0), minus_ten_button)
+		pygame.draw.rect(screen, (0, 0, 0), fifty_button)
+		pygame.draw.rect(screen, (0, 0, 0), minus_fifty_button)
+		screen.blit(ten, (430, 250))
+		screen.blit(minus_ten, (505, 250))
+		screen.blit(fifty, (430, 300))
+		screen.blit(minus_fifty, (505, 300))
 		# bets 2
-		screen.blit(ten_button, (630, 250))
-		screen.blit(minus_ten_button, (705, 250))
-		screen.blit(fifty_button, (630, 300))
-		screen.blit(minus_fifty_button, (705, 300))
-		# total rects
+		pygame.draw.rect(screen, (0, 0, 0), ten_button_2)
+		pygame.draw.rect(screen, (0, 0, 0), minus_ten_button_2)
+		pygame.draw.rect(screen, (0, 0, 0), fifty_button_2)
+		pygame.draw.rect(screen, (0, 0, 0), minus_fifty_button_2)
+		screen.blit(ten, (630, 250))
+		screen.blit(minus_ten, (705, 250))
+		screen.blit(fifty, (630, 300))
+		screen.blit(minus_fifty, (705, 300))
+		#total rects
 		total1 = pygame.Rect(430, 350, 146, 50)
 		pygame.draw.rect(screen, (0, 0, 0), total1)
 		total2 = pygame.Rect(630, 350, 146, 50)
 		pygame.draw.rect(screen, (0, 0, 0), total2)
-		screen.blit(font.render("Total", True, (255, 255, 255)), (445, 360))
-		screen.blit(font.render("Total", True, (255, 255, 255)), (645, 360))
+		screen.blit(font.render(f"{better_1}", True, (255, 255, 255)), (445, 360))
+		screen.blit(font.render(f"{better_2}", True, (255, 255, 255)), (645, 360))
 		# confirm rects
 		black_bg_rect = pygame.Rect(430, 405, 146, 50)
 		pygame.draw.rect(screen, (0, 0, 0), black_bg_rect)
 		black_bg_rect2 = pygame.Rect(630, 405, 146, 50)
 		pygame.draw.rect(screen, (0, 0, 0), black_bg_rect2)
-		screen.blit(font.render("Confirm", True, (255, 255, 255)), (445, 410))
-		screen.blit(font.render("Confirm", True, (255, 255, 255)), (645, 410))
+		screen.blit(font.render(f"{better_1*2}", True, (255, 255, 255)), (445, 410))
+		screen.blit(font.render(f"{better_2*2}", True, (255, 255, 255)), (645, 410))
+
+
 
 		for event in pygame.event.get():
 			if event.type == pygame.QUIT:
@@ -103,6 +132,47 @@ def lobby():
 				mx, my = pygame.mouse.get_pos()
 				# kollar vilken knapp på musen som tryckts ned
 				if event.button == 1:
+					# plus bet
+					if ten_button.collidepoint(mx, my):
+						better_1 += 10
+
+
+						print('hit')
+						print(better_1)
+					if ten_button_2.collidepoint(mx, my):
+						better_2 += 10
+						print('hit')
+						print(better_2)
+					if fifty_button.collidepoint(mx, my):
+						better_1 += 50
+						print('hit')
+						print(better_1)
+					if fifty_button_2.collidepoint(mx, my):
+						better_2 += 50
+						print('hit')
+						print(better_2)
+						#minus bet
+					if minus_ten_button.collidepoint(mx, my):
+						better_1 -= 10
+						print('hit')
+						print(better_1)
+					if minus_ten_button_2.collidepoint(mx, my):
+						better_2 -= 10
+						print('hit')
+						print(better_2)
+					if minus_fifty_button.collidepoint(mx, my):
+						better_1 -= 50
+						print('hit')
+						print(better_1)
+					if minus_fifty_button_2.collidepoint(mx, my):
+						better_2 -= 50
+						print('hit')
+						print(better_2)
+
+						#total buttons
+
+
+
 					if plus.collidepoint(mx, my):
 						volume += 0.1
 						print("höjer")
@@ -112,6 +182,8 @@ def lobby():
 					if mute.collidepoint(mx, my):
 						volume = 0
 						print("mute")
+
+
 
 					# kollar om musens position vid knapptryckningen kolliderar med playbutton
 					if fight_button.collidepoint(mx, my):
@@ -148,6 +220,20 @@ def volume_buttons():
 
 
 def show_score(score_player1, score_player2, score_player3, score_player4, winner):
+	score_player1, score_player2, score_player3, score_player4 = winner_points(score_player1, score_player2,
+																			   score_player3, score_player4, winner)
+	screen.blit(font.render(f"SCORE: ", True, (255, 255, 255)), (50, 150))
+	screen.blit(font.render(f"Slaktar Sune: {score_player1}", True, (255, 255, 255)), (50, 200))
+	screen.blit(font.render(f"Boxare Bob: {score_player2}", True, (255, 255, 255)), (50, 250))
+	screen.blit(font.render(f"Bråkiga Berit: {score_player3}", True, (255, 255, 255)), (50, 300))
+	screen.blit(font.render(f"Hänsynslöse Hannes: {score_player4}", True, (255, 255, 255)), (50, 350))
+	screen.blit(font.render(f"MUSIC: ", True, (255, 255, 255)), (550, 10))
+	minus, mute, plus = volume_buttons()
+	return score_player1, score_player2, score_player3, score_player4
+
+
+
+def winner_points(score_player1, score_player2, score_player3, score_player4, winner):
 	if winner == "Slaktar Sune":
 		score_player1 += 100
 	if winner == "Boxare Bob":
@@ -156,12 +242,5 @@ def show_score(score_player1, score_player2, score_player3, score_player4, winne
 		score_player3 += 100
 	if winner == "Hänsynslöse Hannes":
 		score_player4 += 100
-	screen.blit(font.render(f"SCORE: ", True, (255, 255, 255)), (50, 150))
-	screen.blit(font.render(f"Slaktar Sune: {score_player1}", True, (255, 255, 255)), (50, 200))
-	screen.blit(font.render(f"Boxare Bob: {score_player2}", True, (255, 255, 255)), (50, 250))
-	screen.blit(font.render(f"Bråkiga Berit: {score_player3}", True, (255, 255, 255)), (50, 300))
-	screen.blit(font.render(f"Hänsynslöse Hannes: {score_player4}", True, (255, 255, 255)), (50, 350))
-	screen.blit(font.render(f"MUSIC: ", True, (255, 255, 255)), (550, 10))
-	minus, mute, plus = volume_buttons()
 	return score_player1, score_player2, score_player3, score_player4
 
