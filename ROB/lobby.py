@@ -22,14 +22,17 @@ minus_ten_button_2 = pygame.Rect(705, 250, 71, 42)
 fifty_button_2 = pygame.Rect(630, 300, 71, 42)
 minus_fifty_button_2 = pygame.Rect(705, 300, 71, 42)
 
+sune_head = pygame.image.load("pics//head_sune.png")
+bob_head = pygame.image.load("pics//head_bob.png")
+berit_head = pygame.image.load("pics//head_berit.png")
+hannes_head = pygame.image.load("pics//head_hannes.png")
 
-
-# ten_button_2 = pygame.image.load("pics//10$.png")
-# minus_ten_button_2 = pygame.image.load("pics//-10$.png")
-# fifty_button_2 = pygame.image.load("pics//50$.png")
-# minus_fifty_button_2 = pygame.image.load("pics//-50$.png")
-
-
+head_sune_rect = pygame.Rect(390, 250, 40, 35)
+head_bob_rect = pygame.Rect(390, 250, 40, 35)
+head_berit_rect = pygame.Rect(390, 250, 40, 35)
+head_hannes_rect = pygame.Rect(390, 250, 40, 35)
+screen.blit(sune_head, (390, 250))
+screen.blit(bob_head, (390, 300))
 
 def show_stats(score1, score2, score3, score4):
 	screen.blit(font.render(f"SCORE: ", True, (255, 255, 255)), (50, 150))
@@ -77,7 +80,8 @@ def lobby():
 	fight_button = lobby_window()
 	minus, mute, plus = volume_buttons()
 	show_stats(score_player1, score_player2, score_player3, score_player4)
-
+	screen.blit(sune_head, (390, 250))
+	screen.blit(bob_head, (390, 300))
 	while running:
 		pygame.mixer.music.set_volume(volume)
 		if current_match > 5:
@@ -120,8 +124,6 @@ def lobby():
 		pygame.draw.rect(screen, (0, 0, 0), black_bg_rect2)
 		screen.blit(font.render(f"{better_1*2}", True, (255, 255, 255)), (445, 410))
 		screen.blit(font.render(f"{better_2*2}", True, (255, 255, 255)), (645, 410))
-
-
 
 		for event in pygame.event.get():
 			if event.type == pygame.QUIT:
@@ -283,9 +285,7 @@ def lobby():
 						print('hit')
 						print(better_2)
 
-
-
-
+					# Volume buttons
 					if plus.collidepoint(mx, my):
 						volume += 0.1
 						print("höjer")
