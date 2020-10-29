@@ -134,42 +134,155 @@ def lobby():
 				if event.button == 1:
 					# plus bet
 					if ten_button.collidepoint(mx, my):
-						better_1 += 10
-
+						if bet_list[current_match][0] == "Bråkiga Berit":
+							if better_1 >= score_player3:
+								better_1 = score_player3
+							else:
+								better_1 += 10
+						if bet_list[current_match][0] == "Slaktar Sune":
+							if better_1 >= score_player1:
+								better_1 = score_player1
+							else:
+								better_1 += 10
+						if bet_list[current_match][0] == "Boxare Bob":
+							if better_1 >= score_player2:
+								better_1 = score_player2
+							else:
+								better_1 += 10
 
 						print('hit')
 						print(better_1)
 					if ten_button_2.collidepoint(mx, my):
-						better_2 += 10
+						if bet_list[current_match][1] == "Hänsynslöse Hannes":
+							if better_2 >= score_player4:
+								better_2 = score_player4
+							else:
+								better_2 += 10
+						if bet_list[current_match][1] == "Boxare Bob":
+							if better_2 >= score_player2:
+								better_2 = score_player2
+							else:
+								better_2 += 10
+						if bet_list[current_match][1] == "Bråkiga Berit":
+							if better_2 >= score_player3:
+								better_2 = score_player3
+							else:
+								better_2 += 10
+
 						print('hit')
 						print(better_2)
 					if fifty_button.collidepoint(mx, my):
-						better_1 += 50
+						if bet_list[current_match][0] == "Bråkiga Berit":
+							if better_1 >= score_player3:
+								better_1 = score_player3
+							else:
+								better_1 += 10
+						if bet_list[current_match][0] == "Slaktar Sune":
+							if better_1 >= score_player1:
+								better_1 = score_player1
+							else:
+								better_1 += 10
+						if bet_list[current_match][0] == "Boxare Bob":
+							if better_1 >= score_player2:
+								better_1 = score_player2
+							else:
+								better_1 += 10
 						print('hit')
 						print(better_1)
 					if fifty_button_2.collidepoint(mx, my):
-						better_2 += 50
+						if bet_list[current_match][1] == "Hänsynslöse Hannes":
+							if better_2 >= score_player4:
+								better_2 = score_player4
+							else:
+								better_2 += 50
+						if bet_list[current_match][1] == "Boxare Bob":
+							if better_2 >= score_player2:
+								better_2 = score_player2
+							else:
+								better_2 += 50
+						if bet_list[current_match][1] == "Bråkiga Berit":
+							if better_2 >= score_player3:
+								better_2 = score_player3
+							else:
+								better_2 += 50
+
 						print('hit')
 						print(better_2)
 						#minus bet
 					if minus_ten_button.collidepoint(mx, my):
-						better_1 -= 10
+						if bet_list[current_match][0] == "Bråkiga Berit":
+							if better_1 <= 0:
+								better_1 = 0
+							else:
+								better_1 -= 10
+						if bet_list[current_match][0] == "Slaktar Sune":
+							if better_1 <= 0:
+								better_1 = 0
+							else:
+								better_1 -= 10
+						if bet_list[current_match][0] == "Boxare Bob":
+							if better_1 <= 0:
+								better_1 = 0
+							else:
+								better_1 -= 10
 						print('hit')
 						print(better_1)
 					if minus_ten_button_2.collidepoint(mx, my):
-						better_2 -= 10
+						if bet_list[current_match][1] == "Hänsynslöse Hannes":
+							if better_2 <= 0:
+								better_2 = 0
+							else:
+								better_2 -= 10
+						if bet_list[current_match][1] == "Boxare Bob":
+							if better_2 <= 0:
+								better_2 = 0
+							else:
+								better_2 -= 10
+						if bet_list[current_match][1] == "Bråkiga Berit":
+							if better_2 <= 0:
+								better_2 = 0
+							else:
+								better_2 -= 10
+
 						print('hit')
 						print(better_2)
 					if minus_fifty_button.collidepoint(mx, my):
-						better_1 -= 50
+						if bet_list[current_match][0] == "Bråkiga Berit":
+							if better_1 <= 0:
+								better_1 = 0
+							else:
+								better_1 -= 50
+						if bet_list[current_match][0] == "Slaktar Sune":
+							if better_1 <= 0:
+								better_1 = 0
+							else:
+								better_1 -= 50
+						if bet_list[current_match][0] == "Boxare Bob":
+							if better_1 <= 0:
+								better_1 = 0
+							else:
+								better_1 -= 50
 						print('hit')
 						print(better_1)
 					if minus_fifty_button_2.collidepoint(mx, my):
-						better_2 -= 50
+						if bet_list[current_match][1] == "Hänsynslöse Hannes":
+							if better_2 <= 0:
+								better_2 = 0
+							else:
+								better_2 -= 50
+						if bet_list[current_match][1] == "Boxare Bob":
+							if better_2 <= 0:
+								better_2 = 0
+							else:
+								better_2 -= 50
+						if bet_list[current_match][1] == "Bråkiga Berit":
+							if better_2 <= 0:
+								better_2 = 0
+							else:
+								better_2 -= 50
 						print('hit')
 						print(better_2)
 
-						#total buttons
 
 
 
