@@ -73,6 +73,8 @@ def lobby():
 	current_match = 0
 	better_1 = 0
 	better_2 = 0
+	better_1_0 = 0
+	better_2_0 = 0
 	score_player1 = score
 	score_player2 = score
 	score_player3 = score
@@ -88,42 +90,7 @@ def lobby():
 			end_screen(score_player1, score_player2, score_player3, score_player4)
 			return
 
-		screen.blit(font.render(f"Next match:{matchup[current_match][0]} vs {matchup[current_match][1]} ", True, (255, 255, 255)), (50, 550))
-		# betting ruta
-		screen.blit(font.render("Betters:", True, (255, 255, 255)), (400, 150))
-		screen.blit(font.render(f"{bet_list[current_match][0]} --- {bet_list[current_match][1]}", True, (255, 255, 255)), (400, 200))
-		# bets 1
-		pygame.draw.rect(screen, (0, 0, 0), ten_button)
-		pygame.draw.rect(screen, (0, 0, 0), minus_ten_button)
-		pygame.draw.rect(screen, (0, 0, 0), fifty_button)
-		pygame.draw.rect(screen, (0, 0, 0), minus_fifty_button)
-		screen.blit(ten, (430, 250))
-		screen.blit(minus_ten, (505, 250))
-		screen.blit(fifty, (430, 300))
-		screen.blit(minus_fifty, (505, 300))
-		# bets 2
-		pygame.draw.rect(screen, (0, 0, 0), ten_button_2)
-		pygame.draw.rect(screen, (0, 0, 0), minus_ten_button_2)
-		pygame.draw.rect(screen, (0, 0, 0), fifty_button_2)
-		pygame.draw.rect(screen, (0, 0, 0), minus_fifty_button_2)
-		screen.blit(ten, (630, 250))
-		screen.blit(minus_ten, (705, 250))
-		screen.blit(fifty, (630, 300))
-		screen.blit(minus_fifty, (705, 300))
-		#total rects
-		total1 = pygame.Rect(430, 350, 146, 50)
-		pygame.draw.rect(screen, (0, 0, 0), total1)
-		total2 = pygame.Rect(630, 350, 146, 50)
-		pygame.draw.rect(screen, (0, 0, 0), total2)
-		screen.blit(font.render(f"{better_1}", True, (255, 255, 255)), (445, 360))
-		screen.blit(font.render(f"{better_2}", True, (255, 255, 255)), (645, 360))
-		# confirm rects
-		black_bg_rect = pygame.Rect(430, 405, 146, 50)
-		pygame.draw.rect(screen, (0, 0, 0), black_bg_rect)
-		black_bg_rect2 = pygame.Rect(630, 405, 146, 50)
-		pygame.draw.rect(screen, (0, 0, 0), black_bg_rect2)
-		screen.blit(font.render(f"{better_1*2}", True, (255, 255, 255)), (445, 410))
-		screen.blit(font.render(f"{better_2*2}", True, (255, 255, 255)), (645, 410))
+		button_blittings(better_1, better_2, current_match)
 
 		for event in pygame.event.get():
 			if event.type == pygame.QUIT:
@@ -134,6 +101,8 @@ def lobby():
 				mx, my = pygame.mouse.get_pos()
 				# kollar vilken knapp på musen som tryckts ned
 				if event.button == 1:
+
+
 					# plus bet
 					if ten_button.collidepoint(mx, my):
 						if bet_list[current_match][0] == "Bråkiga Berit":
@@ -296,8 +265,7 @@ def lobby():
 						volume = 0
 						print("mute")
 
-
-
+					# if head_sune_rect.collidepoint(mx, my):
 					# kollar om musens position vid knapptryckningen kolliderar med playbutton
 					if fight_button.collidepoint(mx, my):
 						# starta en fight och få resultatet tillbaka
@@ -323,6 +291,48 @@ def lobby():
 
 		# uppdaterar displayen
 		pygame.display.update()
+
+
+def button_blittings(better_1, better_2, current_match):
+	screen.blit(
+		font.render(f"Next match:{matchup[current_match][0]} vs {matchup[current_match][1]} ", True, (255, 255, 255)),
+		(50, 550))
+	# betting ruta
+	screen.blit(font.render("Betters:", True, (255, 255, 255)), (400, 150))
+	screen.blit(font.render(f"{bet_list[current_match][0]} --- {bet_list[current_match][1]}", True, (255, 255, 255)),
+				(400, 200))
+	# bets 1
+	pygame.draw.rect(screen, (0, 0, 0), ten_button)
+	pygame.draw.rect(screen, (0, 0, 0), minus_ten_button)
+	pygame.draw.rect(screen, (0, 0, 0), fifty_button)
+	pygame.draw.rect(screen, (0, 0, 0), minus_fifty_button)
+	screen.blit(ten, (430, 250))
+	screen.blit(minus_ten, (505, 250))
+	screen.blit(fifty, (430, 300))
+	screen.blit(minus_fifty, (505, 300))
+	# bets 2
+	pygame.draw.rect(screen, (0, 0, 0), ten_button_2)
+	pygame.draw.rect(screen, (0, 0, 0), minus_ten_button_2)
+	pygame.draw.rect(screen, (0, 0, 0), fifty_button_2)
+	pygame.draw.rect(screen, (0, 0, 0), minus_fifty_button_2)
+	screen.blit(ten, (630, 250))
+	screen.blit(minus_ten, (705, 250))
+	screen.blit(fifty, (630, 300))
+	screen.blit(minus_fifty, (705, 300))
+	# total rects
+	total1 = pygame.Rect(430, 350, 146, 50)
+	pygame.draw.rect(screen, (0, 0, 0), total1)
+	total2 = pygame.Rect(630, 350, 146, 50)
+	pygame.draw.rect(screen, (0, 0, 0), total2)
+	screen.blit(font.render(f"{better_1}", True, (255, 255, 255)), (445, 360))
+	screen.blit(font.render(f"{better_2}", True, (255, 255, 255)), (645, 360))
+	# confirm rects
+	black_bg_rect = pygame.Rect(430, 405, 146, 50)
+	pygame.draw.rect(screen, (0, 0, 0), black_bg_rect)
+	black_bg_rect2 = pygame.Rect(630, 405, 146, 50)
+	pygame.draw.rect(screen, (0, 0, 0), black_bg_rect2)
+	screen.blit(font.render(f"{better_1 * 2}", True, (255, 255, 255)), (445, 410))
+	screen.blit(font.render(f"{better_2 * 2}", True, (255, 255, 255)), (645, 410))
 
 
 def volume_buttons():
