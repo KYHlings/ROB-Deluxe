@@ -3,16 +3,20 @@ import sys
 from ROB.fight import fight
 from ROB.winner_screen import winner_screen
 from ROB.end_screen import end_screen
-
+# en lista över alla matcher
 matchup = [["Slaktar Sune", "Boxare Bob"], ["Bråkiga Berit", "Hänsynslöse Hannes"], ["Slaktar Sune", "Bråkiga Berit"], ["Boxare Bob", "Hänsynslöse Hannes"], ["Slaktar Sune", "Hänsynslöse Hannes"], ["Boxare Bob", "Bråkiga Berit"]]
+# lista på dom som bettar (listor i listan, beroende på match)
 bet_list = [["Bråkiga Berit", "Hänsynslöse Hannes" ],["Slaktar Sune", "Boxare Bob"],["Boxare Bob", "Hänsynslöse Hannes"], ["Slaktar Sune", "Bråkiga Berit"],["Boxare Bob", "Bråkiga Berit"],["Slaktar Sune", "Hänsynslöse Hannes"]]
+# sätter font + storlek + bold
 font = pygame.font.SysFont("Arial", 30, True)
+# sätter storlek på skärmen
 screen = pygame.display.set_mode((800, 600))
-
+#laddar upp bilder för de olika betting-valörerna
 ten = pygame.image.load("pics//10$.png")
 minus_ten = pygame.image.load("pics//-10$.png")
 fifty = pygame.image.load("pics//50$.png")
 minus_fifty = pygame.image.load("pics//-50$.png")
+# rektanglar för betting-valörerna
 ten_button = pygame.Rect(430, 250, 71, 42)
 minus_ten_button = pygame.Rect(505, 250, 71, 42)
 fifty_button = pygame.Rect(430, 300, 71, 42)
@@ -21,19 +25,20 @@ ten_button_2 = pygame.Rect(630, 250, 71, 42)
 minus_ten_button_2 = pygame.Rect(705, 250, 71, 42)
 fifty_button_2 = pygame.Rect(630, 300, 71, 42)
 minus_fifty_button_2 = pygame.Rect(705, 300, 71, 42)
-
+# laddar bilder på avatarer till karaktärerna
 sune_head = pygame.image.load("pics//head_sune.png")
 bob_head = pygame.image.load("pics//head_bob.png")
 berit_head = pygame.image.load("pics//head_berit.png")
 hannes_head = pygame.image.load("pics//head_hannes.png")
-
+# skapar rektanglar för avatarer
 head_sune_rect = pygame.Rect(390, 250, 40, 35)
 head_bob_rect = pygame.Rect(390, 250, 40, 35)
 head_berit_rect = pygame.Rect(390, 250, 40, 35)
 head_hannes_rect = pygame.Rect(390, 250, 40, 35)
+# målar ut avatarerna på skärmen
 screen.blit(sune_head, (390, 250))
 screen.blit(bob_head, (390, 300))
-
+# målar ut texten till SCORE-rutan
 def show_stats(score1, score2, score3, score4):
 	screen.blit(font.render(f"SCORE: ", True, (255, 255, 255)), (50, 150))
 	screen.blit(font.render(f"Slaktar Sune: {score1}", True, (255, 255, 255)), (50, 200))
@@ -45,6 +50,7 @@ def show_stats(score1, score2, score3, score4):
 
 
 def lobby_window():
+	# stoppar manin_menu musiken och laddar lobby-musiken
 	pygame.mixer.music.stop()
 	pygame.mixer.music.load("music//casino_music.wav")
 	pygame.mixer.music.play(-1)
@@ -253,6 +259,8 @@ def lobby():
 								better_2 -= 50
 						print('hit')
 						print(better_2)
+					if head_sune_rect.collidepoint(mx, my):
+
 
 					# Volume buttons
 					if plus.collidepoint(mx, my):
