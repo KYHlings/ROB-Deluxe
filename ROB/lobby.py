@@ -54,38 +54,56 @@ def lobby_window():
 	pygame.mixer.music.stop()
 	pygame.mixer.music.load("music//casino_music.wav")
 	pygame.mixer.music.play(-1)
+	# laddar in lobby bakgrundsbilden och fight sign bilden
 	casino_bg = pygame.image.load('pics//casino.png')
-	# make_bets = pygame.image.load('pics//make_your_bets.png')
 	fight_sign = pygame.image.load('pics//fight_sign.png')
+	# Skapar en osynlig rektangel
 	fight_button = pygame.Rect(250, 50, 300, 100)
+	# Målar rektangeln svart på skärmen
 	pygame.draw.rect(screen, (0, 0, 0), fight_button)
+	# Målar upp bilderna casino och fight på skärmen
 	screen.blit(casino_bg, (0, 0))
-	# screen.blit(make_bets, (350, 200))
 	screen.blit(fight_sign, (250, 50))
+	# Returnar fight_button rektangeln
 	return fight_button
 
 
 def player_bars(winner):
+	# Målar ut en text-sträng som visar den föregående vinnaren, med anitalias som True, färgen på texten vit och koordinater
 	screen.blit(font.render(f"Previous winnner: {winner}", True, (255, 255, 255)), (100, 530))
+	# Uppdaterar skärmen
 	pygame.display.update()
 
 
 def lobby():
+	# anropar init i pygame som gör att vi kan använda alla pygame commands
 	pygame.init()
+	# anropar mixer init i pygame så att vi kan använda alla mixer commands
 	pygame.mixer.init()
+	# Sätter running till True
 	running = True
+	# Sätter score-variabeln till 100
 	score = 100
+	# Sätter en varibel volume till 0.5
 	volume = 0.5
+	# Sätter en variabel current_match till 0
 	current_match = 0
+	# Sätter en variabel better_1 till 0
 	better_1 = 0
+	# Sätter en variabel better_2 till 0
 	better_2 = 0
+	# Sätter en variabel better_1_0 till 0
 	better_1_0 = 0
+	# Sätter en variabel better_2_0 till 0
 	better_2_0 = 0
+	# Sätter en variabel för varje spelare med värdet 100 som vi får av variabeln score
 	score_player1 = score
 	score_player2 = score
 	score_player3 = score
 	score_player4 = score
+	# Sätter att variabeln fight_button är en rektangel
 	fight_button = lobby_window()
+	#
 	minus, mute, plus = volume_buttons()
 	show_stats(score_player1, score_player2, score_player3, score_player4)
 	screen.blit(sune_head, (390, 250))
@@ -153,17 +171,17 @@ def lobby():
 							if better_1 >= score_player3:
 								better_1 = score_player3
 							else:
-								better_1 += 10
+								better_1 += 50
 						if bet_list[current_match][0] == "Slaktar Sune":
 							if better_1 >= score_player1:
 								better_1 = score_player1
 							else:
-								better_1 += 10
+								better_1 += 50
 						if bet_list[current_match][0] == "Boxare Bob":
 							if better_1 >= score_player2:
 								better_1 = score_player2
 							else:
-								better_1 += 10
+								better_1 += 50
 						print('hit')
 						print(better_1)
 					if fifty_button_2.collidepoint(mx, my):
@@ -259,7 +277,7 @@ def lobby():
 								better_2 -= 50
 						print('hit')
 						print(better_2)
-					if head_sune_rect.collidepoint(mx, my):
+
 
 
 					# Volume buttons
