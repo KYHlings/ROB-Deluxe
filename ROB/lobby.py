@@ -103,23 +103,30 @@ def lobby():
 	score_player4 = score
 	# Sätter att variabeln fight_button är en rektangel
 	fight_button = lobby_window()
-	#
+	# målar ut bilder för volym-knapparna
 	minus, mute, plus = volume_buttons()
+	# Målar ut statistiken i score-boarden
 	show_stats(score_player1, score_player2, score_player3, score_player4)
+	# Målar ut avatarerna på Sune och Bob
 	screen.blit(sune_head, (390, 250))
 	screen.blit(bob_head, (390, 300))
+	# Skapar en while-loop som kör så länge running är True
 	while running:
+		# sätter volymen efter variablen volume
 		pygame.mixer.music.set_volume(volume)
+		# om variabeln current_match är större än 5 kommer man till end screen
 		if current_match > 5:
+			# skickar med spelarnas poäng så man vet deras placering
 			end_screen(score_player1, score_player2, score_player3, score_player4)
 			return
-
+		# Kallar på button_blittings-funktionen, hämtar rektanglar till knappar
 		button_blittings(better_1, better_2, current_match)
-
+		# Input som händer genom knapptryckning av användaren
 		for event in pygame.event.get():
+			# spelet avslutas när man trycker på röda krysset
 			if event.type == pygame.QUIT:
 				sys.exit()
-
+			#Vad som händer när man trycker ned musknappen
 			if event.type == pygame.MOUSEBUTTONDOWN:
 				# kollar position på musen
 				mx, my = pygame.mouse.get_pos()
@@ -127,18 +134,22 @@ def lobby():
 				if event.button == 1:
 
 
-					# plus bet
+					# plus bet. Om musen kolliderar med rektangeln ten_button
 					if ten_button.collidepoint(mx, my):
+						# ...då går man in och kollar bet-listan, därefter current_match. Index 0 är 1:a spelaren i bet-listan
 						if bet_list[current_match][0] == "Bråkiga Berit":
+							# if-sats som kollar så att man inte bettar mer än vad man har i poäng
 							if better_1 >= score_player3:
 								better_1 = score_player3
 							else:
 								better_1 += 10
+						# if-sats som kollar så att man inte bettar mer än vad man har i poäng
 						if bet_list[current_match][0] == "Slaktar Sune":
 							if better_1 >= score_player1:
 								better_1 = score_player1
 							else:
 								better_1 += 10
+						# if-sats som kollar så att man inte bettar mer än vad man har i poäng
 						if bet_list[current_match][0] == "Boxare Bob":
 							if better_1 >= score_player2:
 								better_1 = score_player2
@@ -148,6 +159,7 @@ def lobby():
 						print('hit')
 						print(better_1)
 					if ten_button_2.collidepoint(mx, my):
+						# if-sats som kollar så att man inte bettar mer än vad man har i poäng. Index 1 anger better 2
 						if bet_list[current_match][1] == "Hänsynslöse Hannes":
 							if better_2 >= score_player4:
 								better_2 = score_player4
@@ -206,6 +218,7 @@ def lobby():
 						#minus bet
 					if minus_ten_button.collidepoint(mx, my):
 						if bet_list[current_match][0] == "Bråkiga Berit":
+							# sätter better 1 till 0 ifall man har 0 poäng
 							if better_1 <= 0:
 								better_1 = 0
 							else:
