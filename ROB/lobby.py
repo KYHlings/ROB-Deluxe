@@ -50,7 +50,7 @@ def show_stats(score1, score2, score3, score4):
 
 
 def lobby_window():
-	# stoppar manin_menu musiken och laddar lobby-musiken
+	# stoppar main_menu/fight musiken och laddar lobby-musiken
 	pygame.mixer.music.stop()
 	pygame.mixer.music.load("music//casino_music.wav")
 	pygame.mixer.music.play(-1)
@@ -334,12 +334,12 @@ def lobby():
 						winner_screen(winner, loser, current_match)
 						# Plussar på variabeln current_match med 1
 						current_match += 1
-						# printar score
+						# printar score, debugger för att se om scoren räknas rätt
 						if winner == 1:
 							print(show_score(score_player1, score_player2, score_player3, score_player4, winner))
 						else:
 							print(show_score(score_player1, score_player2, score_player3, score_player4, winner))
-						# måla upp lobbyn igen
+						# måla upp lobbyn igen, går tillbaka till lobbyfönstret
 						lobby_window()
 
 							#player_bars(winner)
@@ -350,71 +350,96 @@ def lobby():
 		# uppdaterar displayen
 		pygame.display.update()
 
-
+# Funktionen tar better_1, better_2 och current_match(håller koll på vilken match det är) som indata.
 def button_blittings(better_1, better_2, current_match):
+	# Skriver ut index 0 från listan matchup, baserat på vilket value current_match har på skärmen
 	screen.blit(
 		font.render(f"Next match:{matchup[current_match][0]} vs {matchup[current_match][1]} ", True, (255, 255, 255)),
 		(50, 550))
 	# betting ruta
+	# Skriver ut betters för den aktuella matchen. Med True som syntax för utjämnade kanter, 255, 255, 255 för textfärgen och 400, 200 för koordinater
 	screen.blit(font.render("Betters:", True, (255, 255, 255)), (400, 150))
 	screen.blit(font.render(f"{bet_list[current_match][0]} --- {bet_list[current_match][1]}", True, (255, 255, 255)),
 				(400, 200))
 	# bets 1
+	# Ritar ut 4 svarta rektanglar med samma storlek som den önskade bilden
 	pygame.draw.rect(screen, (0, 0, 0), ten_button)
 	pygame.draw.rect(screen, (0, 0, 0), minus_ten_button)
 	pygame.draw.rect(screen, (0, 0, 0), fifty_button)
 	pygame.draw.rect(screen, (0, 0, 0), minus_fifty_button)
+	# Målar över de svarta rutorna med bilder
 	screen.blit(ten, (430, 250))
 	screen.blit(minus_ten, (505, 250))
 	screen.blit(fifty, (430, 300))
 	screen.blit(minus_fifty, (505, 300))
 	# bets 2
+	# Ritar ut 4 svarta rektanglar med samma storlek som den önskade bilden
 	pygame.draw.rect(screen, (0, 0, 0), ten_button_2)
 	pygame.draw.rect(screen, (0, 0, 0), minus_ten_button_2)
 	pygame.draw.rect(screen, (0, 0, 0), fifty_button_2)
 	pygame.draw.rect(screen, (0, 0, 0), minus_fifty_button_2)
+	# Målar över de svarta rutorna med bilder
 	screen.blit(ten, (630, 250))
 	screen.blit(minus_ten, (705, 250))
 	screen.blit(fifty, (630, 300))
 	screen.blit(minus_fifty, (705, 300))
 	# total rects
+	# Skapar en variabel total1 med en osynlig rektangel som värde
 	total1 = pygame.Rect(430, 350, 146, 50)
+	# Målar ut rektangeln total1 som vi just skapat
 	pygame.draw.rect(screen, (0, 0, 0), total1)
+	# Skapar en variabel total2 med en osynlig rektangel som värde
 	total2 = pygame.Rect(630, 350, 146, 50)
+	# Målar ut rektangeln total1 som vi just skapat
 	pygame.draw.rect(screen, (0, 0, 0), total2)
-	screen.blit(font.render(f"{better_1}", True, (255, 255, 255)), (445, 360))
-	screen.blit(font.render(f"{better_2}", True, (255, 255, 255)), (645, 360))
+	# Skriver ut den nuvarande better_1 och better_2 score, med färgen vit och koordinaterna sist.
+	# better_1 hittar vi i bet_list[current_match[0]
+	# better_2 hittar vi i bet_list[current_match[1]
+	screen.blit(font.render(f"Bet: {better_1}", True, (255, 255, 255)), (445, 360))
+	screen.blit(font.render(f"Bet: {better_2}", True, (255, 255, 255)), (645, 360))
 	# confirm rects
+	# En variabel som skapar en osynlig rektangel som värde
 	black_bg_rect = pygame.Rect(430, 405, 146, 50)
+	# Måla ut en svart rektangel på skärmen med koordinaterna från black_bg_rect variabeln
 	pygame.draw.rect(screen, (0, 0, 0), black_bg_rect)
+	# En variabel som skapar en osynlig rektangel som värde
 	black_bg_rect2 = pygame.Rect(630, 405, 146, 50)
+	# Måla ut en svart rektangel på skärmen med koordinaterna från black_bg_rect2 variabeln
 	pygame.draw.rect(screen, (0, 0, 0), black_bg_rect2)
-	screen.blit(font.render(f"{better_1 * 2}", True, (255, 255, 255)), (445, 410))
-	screen.blit(font.render(f"{better_2 * 2}", True, (255, 255, 255)), (645, 410))
+	# Skriver ut den potentiella vinsten
+	screen.blit(font.render(f"Win: {better_1 * 2}", True, (255, 255, 255)), (445, 410))
+	screen.blit(font.render(f"Win: {better_2 * 2}", True, (255, 255, 255)), (645, 410))
 
 
 def volume_buttons():
+	# 3 variabler som målar ut strängar för plus, minus och Mute
 	plus = screen.blit(font.render(f"+", True, (255, 255, 255)), (700, 10))
 	minus = screen.blit(font.render(f"-", True, (255, 255, 255)), (730, 9))
 	mute = screen.blit(font.render(f"Mute", True, (255, 255, 255)), (710, 40))
+	# Returnar minus, mute och plus
 	return minus, mute, plus
 
-
+# Funktion som tar score_player1, 2, 3, 4 och winner som indata.
 def show_score(score_player1, score_player2, score_player3, score_player4, winner):
+	# Skapar 4 variabler som hämtar data från winner_points funktionen
 	score_player1, score_player2, score_player3, score_player4 = winner_points(score_player1, score_player2,
 																			   score_player3, score_player4, winner)
+	# Målar ut text på skrärmen, med namn och nuvarande poäng i vit text och olika koordinater
 	screen.blit(font.render(f"SCORE: ", True, (255, 255, 255)), (50, 150))
 	screen.blit(font.render(f"Slaktar Sune: {score_player1}", True, (255, 255, 255)), (50, 200))
 	screen.blit(font.render(f"Boxare Bob: {score_player2}", True, (255, 255, 255)), (50, 250))
 	screen.blit(font.render(f"Bråkiga Berit: {score_player3}", True, (255, 255, 255)), (50, 300))
 	screen.blit(font.render(f"Hänsynslöse Hannes: {score_player4}", True, (255, 255, 255)), (50, 350))
 	screen.blit(font.render(f"MUSIC: ", True, (255, 255, 255)), (550, 10))
-	minus, mute, plus = volume_buttons()
+	# anropar volume_buttons funktionen så att knapparna hänger med och fungerar som dom sa efter varje match
+	volume_buttons()
+	# Returnerar score_player1, 2, 3, 4
 	return score_player1, score_player2, score_player3, score_player4
 
 
-
+# Skapar en funktion med score_player1, 2, 3, 4 och winner som indata
 def winner_points(score_player1, score_player2, score_player3, score_player4, winner):
+	# Beroende på vem som vinner så ökas dess poäng med 100 enheter.
 	if winner == "Slaktar Sune":
 		score_player1 += 100
 	if winner == "Boxare Bob":
@@ -423,5 +448,6 @@ def winner_points(score_player1, score_player2, score_player3, score_player4, wi
 		score_player3 += 100
 	if winner == "Hänsynslöse Hannes":
 		score_player4 += 100
+	# Returnerar värdet för score_player1, 2, 3, 4
 	return score_player1, score_player2, score_player3, score_player4
 
