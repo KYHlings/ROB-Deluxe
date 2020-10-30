@@ -242,10 +242,13 @@ def lobby():
 						print('hit')
 						print(better_1)
 					if minus_ten_button_2.collidepoint(mx, my):
+						# Om Hannes finns i bet-listan på index 1 i den nuvarande matchen
 						if bet_list[current_match][1] == "Hänsynslöse Hannes":
+							# Om bettare 2 (Hannes) försöker betta mindre än 0 så sätts det bettare 2 vill betta till 0
 							if better_2 <= 0:
 								better_2 = 0
 							else:
+								# Om man har score som överstiger 0 så kommer man kunna minska sitt bet med 10.
 								better_2 -= 10
 						if bet_list[current_match][1] == "Boxare Bob":
 							if better_2 <= 0:
@@ -257,8 +260,9 @@ def lobby():
 								better_2 = 0
 							else:
 								better_2 -= 10
-
+						# printar ut "hit" varje gång användaren klickar på nån av knapparna
 						print('hit')
+						# Printar ut hur mycket better 2 har bettat
 						print(better_2)
 					if minus_fifty_button.collidepoint(mx, my):
 						if bet_list[current_match][0] == "Bråkiga Berit":
@@ -300,12 +304,18 @@ def lobby():
 
 
 					# Volume buttons
+					# Kollar om musen kolliderar med plus-rektangeln
 					if plus.collidepoint(mx, my):
+						# om den gör det så plussas volymen med 0.1
 						volume += 0.1
+						# För att kontrollera i konsolen att musknappen kolliderar med plus-rektangeln
 						print("höjer")
+						# Man kollar om vänster musknapp kolliderar med plus-rektangeln
 					if minus.collidepoint(mx, my):
+						# Om musknappen kolliderar med minus-rektangeln så sänks volymen med 0.1
 						volume -= 0.1
 						print("sänker")
+						# # Om musknappen kolliderar med mute-rektangeln så stängs ljudet av
 					if mute.collidepoint(mx, my):
 						volume = 0
 						print("mute")
@@ -316,10 +326,13 @@ def lobby():
 						# starta en fight och få resultatet tillbaka
 						#if current_match > 5:
 							#end_screen(score_player1, score_player2, score_player3, score_player4)
-
+						# Hämtar winner och loser från fight-funktionen och skickar med current_match
 						winner, loser = fight(current_match)
+						# En debugging-print för att se att rätt vinnare skrivs ut efter avslutad match
 						print("Winner is player " + str(winner))
+						# Winner_screen (modul) öppnas och vi skickar med winner, loser och current_match
 						winner_screen(winner, loser, current_match)
+						# Plussar på variabeln current_match med 1
 						current_match += 1
 						# printar score
 						if winner == 1:
