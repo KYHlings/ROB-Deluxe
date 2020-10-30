@@ -165,9 +165,12 @@ def lobby():
 								better_2 = score_player4
 							else:
 								better_2 += 10
+						# Beroende på vilken match det är så tar man ut index 1 ur den matchens bet_list (index 1 = better 2)
 						if bet_list[current_match][1] == "Boxare Bob":
+							# Om bettare(i detta fall bob) två försöker betta över sin egna poäng så kommer det inte gå
 							if better_2 >= score_player2:
 								better_2 = score_player2
+							# Om bettare 2 fortfarande har utrymme att utöka sitt bet så utökas det med 10.
 							else:
 								better_2 += 10
 						if bet_list[current_match][1] == "Bråkiga Berit":
@@ -223,9 +226,12 @@ def lobby():
 								better_1 = 0
 							else:
 								better_1 -= 10
+						# Om Sune finns på index 0 i betting listan på den nuvarande matchen
 						if bet_list[current_match][0] == "Slaktar Sune":
+							# Försöker man betta mindre än 0 så går inte det. Lägsta möjliga bet sätts till 0.
 							if better_1 <= 0:
 								better_1 = 0
+							# Om man har score som överstiger 0 så kommer man kunna minska sitt bet med 10.
 							else:
 								better_1 -= 10
 						if bet_list[current_match][0] == "Boxare Bob":
