@@ -88,7 +88,7 @@ class Player(pygame.sprite.Sprite):
         self.rect = (0, 0, 0, 0)
         # skapar en tom lista där vi senare ska lagra dom bilder karaktärerna ska ha
         self.images = []
-        # skapar vi en variabel för karaktärernas health power
+        # skapar vi en variabel för karaktärernas health points
         self.hp = 100
         # skapar en variabel som bestämmer om spelaren lever eller inte
         self.dead = False
@@ -254,7 +254,7 @@ def player_name_hp_bar(which, current_match):
 
 # skapar en funktion för health bar med båda spelarna som indata
 def healthbar(player1, player2):
-    # om player1's hp är större än -10 så målas rektanglar upp för healtbarsen
+    # om player1 eller player 2's hp är större än -10 så målas rektanglar upp för healtbarsen.
     if player1.hp > -10:
         bg_bar1 = pygame.Rect(550, 50, 200, 50)
         hp_bar1 = pygame.Rect(550, 50, 200 * (player1.hp * 0.01), 50)
@@ -267,46 +267,56 @@ def healthbar(player1, player2):
         pygame.draw.rect(screen, (0, 255, 0), hp_bar2)
     pygame.display.update()
 
-
+# Skapar en funktion med player 1 och player 2 som indata som kollar om kollision har skett
 def collision(player1, player2):
     # kollar om kollision har skett
     col = pygame.sprite.collide_rect(player1, player2)
     if col == True:
         return True
 
-
+# Skapar en funktion med player 1 och player 2 som indata
 def player_movement(player1, player2):
-    # Grund inställningar för position
+    # Gör så att player 1 och player 2 faller ner efter hopp
     player1.rect.y += player1.vel
     player2.rect.y += player2.vel
-    if player1.rect.y == 500:
-        player1.vel = 0
-    if player2.rect.y == 500:
-        player2.vel = 0
+    # Skapar variabeln keys som upptäcker ifall en tangent är nedtryckt
     keys = pygame.key.get_pressed()
 
     # TODO det finns en bug där man flyger utanför skärmen om spelarna kolliderar och går åt ett håll tillsammans
     # FIGHTER 1
     # vänster
-    if keys[pygame.K_LEFT] and player1.rect.x > player1.vel:
+    # Skapar en if-sats som ska göra att vänster pil-tangent tar gubben åt vänster. Gubben kommer aldrig utanför skärmens vänstra kant (0 på x-axeln)
+    if keys[pygame.K_LEFT] and player1.rect.x > 0:
+        # Gäller när vänster pil-tangent är nedtryckt
         player1.left = True
         player1.right = False
+        # Kollar ifall player 1 och player 2 kolliderar
         if collision(player1, player2) == True:
+            # Gör att spelaren åker tillbaka 5 pixlar vid kollision
             if player1.left == True:
                 player1.rect.x += 5
+        # Player 1's x-värde ändras med -1 pixel när han går åt vänster
         player1.rect.x -= 1
+        # Vänder bilden åt vänster när player 1 går åt vänster
         player1.image = pygame.transform.flip(player1.images[player1.frame], True, False)
+        # Gör så bilderna plussas på och animation skapas av att gubben går till vänster
         player1.frame += 1
+        # Om man plussat upp till index 2 så går den tillbaka till 0 (0, 1, 2...0, 1, 2...)
         if player1.frame == 2:
             player1.frame = 0
 
     # höger
+    # Skapar en if-sats som ska göra att höger pil-tangent tar gubben åt höger.
+    # Gubben kommer aldrig utanför skärmens högra kant.
     if keys[pygame.K_RIGHT] and player1.rect.x < screen_width - 40:
+        # Gäller när höger pil-tangent är nedtryckt
         player1.left = False
         player1.right = True
         if collision(player1, player2) == True:
             if player1.right == True:
+                # studsar tillbaka efter kollision
                 player1.rect.x -= 5
+        # Ändrar hur
         player1.rect.x += 1
         player1.frame += 1
         if player1.frame == 2:
