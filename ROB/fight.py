@@ -469,7 +469,7 @@ def fight(current_match):
             # återställer hp för båda
             player_right.hp = 100
             player_left.hp = 100
-            # återställer tillstånd
+            # återställer tillstånd inför nästa match
             player_right.dead = False
             player_left.dead = False
             player_right.frame = 0
@@ -478,15 +478,27 @@ def fight(current_match):
             # om en spelare är död returnera vinnarens nummer
             # låt stå, funkar trots varning
             return winner, loser
-
+        # Anropar healthbar-funktionen med player_right och player_left som indata
+        # Får fram healthbaren på skärmen
         healthbar(player_right, player_left)
+        # Sätter fps till det som angivits tidigare i fps-variabeln. Fps = frames per second
         fps_clock.tick(fps)
+        # Fyller skärmen med svart färg
         screen.fill(black)
+        # Målar upp en bakgrundsbild som täcker hela skärmen
         screen.blit(bg_image[0], (0, 0))
+        # Ritar ut player_right och player_left på skärmen
         player_list.draw(screen)
+        # Anropar funktionen audience
         audience(current_match, hannes, berit, sune, bob)
+        # Anropar funktionen player_movement
+        player_movement(player_right, player_left)
+        # Loopar igenom alla möjliga events i pygame som lagras keys
         for keys in pygame.event.get():
+            # Om keys.type är lika med pygame.QUIT så ska programmet stängas ned
             if keys.type == pygame.QUIT:
                 sys.exit()
+            # Kollar knapptryckningar i punch_and_kick-funktionen
             punch_and_kick()
-        player_movement(player_right, player_left)
+
+
