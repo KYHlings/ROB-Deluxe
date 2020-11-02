@@ -4,12 +4,16 @@ import os
 import time
 
 # grundinställningar
+# centrerar bildrutan
 os.environ["SDL_VIDEO_CENTERED"] = "1"
+# sätter färgen svart i variabeln black
 black = (0, 0, 0)
+# den startar pygame så man får tillgång till commandsen
 pygame.init()
 screen_width = 800
 screen_height = 600
 screen = pygame.display.set_mode((screen_width, screen_height))
+# laddar in bilder på bakgrund och gubbarna
 bg_image = [pygame.image.load('pics//arena_bakgrund_0.png'), pygame.image.load('pics//arena_bakgrund_1.png')]
 hannes = pygame.image.load('pics//walking_right_purple_0.png')
 berit = pygame.image.load('pics//walking_right_yellow_0.png')
@@ -19,12 +23,9 @@ matchup = [["Slaktar Sune", "Boxare Bob"], ["Bråkiga Berit", "Hänsynslöse Han
            ["Boxare Bob", "Hänsynslöse Hannes"], ["Slaktar Sune", "Hänsynslöse Hannes"],
            ["Boxare Bob", "Bråkiga Berit"]]
 
-
+# tar current_match som indata i funktionen audience
 def audience(current_match):
-    hannes = pygame.image.load('pics//walking_right_purple_0.png')
-    berit = pygame.image.load('pics//walking_right_yellow_0.png')
-    sune = pygame.image.load('pics//walking_right_0.png')
-    bob = pygame.image.load('pics//walking_right_green_0.png')
+    # bestämmer vem som ska stå i publiken beroende på vilken siffra current_match blir
     if current_match == 0:
         screen.blit(hannes, (40, 170))
         screen.blit(berit, (70, 170))
@@ -60,33 +61,39 @@ screen.blit(bg_image[0], (0, 0))
 screen.blit(bg_image[1], (0, 0))
 font = pygame.font.SysFont("Arial", 15)
 
-
+#gör en funktion för musiken i fightrutan
 def fight_music():
+    #stoppar föregående låt
     pygame.mixer.music.stop()
+    # laddar in fight-låten
     pygame.mixer.music.load('music//fight_music.ogg')
+    # spelar fightlåten om och om igen
     pygame.mixer.music.play(-1)
 
 
+# gör en klass som heter player så tar vi pygame.sprite.Sprite som indata som bestämmer att objektet är en sprite
 class Player(pygame.sprite.Sprite):
-    """
-   Spawn a player
-   """
-
+     # sätter grundinställningar för varje Player som skapas
     def __init__(self):
         pygame.sprite.Sprite.__init__(self)
-        # how many pixels the character is moving per action
+
+        # bestämmer all hastighet för gubbarnas rörelser i pixlar
         self.vel = 5
+        # bestämmer vilken bild som ska visas i images listan över spelarens olika bilder
         self.frame = 0
-        # stating left and right
+        # bestämmer vänster och höger riktning
         self.left = False
         self.right = False
+        # skapar en variabel för spelarens storlek som ändras senare
         self.rect = (0, 0, 0, 0)
+        # skapar en tom lista där vi senare ska lagra dom bilder karaktärerna ska ha
         self.images = []
-        # self.image = [pygame.image.load("pics//walking_right_2.png")]
+        # skapar vi en variabel för karaktärernas health power
         self.hp = 100
+        # skapar en variabel som bestämmer om spelaren lever eller inte
         self.dead = False
 
-
+# skapar en funktion med self och match som indata som gör att rätt bild laddas in till rätt match
 def player2_pics(self, match):
     # Sune är röd, Bob är grön, Berit är gul, Hannes är lila
     # Sune vs Bob
@@ -94,7 +101,7 @@ def player2_pics(self, match):
         print("hej match 1")
         print(len(player1.images))
         print(player1.frame)
-        self.images = []
+        # skapar en loop som går mellan siffrorna 1-3
         for i in range(1, 3):
             img = pygame.image.load(os.path.join('pics', 'walking_right_' + str(i) + '.png')).convert()
             img.convert_alpha()  # optimise alpha
