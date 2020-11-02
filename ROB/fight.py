@@ -94,7 +94,7 @@ class Player(pygame.sprite.Sprite):
         self.dead = False
 
 # skapar en funktion med self och match som indata som gör att rätt bild laddas in till rätt match
-def player2_pics(self, match):
+def player_left_pics(self, match):
     # Sune är röd, Bob är grön, Berit är gul, Hannes är lila
     # Sune vs Bob
     if match == 0:
@@ -160,11 +160,11 @@ def player2_pics(self, match):
             self.rect = self.image.get_rect()
 
 
-def player1_pics(self, match):
+def player_right_pics(self, match):
     # Sune är röd, Bob är grön, Berit är gul, Hannes är lila
     # Sune vs Bob
 
-    # TODO kan möjligvis krasha på index error för att player1.frame är 2, håll koll vid testning.
+    # TODO kan möjligvis krasha på index error för att player_right.frame är 2, håll koll vid testning.
     if match == 0:
         self.images = []
         for i in range(1, 3):
@@ -173,7 +173,7 @@ def player1_pics(self, match):
             self.image = self.images[0]
             self.rect = self.image.get_rect()
             # Vänder den högra spelaren så att han kollar åt vänster
-            player1.image = pygame.transform.flip(player1.images[player1.frame], True, False)
+            player_right.image = pygame.transform.flip(player_right.images[player_right.frame], True, False)
 
     # Berit vs Hannes
 
@@ -184,7 +184,7 @@ def player1_pics(self, match):
             self.images.append(img)
             self.image = self.images[0]
             self.rect = self.image.get_rect()
-            player1.image = pygame.transform.flip(player1.images[player1.frame], True, False)
+            player_right.image = pygame.transform.flip(player_right.images[player_right.frame], True, False)
 
     # Sune vs Berit
 
@@ -195,7 +195,7 @@ def player1_pics(self, match):
             self.images.append(img)
             self.image = self.images[0]
             self.rect = self.image.get_rect()
-            player1.image = pygame.transform.flip(player1.images[player1.frame], True, False)
+            player_right.image = pygame.transform.flip(player_right.images[player_right.frame], True, False)
 
     # Bob vs Hannes
 
@@ -206,7 +206,7 @@ def player1_pics(self, match):
             self.images.append(img)
             self.image = self.images[0]
             self.rect = self.image.get_rect()
-            player1.image = pygame.transform.flip(player1.images[player1.frame], True, False)
+            player_right.image = pygame.transform.flip(player_right.images[player_right.frame], True, False)
 
     # Sune vs Hannes
 
@@ -217,7 +217,7 @@ def player1_pics(self, match):
             self.images.append(img)
             self.image = self.images[0]
             self.rect = self.image.get_rect()
-            player1.image = pygame.transform.flip(player1.images[player1.frame], True, False)
+            player_right.image = pygame.transform.flip(player_right.images[player_right.frame], True, False)
 
     # Bob vs Berit
     if match == 5:
@@ -227,21 +227,21 @@ def player1_pics(self, match):
             self.images.append(img)
             self.image = self.images[0]
             self.rect = self.image.get_rect()
-            player1.image = pygame.transform.flip(player1.images[player1.frame], True, False)
+            player_right.image = pygame.transform.flip(player_right.images[player_right.frame], True, False)
 
-# Gör en instans av klassen Player och lagrar den i variabeln player1. Sätter grundinställningarna på player1. Gör så att vi kan ändra saker åt varje gubbe
-player1 = Player()
-# Sätter player1 till 100 hp
-player1.hp = 100
-player2 = Player()
-player2.hp = 100
+# Gör en instans av klassen Player och lagrar den i variabeln player_right. Sätter grundinställningarna på player_right. Gör så att vi kan ändra saker åt varje gubbe
+player_right = Player()
+# Sätter player_right till 100 hp
+player_right.hp = 100
+player_left = Player()
+player_left.hp = 100
 
 # spawnar spelare
 
 
 # lägger alla spelare i en sprite grupp
 player_list = pygame.sprite.Group()
-player_list.add(player1, player2)
+player_list.add(player_right, player_left)
 
 # skapar en funktion med which och current_match som indata
 def player_name_hp_bar(which, current_match):
@@ -253,32 +253,32 @@ def player_name_hp_bar(which, current_match):
         screen.blit(font.render(f"{matchup[current_match][1]}", True, (255, 255, 255)), (550, 20))
 
 # skapar en funktion för health bar med båda spelarna som indata
-def healthbar(player1, player2):
-    # om player1 eller player 2's hp är större än -10 så målas rektanglar upp för healtbarsen.
-    if player1.hp > -10:
+def healthbar(player_right, player_left):
+    # om player_right eller player 2's hp är större än -10 så målas rektanglar upp för healtbarsen.
+    if player_right.hp > -10:
         bg_bar1 = pygame.Rect(550, 50, 200, 50)
-        hp_bar1 = pygame.Rect(550, 50, 200 * (player1.hp * 0.01), 50)
+        hp_bar1 = pygame.Rect(550, 50, 200 * (player_right.hp * 0.01), 50)
         pygame.draw.rect(screen, (255, 0, 0), bg_bar1)
         pygame.draw.rect(screen, (0, 255, 0), hp_bar1)
-    if player2.hp > -10:
+    if player_left.hp > -10:
         bg_bar2 = pygame.Rect(50, 50, 200, 50)
-        hp_bar2 = pygame.Rect(50, 50, 200 * (player2.hp * 0.01), 50)
+        hp_bar2 = pygame.Rect(50, 50, 200 * (player_left.hp * 0.01), 50)
         pygame.draw.rect(screen, (255, 0, 0), bg_bar2)
         pygame.draw.rect(screen, (0, 255, 0), hp_bar2)
     pygame.display.update()
 
 # Skapar en funktion med player 1 och player 2 som indata som kollar om kollision har skett
-def collision(player1, player2):
+def collision(player_right, player_left):
     # kollar om kollision har skett
-    col = pygame.sprite.collide_rect(player1, player2)
+    col = pygame.sprite.collide_rect(player_right, player_left)
     if col == True:
         return True
 
 # Skapar en funktion med player 1 och player 2 som indata
-def player_movement(player1, player2):
+def player_movement(player_right, player_left):
     # Gör så att player 1 och player 2 faller ner efter hopp
-    player1.rect.y += player1.vel
-    player2.rect.y += player2.vel
+    player_right.rect.y += player_right.vel
+    player_left.rect.y += player_left.vel
     # Skapar variabeln keys som upptäcker ifall en tangent är nedtryckt
     keys = pygame.key.get_pressed()
 
@@ -286,190 +286,200 @@ def player_movement(player1, player2):
     # FIGHTER 1
     # vänster
     # Skapar en if-sats som ska göra att vänster pil-tangent tar gubben åt vänster. Gubben kommer aldrig utanför skärmens vänstra kant (0 på x-axeln)
-    if keys[pygame.K_LEFT] and player1.rect.x > 0:
+    if keys[pygame.K_LEFT] and player_right.rect.x > 0:
         # Gäller när vänster pil-tangent är nedtryckt
-        player1.left = True
-        player1.right = False
+        player_right.left = True
+        player_right.right = False
         # Kollar ifall player 1 och player 2 kolliderar
-        if collision(player1, player2) == True:
+        if collision(player_right, player_left) == True:
             # Gör att spelaren åker tillbaka 5 pixlar vid kollision
-            if player1.left == True:
-                player1.rect.x += 5
+            if player_right.left == True:
+                player_right.rect.x += 5
         # Player 1's x-värde ändras med -1 pixel när han går åt vänster
-        player1.rect.x -= 1
+        player_right.rect.x -= 1
         # Vänder bilden åt vänster när player 1 går åt vänster
-        player1.image = pygame.transform.flip(player1.images[player1.frame], True, False)
+        player_right.image = pygame.transform.flip(player_right.images[player_right.frame], True, False)
         # Gör så bilderna plussas på och animation skapas av att gubben går till vänster
-        player1.frame += 1
+        player_right.frame += 1
         # Om man plussat upp till index 2 så går den tillbaka till 0 (0, 1, 2...0, 1, 2...)
-        if player1.frame == 2:
-            player1.frame = 0
+        if player_right.frame == 2:
+            player_right.frame = 0
 
     # höger
     # Skapar en if-sats som ska göra att höger pil-tangent tar gubben åt höger.
     # Gubben kommer aldrig utanför skärmens högra kant.
-    if keys[pygame.K_RIGHT] and player1.rect.x < screen_width - 40:
+    if keys[pygame.K_RIGHT] and player_right.rect.x < screen_width - 40:
         # Gäller när höger pil-tangent är nedtryckt
-        player1.left = False
-        player1.right = True
-        if collision(player1, player2) == True:
-            if player1.right == True:
+        player_right.left = False
+        player_right.right = True
+        if collision(player_right, player_left) == True:
+            if player_right.right == True:
                 # studsar tillbaka efter kollision
-                player1.rect.x -= 5
-        # Ändrar hur
-        player1.rect.x += 1
-        player1.frame += 1
-        if player1.frame == 2:
-            player1.frame = 0
-        player1.image = player1.images[player1.frame]
+                player_right.rect.x -= 5
+        # Player1's x-värde ändras med 1 pixel när man går åt höger
+        player_right.rect.x += 1
+        player_right.frame += 1
+        if player_right.frame == 2:
+            player_right.frame = 0
+        # Eftersom bilderna vi har laddat in redan är åt höger så behöver vi ej flippa
+        player_right.image = player_right.images[player_right.frame]
 
     # HOPP
+    # Om den högra ctrl-tangenten är nedtryckt
     if keys[pygame.K_RCTRL]:
         # hoppets höjd
-        player1.rect.y -= 15
+        player_right.rect.y -= 15
         # dragningskraft
-        player1.vel = 3
+        player_right.vel = 3
         # invisible border max hopphöjd
-        if player1.rect.y < 200:
-            player1.vel = 20
+        if player_right.rect.y < 200:
+            # ändrar dragningskraften till 20 pixlar
+            player_right.vel = 20
     # lägsta punkt
-    if player1.rect.y > 500:
-        player1.rect.y = 500
+    if player_right.rect.y > 500:
+        player_right.rect.y = 500
 
     # FIGTER 2
     # vänster
-    if keys[pygame.K_a] and player2.rect.x > player2.vel:
-        player2.left = True
-        player2.right = False
-        if collision(player1, player2) == True:
-            if player2.left == True:
-                player2.rect.x += 5
-        player2.rect.x -= 1
-        player2.image = pygame.transform.flip(player2.images[player2.frame], True, False)
-        player2.frame += 1
-        if player2.frame == 2:
-            player2.frame = 0
+    if keys[pygame.K_a] and player_left.rect.x > player_left.vel:
+        player_left.left = True
+        player_left.right = False
+        if collision(player_right, player_left) == True:
+            if player_left.left == True:
+                player_left.rect.x += 5
+        player_left.rect.x -= 1
+        player_left.image = pygame.transform.flip(player_left.images[player_left.frame], True, False)
+        player_left.frame += 1
+        if player_left.frame == 2:
+            player_left.frame = 0
 
     # höger
-    if keys[pygame.K_d] and player2.rect.x < screen_width - 40:
-        player2.left = False
-        player2.right = True
-        if collision(player1, player2) == True:
-            if player2.right == True:
-                player2.rect.x -= 5
-        player2.rect.x += 1
-        player2.frame += 1
-        if player2.frame == 2:
-            player2.frame = 0
-        player2.image = player2.images[player2.frame]
+    if keys[pygame.K_d] and player_left.rect.x < screen_width - 40:
+        player_left.left = False
+        player_left.right = True
+        if collision(player_right, player_left) == True:
+            if player_left.right == True:
+                player_left.rect.x -= 5
+        player_left.rect.x += 1
+        player_left.frame += 1
+        if player_left.frame == 2:
+            player_left.frame = 0
+        player_left.image = player_left.images[player_left.frame]
 
     # HOPP
     if keys[pygame.K_SPACE]:
         # hoppets höjd
-        player2.rect.y -= 15
+        player_left.rect.y -= 15
         # dragningskraft
-        player2.vel = 3
+        player_left.vel = 3
         # invisible border max hopphöjd
-        if player2.rect.y < 200:
-            player2.vel = 20
+        if player_left.rect.y < 200:
+            player_left.vel = 20
     # lägsta punkt
-    if player2.rect.y > 500:
-        player2.rect.y = 500
+    if player_left.rect.y > 500:
+        player_left.rect.y = 500
 
 
-def punch_and_kick(current_match):
+def punch_and_kick():
     # kollar om en knapp är nedtryckt
     if keys.type == pygame.KEYDOWN:
         # fighter1 slag och spark
+        # Om man trycker ner tangenten pil upp
         if keys.key == pygame.K_UP:
-            if collision(player1, player2) == True:
-                # hit = pygame.time.get_ticks()
-                # print(hit)
-                #
-                # while True:
-                #     if hit:
-                #         time_since_click = pygame.time.get_ticks() - hit
-                #         print(time_since_click)
-                screen.blit(font.render("Hit!", True, (255, 255, 255)), (player2.rect.x, 400))
-                #         if time_since_click > 1000:
-                #             break
-
+            # Om det sker en collision mellan player_right och player_right samt att man trycker på pil upp så dyker texten "hit" upp på skärmen, en ljudeffekt spelas och player_right.hp minskas med 10
+            if collision(player_right, player_left) == True:
+                screen.blit(font.render("Hit!", True, (255, 255, 255)), (player_left.rect.x, 400))
                 effect_punch.play(0)
                 print("slag")
-                player2.hp -= 10
-                print(f"HP PLAYER 2: {player2.hp}")
+                player_left.hp -= 10
+                print(f"HP PLAYER 2: {player_left.hp}")
         if keys.key == pygame.K_DOWN:
-            if collision(player1, player2) == True:
-                screen.blit(font.render("Hit!", True, (255, 255, 255)), (player2.rect.x, 400))
+            if collision(player_right, player_left) == True:
+                screen.blit(font.render("Hit!", True, (255, 255, 255)), (player_left.rect.x, 400))
                 print("spark")
                 effect_KICK.play(0)
-                player2.hp -= 10
-                print(f"HP PLAYER 2: {player2.hp}")
+                player_left.hp -= 10
+                print(f"HP PLAYER 2: {player_left.hp}")
         # fighter2 slag och spark
         if keys.key == pygame.K_w:
-            if collision(player1, player2) == True:
-                screen.blit(font.render("Hit!", True, (255, 255, 255)), (player1.rect.x, 400))
+            if collision(player_right, player_left) == True:
+                screen.blit(font.render("Hit!", True, (255, 255, 255)), (player_right.rect.x, 400))
                 effect_punch.play(0)
                 print("slag")
-                player1.hp -= 10
-                print(f"HP PLAYER 1: {player1.hp}")
+                player_right.hp -= 10
+                print(f"HP PLAYER 1: {player_right.hp}")
 
         if keys.key == pygame.K_s:
-            if collision(player1, player2) == True:
-                screen.blit(font.render("Hit!", True, (255, 255, 255)), (player1.rect.x, 400))
+            if collision(player_right, player_left) == True:
+                screen.blit(font.render("Hit!", True, (255, 255, 255)), (player_right.rect.x, 400))
                 effect_KICK.play(0)
                 print("spark")
-                player1.hp -= 10
-                print(f"HP PLAYER 1: {player1.hp}")
+                player_right.hp -= 10
+                print(f"HP PLAYER 1: {player_right.hp}")
 
-
-def player_dead(player1, player2):
-    if player1.hp == 0:
-        player1.dead = True
+# Skapar en funktion med player_right och player_right som indata
+def player_dead(player_right, player_left):
+    # Om player_right når 0 eller mindre i hp så dör han och en ljudeffekt spelas upp.
+    if player_right.hp <= 0:
+        player_right.dead = True
         effect_dead.play(0)
 
-    if player2.hp == 0:
-        player2.dead = True
+    if player_left.hp <= 0:
+        player_left.dead = True
         effect_dead.play(0)
 
-
+# Skapar fight-funktionen med current_match som indata
 def fight(current_match):
+    # Anropar funktionen fight_music som spelar upp fight-låten.
     fight_music()
+    # Gör variabeln keys tillgänglig i hela koden
     global keys
     running = True
-    player1_pics(player1, current_match)
-    player1.rect.x = 720
-    player1.rect.y = 500
+    # Anropar funktionen player_right_pics som ger player_right rätt bildinställningar för nuvarande match
+    player_right_pics(player_right, current_match)
+    # Anger startpostionen för player_right
+    player_right.rect.x = 720
+    player_right.rect.y = 500
+    # Anropar funktionen player_left_pics som ger player_right rätt bildinställningar för nuvarande match
+    player_left_pics(player_left, current_match)
+    # Anger startpositionen för player_right
+    player_left.rect.x = 60
+    player_left.rect.y = 500
 
-    player2_pics(player2, current_match)
-    player2.rect.x = 60
-    player2.rect.y = 500
+    # Så länge running är True kommer spelet köras
     while running:
 
+        # Anropar en funktion som skriver ut spelare 1 och 2's namn ovanför hp-baren, namnen är beroende av vilken match som körs via current_match
         player_name_hp_bar(1, current_match)
         player_name_hp_bar(2, current_match)
-        player_dead(player1, player2)
-        if player1.dead == True:
+        #Anropar funktionen player_dead med player_right och player 2 som indata
+        player_dead(player_right, player_left)
+        # Om det är True att player_right är död
+        if player_right.dead == True:
+            # Då blir vinnaren player_left i den nuvarande matchen via matchup listan och förloraren blir player_left i samma match
             winner = matchup[current_match][0]
             loser = matchup[current_match][1]
-        if player2.dead == True:
+        # Om det är True att player_right är död
+        if player_left.dead == True:
+            # Då blir vinnaren player_right i den nuvarande matchen via matchup listan och förloraren blir player_right i samma match
             winner = matchup[current_match][1]
             loser = matchup[current_match][0]
-        if player1.dead == True or player2.dead == True:
+        # Om någon av spelarna är död
+        if player_right.dead == True or player_left.dead == True:
             # återställer hp för båda
-            player1.hp = 100
-            player2.hp = 100
+            player_right.hp = 100
+            player_left.hp = 100
             # återställer tillstånd
-            player1.dead = False
-            player2.dead = False
-            player1.frame = 0
-            player2.frame = 0
+            player_right.dead = False
+            player_left.dead = False
+            player_right.frame = 0
+            player_left.frame = 0
 
             # om en spelare är död returnera vinnarens nummer
             # låt stå, funkar trots varning
             return winner, loser
 
-        healthbar(player1, player2)
+        healthbar(player_right, player_left)
         fps_clock.tick(fps)
         screen.fill(black)
         screen.blit(bg_image[0], (0, 0))
@@ -478,5 +488,5 @@ def fight(current_match):
         for keys in pygame.event.get():
             if keys.type == pygame.QUIT:
                 sys.exit()
-            punch_and_kick(current_match)
-        player_movement(player1, player2)
+            punch_and_kick()
+        player_movement(player_right, player_left)
