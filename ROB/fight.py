@@ -24,7 +24,7 @@ matchup = [["Slaktar Sune", "Boxare Bob"], ["Bråkiga Berit", "Hänsynslöse Han
            ["Boxare Bob", "Bråkiga Berit"]]
 
 # tar current_match som indata i funktionen audience
-def audience(current_match):
+def audience(current_match, hannes, berit, sune, bob):
     # bestämmer vem som ska stå i publiken beroende på vilken siffra current_match blir
     if current_match == 0:
         screen.blit(hannes, (40, 170))
@@ -98,93 +98,66 @@ def player2_pics(self, match):
     # Sune är röd, Bob är grön, Berit är gul, Hannes är lila
     # Sune vs Bob
     if match == 0:
-        print("hej match 1")
-        print(len(player1.images))
-        print(player1.frame)
-        # skapar en loop som går mellan siffrorna 1-3
+        # Återställer self.images listan så att den blir tom inför nästa fight
+        self.images = []
+        # skapar en loop som går mellan siffrorna 0-2
         for i in range(1, 3):
-            img = pygame.image.load(os.path.join('pics', 'walking_right_' + str(i) + '.png')).convert()
-            img.convert_alpha()  # optimise alpha
-            img.set_colorkey(black)  # set alpha
+            # vi skapar en variabel img som lagrar 3 st bilder (str(i) loopar igenom namnen 0-2)
+            img = pygame.image.load(f'pics//walking_right_{str(i)}.png')
+            # Lägger variabeln img i den tomma listan images
             self.images.append(img)
+            # skapar ny variabel sätter värdet av första bilden (index 0) i listan self.images
             self.image = self.images[0]
+            # vi sätter en rektangel som är samma storlek som den första bilden
             self.rect = self.image.get_rect()
-            player1.image = pygame.transform.flip(player1.images[player1.frame], True, False)
+
+
 
     # Berit vs Hannes
     if match == 1:
-        print("hej match 2")
-        print(len(player1.images))
-        print(player1.frame)
         self.images = []
         for i in range(1, 3):
-            img = pygame.image.load(os.path.join('pics', 'walking_right_yellow_' + str(i) + '.png')).convert()
-            img.convert_alpha()  # optimise alpha
-            img.set_colorkey(black)  # set alpha
+            img = pygame.image.load(f'pics//walking_right_yellow_{str(i)}.png')
             self.images.append(img)
             self.image = self.images[0]
             self.rect = self.image.get_rect()
-            player1.image = pygame.transform.flip(player1.images[player1.frame], True, False)
 
     # Sune vs Berit
     if match == 2:
-        print("hej match 3")
-        print(len(player1.images))
-        print(player1.frame)
         self.images = []
         for i in range(1, 3):
-            img = pygame.image.load(os.path.join('pics', 'walking_right_' + str(i) + '.png')).convert()
-            img.convert_alpha()  # optimise alpha
-            img.set_colorkey(black)  # set alpha
+            img = pygame.image.load(f'pics//walking_right_{str(i)}.png')
             self.images.append(img)
             self.image = self.images[0]
             self.rect = self.image.get_rect()
-            player1.image = pygame.transform.flip(player1.images[player1.frame], True, False)
 
     # Bob vs Hannes
     if match == 3:
-        print("hej match 4")
-        print(len(player1.images))
-        print(player1.frame)
         self.images = []
         for i in range(1, 3):
-            img = pygame.image.load(os.path.join('pics', 'walking_right_green_' + str(i) + '.png')).convert()
-            img.convert_alpha()  # optimise alpha
-            img.set_colorkey(black)  # set alpha
+            img = pygame.image.load(f'pics//walking_right_green_{str(i)}.png')
             self.images.append(img)
             self.image = self.images[0]
             self.rect = self.image.get_rect()
-            player1.image = pygame.transform.flip(player1.images[player1.frame], True, False)
+
 
     # Sune vs Hannes
     if match == 4:
-        print("hej match 5")
-        print(len(player1.images))
-        print(player1.frame)
         self.images = []
         for i in range(1, 3):
-            img = pygame.image.load(os.path.join('pics', 'walking_right_' + str(i) + '.png')).convert()
-            img.convert_alpha()  # optimise alpha
-            img.set_colorkey(black)  # set alpha
+            img = pygame.image.load(f'pics//walking_right_{str(i)}.png')
             self.images.append(img)
             self.image = self.images[0]
             self.rect = self.image.get_rect()
-            player1.image = pygame.transform.flip(player1.images[player1.frame], True, False)
 
     # Bob vs Berit
     if match == 5:
-        print("hej match 6")
-        print(len(player1.images))
-        print(player1.frame)
         self.images = []
         for i in range(1, 3):
-            img = pygame.image.load(os.path.join('pics', 'walking_right_green_' + str(i) + '.png')).convert()
-            img.convert_alpha()  # optimise alpha
-            img.set_colorkey(black)  # set alpha
+            img = pygame.image.load(f'pics//walking_right_green_{str(i)}.png')
             self.images.append(img)
             self.image = self.images[0]
             self.rect = self.image.get_rect()
-            player1.image = pygame.transform.flip(player1.images[player1.frame], True, False)
 
 
 def player1_pics(self, match):
@@ -193,30 +166,21 @@ def player1_pics(self, match):
 
     # TODO kan möjligvis krasha på index error för att player1.frame är 2, håll koll vid testning.
     if match == 0:
-        print("hej match 1")
-        print(len(player1.images))
-        print(player1.frame)
         self.images = []
         for i in range(1, 3):
-            img = pygame.image.load(os.path.join('pics', 'walking_right_green_' + str(i) + '.png')).convert()
-            img.convert_alpha()  # optimise alpha
-            img.set_colorkey(black)  # set alpha
+            img = pygame.image.load(f'pics//walking_right_green_{str(i)}.png')
             self.images.append(img)
             self.image = self.images[0]
             self.rect = self.image.get_rect()
+            # Vänder den högra spelaren så att han kollar åt vänster
             player1.image = pygame.transform.flip(player1.images[player1.frame], True, False)
 
     # Berit vs Hannes
 
     if match == 1:
-        print("hej match 2")
-        print(len(player1.images))
-        print(player1.frame)
         self.images = []
         for i in range(1, 3):
-            img = pygame.image.load(os.path.join('pics', 'walking_right_purple_' + str(i) + '.png')).convert()
-            img.convert_alpha()  # optimise alpha
-            img.set_colorkey(black)  # set alpha
+            img = pygame.image.load(f'pics//walking_right_purple_{str(i)}.png')
             self.images.append(img)
             self.image = self.images[0]
             self.rect = self.image.get_rect()
@@ -225,14 +189,9 @@ def player1_pics(self, match):
     # Sune vs Berit
 
     if match == 2:
-        print("hej match 3")
-        print(len(player1.images))
-        print(player1.frame)
         self.images = []
         for i in range(1, 3):
-            img = pygame.image.load(os.path.join('pics', 'walking_right_yellow_' + str(i) + '.png')).convert()
-            img.convert_alpha()  # optimise alpha
-            img.set_colorkey(black)  # set alpha
+            img = pygame.image.load(f'pics//walking_right_yellow_{str(i)}.png')
             self.images.append(img)
             self.image = self.images[0]
             self.rect = self.image.get_rect()
@@ -241,14 +200,9 @@ def player1_pics(self, match):
     # Bob vs Hannes
 
     if match == 3:
-        print("hej match 4")
-        print(len(player1.images))
-        print(player1.frame)
         self.images = []
         for i in range(1, 3):
-            img = pygame.image.load(os.path.join('pics', 'walking_right_purple_' + str(i) + '.png')).convert()
-            img.convert_alpha()  # optimise alpha
-            img.set_colorkey(black)  # set alpha
+            img = pygame.image.load(f'pics//walking_right_purple_{str(i)}.png')
             self.images.append(img)
             self.image = self.images[0]
             self.rect = self.image.get_rect()
@@ -257,14 +211,9 @@ def player1_pics(self, match):
     # Sune vs Hannes
 
     if match == 4:
-        print("hej match 5")
-        print(len(player1.images))
-        print(player1.frame)
         self.images = []
         for i in range(1, 3):
-            img = pygame.image.load(os.path.join('pics', 'walking_right_purple_' + str(i) + '.png')).convert()
-            img.convert_alpha()  # optimise alpha
-            img.set_colorkey(black)  # set alpha
+            img = pygame.image.load(f'pics//walking_right_purple_{str(i)}.png')
             self.images.append(img)
             self.image = self.images[0]
             self.rect = self.image.get_rect()
@@ -272,29 +221,19 @@ def player1_pics(self, match):
 
     # Bob vs Berit
     if match == 5:
-        print("hej match 6")
-        print(len(player1.images))
-        print(player1.frame)
         self.images = []
         for i in range(1, 3):
-            img = pygame.image.load(os.path.join('pics', 'walking_right_yellow_' + str(i) + '.png')).convert()
-            img.convert_alpha()  # optimise alpha
-            img.set_colorkey(black)  # set alpha
+            img = pygame.image.load(f'pics//walking_right_yellow_{str(i)}.png')
             self.images.append(img)
             self.image = self.images[0]
             self.rect = self.image.get_rect()
             player1.image = pygame.transform.flip(player1.images[player1.frame], True, False)
 
-
+# Gör en instans av klassen Player och lagrar den i variabeln player1. Sätter grundinställningarna på player1. Gör så att vi kan ändra saker åt varje gubbe
 player1 = Player()
-# player1_pics(player1)
-# player1.rect.x = 720
-# player1.rect.y = 200
+# Sätter player1 till 100 hp
 player1.hp = 100
 player2 = Player()
-# player2_pics(player2)
-# player2.rect.x = 60
-# player2.rect.y = 200
 player2.hp = 100
 
 # spawnar spelare
@@ -304,16 +243,18 @@ player2.hp = 100
 player_list = pygame.sprite.Group()
 player_list.add(player1, player2)
 
-
-def player_bars(which, current_match):
+# skapar en funktion med which och current_match som indata
+def player_name_hp_bar(which, current_match):
     font = pygame.font.SysFont("Arial", 20)
+    # bestämmer vart spelarnas namn skall visas. Spelarnas namn ändras efter varje match genom att kolla i matchup listan
     if which == 1:
         screen.blit(font.render(f"{matchup[current_match][0]}", True, (255, 255, 255)), (50, 20))
     if which == 2:
         screen.blit(font.render(f"{matchup[current_match][1]}", True, (255, 255, 255)), (550, 20))
 
-
+# skapar en funktion för health bar med båda spelarna som indata
 def healthbar(player1, player2):
+    # om player1's hp är större än -10 så målas rektanglar upp för healtbarsen
     if player1.hp > -10:
         bg_bar1 = pygame.Rect(550, 50, 200, 50)
         hp_bar1 = pygame.Rect(550, 50, 200 * (player1.hp * 0.01), 50)
@@ -495,8 +436,8 @@ def fight(current_match):
     player2.rect.y = 500
     while running:
 
-        player_bars(1, current_match)
-        player_bars(2, current_match)
+        player_name_hp_bar(1, current_match)
+        player_name_hp_bar(2, current_match)
         player_dead(player1, player2)
         if player1.dead == True:
             winner = matchup[current_match][0]
@@ -523,7 +464,7 @@ def fight(current_match):
         screen.fill(black)
         screen.blit(bg_image[0], (0, 0))
         player_list.draw(screen)
-        audience(current_match)
+        audience(current_match, hannes, berit, sune, bob)
         for keys in pygame.event.get():
             if keys.type == pygame.QUIT:
                 sys.exit()
