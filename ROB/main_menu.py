@@ -1,8 +1,7 @@
 import pygame
 import sys
 from ROB.lobby import lobby
-
-
+# TODO - Fixa options/how-to-play meny.
 def main_menu():
     pygame.init()
     pygame.mixer.init()

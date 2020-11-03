@@ -1,7 +1,6 @@
 import sys
 import pygame
 import os
-import time
 
 # grundinställningar
 # centrerar bildrutan
@@ -46,7 +45,7 @@ def audience(current_match, hannes, berit, sune, bob):
         screen.blit(hannes, (70, 170))
 
 
-
+# Todo - Skapa en ny modul för alla musikfiler
 # ljudeffekter
 effect_punch = pygame.mixer.Sound('music//PUNCH.wav')
 effect_dead = pygame.mixer.Sound('music//Wilhelm_Scream.ogg')
@@ -56,7 +55,7 @@ effect_KICK = pygame.mixer.Sound('music//KICK.wav')
 fps_clock = pygame.time.Clock()
 fps = 120
 
-# TODO loopa bakrundsbilderna
+# TODO loopa bakrundsbilderna så att bilden ser "rörlig" ut
 screen.blit(bg_image[0], (0, 0))
 screen.blit(bg_image[1], (0, 0))
 font = pygame.font.SysFont("Arial", 15)
@@ -323,7 +322,7 @@ def player_movement(player_right, player_left):
             player_right.frame = 0
         # Eftersom bilderna vi har laddat in redan är åt höger så behöver vi ej flippa
         player_right.image = player_right.images[player_right.frame]
-
+# TODO - Gör så att man inte kan flyga
     # HOPP
     # Om den högra ctrl-tangenten är nedtryckt
     if keys[pygame.K_RCTRL]:
@@ -381,6 +380,7 @@ def player_movement(player_right, player_left):
 
 
 def punch_and_kick():
+    # TODO - Försök fixa så att man kan göra airstrikes med spark de hade vart nice å se
     # kollar om en knapp är nedtryckt
     if keys.type == pygame.KEYDOWN:
         # fighter1 slag och spark
@@ -388,6 +388,7 @@ def punch_and_kick():
         if keys.key == pygame.K_UP:
             # Om det sker en collision mellan player_right och player_right samt att man trycker på pil upp så dyker texten "hit" upp på skärmen, en ljudeffekt spelas och player_right.hp minskas med 10
             if collision(player_right, player_left) == True:
+                # TODO - Få 'hit' att stanna på skärmen längre än att bara blinka till / lägga till någon bild eller animation när man slår
                 screen.blit(font.render("Hit!", True, (255, 255, 255)), (player_left.rect.x, 400))
                 effect_punch.play(0)
                 print("slag")

@@ -9,7 +9,7 @@ def won_bet_calc(bet_counter, better_1, better_2, made_bet_1, made_bet_2, score_
 			score_player3 += (better_1 * 2)
 		if made_bet_1 != winner:
 			score_player3 -= better_1
-		# bob
+		# hannes
 		if made_bet_2 == winner:
 			score_player4 += (better_2 * 2)
 		if made_bet_2 != winner:
@@ -217,28 +217,21 @@ def bet_p2(better_2, current_match, head_berit_rect_1, head_bob_rect_1, head_han
 	# bestämmer vilken fighter som spelare 2 väljer att betta på
 	# om spelaren bettar på sune
 	if head_sune_rect_1.collidepoint(mx, my):
-		if bet_list[current_match][0] == "Slaktar Sune":
+		if bet_list[current_match][1] == "Boxare Bob":
 			made_bet_2 = "Slaktar Sune"
 			pygame.draw.rect(screen, (0, 0, 0), fight_button)
 			screen.blit(fight_sign, (250, 50))
 			print("sune selected")
 			print(made_bet_2)
 
-		if bet_list[current_match][0] == "Boxare Bob":
+		if bet_list[current_match][1] == "Bråkiga Berit":
 			made_bet_2 = "Slaktar Sune"
 			pygame.draw.rect(screen, (0, 0, 0), fight_button)
 			screen.blit(fight_sign, (250, 50))
 			print("sune selected")
 			print(made_bet_2)
 
-		if bet_list[current_match][0] == "Bråkiga Berit":
-			made_bet_2 = "Slaktar Sune"
-			pygame.draw.rect(screen, (0, 0, 0), fight_button)
-			screen.blit(fight_sign, (250, 50))
-			print("sune selected")
-			print(made_bet_2)
-
-		if bet_list[current_match][0] == "Hänsynslöse Hannes":
+		if bet_list[current_match][1] == "Hänsynslöse Hannes":
 			made_bet_2 = "Slaktar Sune"
 			pygame.draw.rect(screen, (0, 0, 0), fight_button)
 			screen.blit(fight_sign, (250, 50))
@@ -247,28 +240,21 @@ def bet_p2(better_2, current_match, head_berit_rect_1, head_bob_rect_1, head_han
 
 	# om spelaren bettar på Bob
 	if head_bob_rect_1.collidepoint(mx, my):
-		if bet_list[current_match][0] == "Slaktar Sune":
+		if bet_list[current_match][1] == "Slaktar Sune":
 			made_bet_2 = "Boxare Bob"
 			pygame.draw.rect(screen, (0, 0, 0), fight_button)
 			screen.blit(fight_sign, (250, 50))
 			print("bob selected")
 			print(made_bet_2)
 
-		if bet_list[current_match][0] == "Boxare Bob":
+		if bet_list[current_match][1] == "Bråkiga Berit":
 			made_bet_2 = "Boxare Bob"
 			pygame.draw.rect(screen, (0, 0, 0), fight_button)
 			screen.blit(fight_sign, (250, 50))
 			print("bob selected")
 			print(made_bet_2)
 
-		if bet_list[current_match][0] == "Bråkiga Berit":
-			made_bet_2 = "Boxare Bob"
-			pygame.draw.rect(screen, (0, 0, 0), fight_button)
-			screen.blit(fight_sign, (250, 50))
-			print("bob selected")
-			print(made_bet_2)
-
-		if bet_list[current_match][0] == "Hänsynslöse Hannes":
+		if bet_list[current_match][1] == "Hänsynslöse Hannes":
 			made_bet_2 = "Boxare Bob"
 			pygame.draw.rect(screen, (0, 0, 0), fight_button)
 			screen.blit(fight_sign, (250, 50))
@@ -277,28 +263,21 @@ def bet_p2(better_2, current_match, head_berit_rect_1, head_bob_rect_1, head_han
 
 	# om spelaren bettar på Berit
 	if head_berit_rect_1.collidepoint(mx, my):
-		if bet_list[current_match][0] == "Slaktar Sune":
+		if bet_list[current_match][1] == "Slaktar Sune":
 			made_bet_2 = "Bråkiga Berit"
 			pygame.draw.rect(screen, (0, 0, 0), fight_button)
 			screen.blit(fight_sign, (250, 50))
 			print("berit selected")
 			print(made_bet_2)
 
-		if bet_list[current_match][0] == "Boxare Bob":
+		if bet_list[current_match][1] == "Boxare Bob":
 			made_bet_2 = "Bråkiga Berit"
 			pygame.draw.rect(screen, (0, 0, 0), fight_button)
 			screen.blit(fight_sign, (250, 50))
 			print("berit selected")
 			print(made_bet_2)
 
-		if bet_list[current_match][0] == "Bråkiga Berit":
-			made_bet_2 = "Bråkiga Berit"
-			pygame.draw.rect(screen, (0, 0, 0), fight_button)
-			screen.blit(fight_sign, (250, 50))
-			print("berit selected")
-			print(made_bet_2)
-
-		if bet_list[current_match][0] == "Hänsynslöse Hannes":
+		if bet_list[current_match][1] == "Hänsynslöse Hannes":
 			made_bet_2 = "Bråkiga Berit"
 			pygame.draw.rect(screen, (0, 0, 0), fight_button)
 			screen.blit(fight_sign, (250, 50))
@@ -307,28 +286,21 @@ def bet_p2(better_2, current_match, head_berit_rect_1, head_bob_rect_1, head_han
 
 	# om spelaren bettar på Hannes
 	if head_hannes_rect_1.collidepoint(mx, my):
-		if bet_list[current_match][0] == "Slaktar Sune":
+		if bet_list[current_match][1] == "Slaktar Sune":
 			made_bet_2 = "Hänsynslöse Hannes"
 			pygame.draw.rect(screen, (0, 0, 0), fight_button)
 			screen.blit(fight_sign, (250, 50))
 			print("hannes selected")
 			print(made_bet_2)
 
-		if bet_list[current_match][0] == "Boxare Bob":
+		if bet_list[current_match][1] == "Boxare Bob":
 			made_bet_2 = "Hänsynslöse Hannes"
 			pygame.draw.rect(screen, (0, 0, 0), fight_button)
 			screen.blit(fight_sign, (250, 50))
 			print("hannes selected")
 			print(made_bet_2)
 
-		if bet_list[current_match][0] == "Bråkiga Berit":
-			made_bet_2 = "Hänsynslöse Hannes"
-			pygame.draw.rect(screen, (0, 0, 0), fight_button)
-			screen.blit(fight_sign, (250, 50))
-			print("hannes selected")
-			print(made_bet_2)
-
-		if bet_list[current_match][0] == "Hänsynslöse Hannes":
+		if bet_list[current_match][1] == "Bråkiga Berit":
 			made_bet_2 = "Hänsynslöse Hannes"
 			pygame.draw.rect(screen, (0, 0, 0), fight_button)
 			screen.blit(fight_sign, (250, 50))
@@ -417,13 +389,6 @@ def bet_p1(better_1, current_match, head_berit_rect, head_bob_rect, head_hannes_
 	# bestämmer vilken fighter som spelare 1 väljer att betta på
 	# om spelaren bettar på Sune
 	if head_sune_rect.collidepoint(mx, my):
-		if bet_list[current_match][0] == "Slaktar Sune":
-			made_bet_1 = "Slaktar Sune"
-			pygame.draw.rect(screen, (0, 0, 0), fight_button)
-			screen.blit(fight_sign, (250, 50))
-			print("sune selected")
-			print(made_bet_1)
-
 		if bet_list[current_match][0] == "Boxare Bob":
 			made_bet_1 = "Slaktar Sune"
 			pygame.draw.rect(screen, (0, 0, 0), fight_button)
@@ -448,13 +413,6 @@ def bet_p1(better_1, current_match, head_berit_rect, head_bob_rect, head_hannes_
 	# om spelaren bettar på Bob
 	if head_bob_rect.collidepoint(mx, my):
 		if bet_list[current_match][0] == "Slaktar Sune":
-			made_bet_1 = "Boxare Bob"
-			pygame.draw.rect(screen, (0, 0, 0), fight_button)
-			screen.blit(fight_sign, (250, 50))
-			print("bob selected")
-			print(made_bet_1)
-
-		if bet_list[current_match][0] == "Boxare Bob":
 			made_bet_1 = "Boxare Bob"
 			pygame.draw.rect(screen, (0, 0, 0), fight_button)
 			screen.blit(fight_sign, (250, 50))
@@ -491,12 +449,6 @@ def bet_p1(better_1, current_match, head_berit_rect, head_bob_rect, head_hannes_
 			print("berit selected")
 			print(made_bet_1)
 
-		if bet_list[current_match][0] == "Bråkiga Berit":
-			made_bet_1 = "Bråkiga Berit"
-			pygame.draw.rect(screen, (0, 0, 0), fight_button)
-			screen.blit(fight_sign, (250, 50))
-			print("berit selected")
-			print(made_bet_1)
 
 		if bet_list[current_match][0] == "Hänsynslöse Hannes":
 			made_bet_1 = "Bråkiga Berit"
@@ -522,13 +474,6 @@ def bet_p1(better_1, current_match, head_berit_rect, head_bob_rect, head_hannes_
 			print(made_bet_1)
 
 		if bet_list[current_match][0] == "Bråkiga Berit":
-			made_bet_1 = "Hänsynslöse Hannes"
-			pygame.draw.rect(screen, (0, 0, 0), fight_button)
-			screen.blit(fight_sign, (250, 50))
-			print("hannes selected")
-			print(made_bet_1)
-
-		if bet_list[current_match][0] == "Hänsynslöse Hannes":
 			made_bet_1 = "Hänsynslöse Hannes"
 			pygame.draw.rect(screen, (0, 0, 0), fight_button)
 			screen.blit(fight_sign, (250, 50))
@@ -571,12 +516,12 @@ def show_bet_buttons(better_1, better_2, current_match):
 	pygame.draw.rect(screen, (0, 0, 0), total1)
 	total2 = pygame.Rect(630, 350, 146, 50)
 	pygame.draw.rect(screen, (0, 0, 0), total2)
-	screen.blit(font.render(f"{better_1}", True, (255, 255, 255)), (445, 360))
-	screen.blit(font.render(f"{better_2}", True, (255, 255, 255)), (645, 360))
+	screen.blit(font.render(f"Bet: {better_1}", True, (255, 255, 255)), (445, 360))
+	screen.blit(font.render(f"Win: {better_2}", True, (255, 255, 255)), (645, 360))
 	# confirm rects
 	black_bg_rect = pygame.Rect(430, 405, 146, 50)
 	pygame.draw.rect(screen, (0, 0, 0), black_bg_rect)
 	black_bg_rect2 = pygame.Rect(630, 405, 146, 50)
 	pygame.draw.rect(screen, (0, 0, 0), black_bg_rect2)
-	screen.blit(font.render(f"{better_1 * 2}", True, (255, 255, 255)), (445, 410))
-	screen.blit(font.render(f"{better_2 * 2}", True, (255, 255, 255)), (645, 410))
+	screen.blit(font.render(f"Bet: {better_1 * 2}", True, (255, 255, 255)), (445, 410))
+	screen.blit(font.render(f"Win: {better_2 * 2}", True, (255, 255, 255)), (645, 410))

@@ -132,5 +132,6 @@ def main_main_window():
 	screen.blit(logo, (50, 50))
 
 
+
 if __name__ == '__main__':
-	end_screen(3, 3, 3, 3)
+	end_screen(4, 1, 10, 3)

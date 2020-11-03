@@ -2,7 +2,7 @@ import pygame
 import sys
 
 pygame.init()
-screen = pygame.display.set_mode(600,800)
+screen = pygame.display.set_mode(800, 600)
 font = pygame.font.SysFont("Arial", 40, True)
 
 def options():

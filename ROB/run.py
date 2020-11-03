@@ -1,7 +1,7 @@
 import pygame
 import sys
 from ROB.main_menu import main_menu
-
+# TODO - Ändra så att man använder klasser som screen states
 
 def main():
     pygame.init()

@@ -1,5 +1,6 @@
 import pygame
 import sys
+# TODO - Fixa så man kan se vem som vann bettet i winner-screen
 
 pygame.init()
 font = pygame.font.SysFont("Arial", 40, True)

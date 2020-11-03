@@ -3,6 +3,8 @@ import sys
 from ROB.fight import fight
 from ROB.winner_screen import winner_screen
 from ROB.end_screen import end_screen
+# TODO - Bryt ut saker i moduler för lättare läsning.
+# TODO - Gör klart betting-funktionen (hitta tips i betting.py)
 # en lista över alla matcher
 matchup = [["Slaktar Sune", "Boxare Bob"], ["Bråkiga Berit", "Hänsynslöse Hannes"], ["Slaktar Sune", "Bråkiga Berit"], ["Boxare Bob", "Hänsynslöse Hannes"], ["Slaktar Sune", "Hänsynslöse Hannes"], ["Boxare Bob", "Bråkiga Berit"]]
 # lista på dom som bettar (listor i listan, beroende på match)
@@ -92,10 +94,6 @@ def lobby():
 	better_1 = 0
 	# Sätter en variabel better_2 till 0
 	better_2 = 0
-	# Sätter en variabel better_1_0 till 0
-	better_1_0 = 0
-	# Sätter en variabel better_2_0 till 0
-	better_2_0 = 0
 	# Sätter en variabel för varje spelare med värdet 100 som vi får av variabeln score
 	score_player1 = score
 	score_player2 = score
@@ -107,11 +105,13 @@ def lobby():
 	minus, mute, plus = volume_buttons()
 	# Målar ut statistiken i score-boarden
 	show_stats(score_player1, score_player2, score_player3, score_player4)
+	# TODO - Avatarerna bredvid betting-funktionen försvinner efter första matchen. Meningen med dom är att låsa betten inför matchen.
 	# Målar ut avatarerna på Sune och Bob
 	screen.blit(sune_head, (390, 250))
 	screen.blit(bob_head, (390, 300))
 	# Skapar en while-loop som kör så länge running är True
 	while running:
+
 		# sätter volymen efter variablen volume
 		pygame.mixer.music.set_volume(volume)
 		# om variabeln current_match är större än 5 kommer man till end screen
@@ -133,7 +133,7 @@ def lobby():
 				# kollar vilken knapp på musen som tryckts ned
 				if event.button == 1:
 
-
+# TODO - Det finns en bugg där det går att betta minus. Lös det.
 					# plus bet. Om musen kolliderar med rektangeln ten_button
 					if ten_button.collidepoint(mx, my):
 						# ...då går man in och kollar bet-listan, därefter current_match. Index 0 är 1:a spelaren i bet-listan
@@ -358,6 +358,7 @@ def button_blittings(better_1, better_2, current_match):
 		(50, 550))
 	# betting ruta
 	# Skriver ut betters för den aktuella matchen. Med True som syntax för utjämnade kanter, 255, 255, 255 för textfärgen och 400, 200 för koordinater
+	# TODO - Nu ser man inte hela Hannes namn när han bettar, ändra så att man kan läsa alla tydligt.
 	screen.blit(font.render("Betters:", True, (255, 255, 255)), (400, 150))
 	screen.blit(font.render(f"{bet_list[current_match][0]} --- {bet_list[current_match][1]}", True, (255, 255, 255)),
 				(400, 200))
