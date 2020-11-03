@@ -1,3 +1,5 @@
+# betting function
+
 def won_bet_calc(bet_counter, better_1, better_2, made_bet_1, made_bet_2, score_player1, score_player2, score_player3,
 				 score_player4, winner):
 	# bettare berit vs hannes
