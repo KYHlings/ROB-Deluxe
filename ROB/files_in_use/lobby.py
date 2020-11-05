@@ -1,8 +1,8 @@
 import pygame
 import sys
-from ROB.fight import fight
-from ROB.winner_screen import winner_screen
-from ROB.end_screen import end_screen
+from ROB.files_in_use.fight import fight
+from ROB.files_in_use.winner_screen import winner_screen
+from ROB.files_in_use.end_screen import end_screen
 # TODO - Bryt ut saker i moduler för lättare läsning.
 # TODO - Gör klart betting-funktionen (hitta tips i betting.py)
 # en lista över alla matcher
@@ -14,10 +14,10 @@ font = pygame.font.SysFont("Arial", 30, True)
 # sätter storlek på skärmen
 screen = pygame.display.set_mode((800, 600))
 #laddar upp bilder för de olika betting-valörerna
-ten = pygame.image.load("pics//10$.png")
-minus_ten = pygame.image.load("pics//-10$.png")
-fifty = pygame.image.load("pics//50$.png")
-minus_fifty = pygame.image.load("pics//-50$.png")
+ten = pygame.image.load("pics/10$.png")
+minus_ten = pygame.image.load("pics/-10$.png")
+fifty = pygame.image.load("pics/50$.png")
+minus_fifty = pygame.image.load("pics/-50$.png")
 # rektanglar för betting-valörerna
 ten_button = pygame.Rect(430, 250, 71, 42)
 minus_ten_button = pygame.Rect(505, 250, 71, 42)
@@ -28,10 +28,10 @@ minus_ten_button_2 = pygame.Rect(705, 250, 71, 42)
 fifty_button_2 = pygame.Rect(630, 300, 71, 42)
 minus_fifty_button_2 = pygame.Rect(705, 300, 71, 42)
 # laddar bilder på avatarer till karaktärerna
-sune_head = pygame.image.load("pics//head_sune.png")
-bob_head = pygame.image.load("pics//head_bob.png")
-berit_head = pygame.image.load("pics//head_berit.png")
-hannes_head = pygame.image.load("pics//head_hannes.png")
+sune_head = pygame.image.load("pics/head_sune.png")
+bob_head = pygame.image.load("pics/head_bob.png")
+berit_head = pygame.image.load("pics/head_berit.png")
+hannes_head = pygame.image.load("pics/head_hannes.png")
 # skapar rektanglar för avatarer
 head_sune_rect = pygame.Rect(390, 250, 40, 35)
 head_bob_rect = pygame.Rect(390, 250, 40, 35)
@@ -54,11 +54,11 @@ def show_stats(score1, score2, score3, score4):
 def lobby_window():
 	# stoppar main_menu/fight musiken och laddar lobby-musiken
 	pygame.mixer.music.stop()
-	pygame.mixer.music.load("music//casino_music.wav")
+	pygame.mixer.music.load("music/casino_music.wav")
 	pygame.mixer.music.play(-1)
 	# laddar in lobby bakgrundsbilden och fight sign bilden
-	casino_bg = pygame.image.load('pics//casino.png')
-	fight_sign = pygame.image.load('pics//fight_sign.png')
+	casino_bg = pygame.image.load('pics/casino.png')
+	fight_sign = pygame.image.load('pics/fight_sign.png')
 	# Skapar en osynlig rektangel
 	fight_button = pygame.Rect(250, 50, 300, 100)
 	# Målar rektangeln svart på skärmen

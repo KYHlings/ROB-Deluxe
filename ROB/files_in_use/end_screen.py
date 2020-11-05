@@ -11,19 +11,19 @@ gold = (207, 181, 59)
 screen_width = 800
 screen_height = 600
 screen = pygame.display.set_mode((screen_width, screen_height))
-bg_image = [pygame.image.load('pics//end_screen_0.png')]
-player1 = pygame.image.load('pics//walking_right_0.png')
-player2 = pygame.image.load('pics//walking_right_green_0.png')
-player3 = pygame.image.load('pics//walking_right_yellow_0.png')
-player4 = pygame.image.load('pics//walking_right_purple_0.png')
+bg_image = [pygame.image.load('pics/end_screen_0.png')]
+player1 = pygame.image.load('pics/walking_right_0.png')
+player2 = pygame.image.load('pics/walking_right_green_0.png')
+player3 = pygame.image.load('pics/walking_right_yellow_0.png')
+player4 = pygame.image.load('pics/walking_right_purple_0.png')
 
-player1_l = pygame.image.load('pics//walking_left_0.png')
-player2_l = pygame.image.load('pics//walking_left_0_green.png')
-player3_l = pygame.image.load('pics//walking_left_0_yellow.png')
-player4_l = pygame.image.load('pics//walking_left_0_purple.png')
+player1_l = pygame.image.load('pics/walking_left_0.png')
+player2_l = pygame.image.load('pics/walking_left_0_green.png')
+player3_l = pygame.image.load('pics/walking_left_0_yellow.png')
+player4_l = pygame.image.load('pics/walking_left_0_purple.png')
 
 matchup = [["Slaktar Sune", "Boxare Bob"], ["Bråkiga Berit", "Hänsynslöse Hannes"], ["Slaktar Sune", "Bråkiga Berit"], ["Boxare Bob", "Hänsynslöse Hannes"], ["Slaktar Sune", "Hänsynslöse Hannes"], ["Boxare Bob", "Bråkiga Berit"]]
-podium = pygame.image.load('pics//podium.png')
+podium = pygame.image.load('pics/podium.png')
 
 def end_screen(first, second, third, fourth):
 	running = True
@@ -117,12 +117,12 @@ def end_screen(first, second, third, fourth):
 
 
 def main_main_window():
-	pygame.mixer.music.load("music//menu_music.ogg")
+	pygame.mixer.music.load("music/menu_music.ogg")
 	pygame.mixer.music.play(-1)
 	screen = pygame.display.set_mode((800, 600))
-	logo = pygame.image.load('pics//logga.png')
-	play_sign = pygame.image.load('pics//play_game_logga.png')
-	quit_sign = pygame.image.load('pics//Quitknapp.png')
+	logo = pygame.image.load('pics/logga.png')
+	play_sign = pygame.image.load('pics/play_game_logga.png')
+	quit_sign = pygame.image.load('pics/Quitknapp.png')
 	play_button = pygame.Rect(250, 250, 300, 100)
 	quit_button = pygame.Rect(250, 350, 300, 100)
 	pygame.draw.rect(screen, (0, 0, 0), play_button)

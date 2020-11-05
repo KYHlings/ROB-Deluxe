@@ -13,11 +13,11 @@ screen_width = 800
 screen_height = 600
 screen = pygame.display.set_mode((screen_width, screen_height))
 # laddar in bilder på bakgrund och gubbarna
-bg_image = [pygame.image.load('pics//arena_bakgrund_0.png'), pygame.image.load('pics//arena_bakgrund_1.png')]
-hannes = pygame.image.load('pics//walking_right_purple_0.png')
-berit = pygame.image.load('pics//walking_right_yellow_0.png')
-sune = pygame.image.load('pics//walking_right_0.png')
-bob = pygame.image.load('pics//walking_right_green_0.png')
+bg_image = [pygame.image.load('pics/arena_bakgrund_0.png'), pygame.image.load('pics/arena_bakgrund_1.png')]
+hannes = pygame.image.load('pics/walking_right_purple_0.png')
+berit = pygame.image.load('pics/walking_right_yellow_0.png')
+sune = pygame.image.load('pics/walking_right_0.png')
+bob = pygame.image.load('pics/walking_right_green_0.png')
 matchup = [["Slaktar Sune", "Boxare Bob"], ["Bråkiga Berit", "Hänsynslöse Hannes"], ["Slaktar Sune", "Bråkiga Berit"],
            ["Boxare Bob", "Hänsynslöse Hannes"], ["Slaktar Sune", "Hänsynslöse Hannes"],
            ["Boxare Bob", "Bråkiga Berit"]]
@@ -47,9 +47,9 @@ def audience(current_match, hannes, berit, sune, bob):
 
 # Todo - Skapa en ny modul för alla musikfiler
 # ljudeffekter
-effect_punch = pygame.mixer.Sound('music//PUNCH.wav')
-effect_dead = pygame.mixer.Sound('music//Wilhelm_Scream.ogg')
-effect_KICK = pygame.mixer.Sound('music//KICK.wav')
+effect_punch = pygame.mixer.Sound('music/PUNCH.wav')
+effect_dead = pygame.mixer.Sound('music/Wilhelm_Scream.ogg')
+effect_KICK = pygame.mixer.Sound('music/KICK.wav')
 
 # fps
 fps_clock = pygame.time.Clock()
@@ -65,7 +65,7 @@ def fight_music():
     #stoppar föregående låt
     pygame.mixer.music.stop()
     # laddar in fight-låten
-    pygame.mixer.music.load('music//fight_music.ogg')
+    pygame.mixer.music.load('music/fight_music.ogg')
     # spelar fightlåten om och om igen
     pygame.mixer.music.play(-1)
 
