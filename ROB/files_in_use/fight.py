@@ -47,9 +47,9 @@ def audience(current_match, hannes, berit, sune, bob):
 
 # Todo - Skapa en ny modul för alla musikfiler
 # ljudeffekter
-effect_punch = pygame.mixer.Sound('music/PUNCH.wav')
-effect_dead = pygame.mixer.Sound('music/Wilhelm_Scream.ogg')
-effect_KICK = pygame.mixer.Sound('music/KICK.wav')
+effect_punch = pygame.mixer.Sound('sound_and_music/sound/PUNCH.wav')
+effect_dead = pygame.mixer.Sound('sound_and_music/sound/Wilhelm_Scream.ogg')
+effect_KICK = pygame.mixer.Sound('sound_and_music/sound/KICK.wav')
 
 # fps
 fps_clock = pygame.time.Clock()
@@ -65,7 +65,7 @@ def fight_music():
     #stoppar föregående låt
     pygame.mixer.music.stop()
     # laddar in fight-låten
-    pygame.mixer.music.load('music/fight_music.ogg')
+    pygame.mixer.music.load('sound_and_music/music/fight_music.ogg')
     # spelar fightlåten om och om igen
     pygame.mixer.music.play(-1)
 

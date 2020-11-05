@@ -54,7 +54,7 @@ def show_stats(score1, score2, score3, score4):
 def lobby_window():
 	# stoppar main_menu/fight musiken och laddar lobby-musiken
 	pygame.mixer.music.stop()
-	pygame.mixer.music.load("music/casino_music.wav")
+	pygame.mixer.music.load("sound_and_music/music/casino_music.wav")
 	pygame.mixer.music.play(-1)
 	# laddar in lobby bakgrundsbilden och fight sign bilden
 	casino_bg = pygame.image.load('pics/casino.png')

@@ -117,7 +117,7 @@ def end_screen(first, second, third, fourth):
 
 
 def main_main_window():
-	pygame.mixer.music.load("music/menu_music.ogg")
+	pygame.mixer.music.load("sound_and_music/music/menu_music.ogg")
 	pygame.mixer.music.play(-1)
 	screen = pygame.display.set_mode((800, 600))
 	logo = pygame.image.load('pics/logga.png')
