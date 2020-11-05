@@ -16,9 +16,10 @@ screen_height = 1000
 win = pygame.display.set_mode((screen_width, screen_height))
 pygame.display.set_caption("FIGHT")
 
-walk_right = [pygame.image.load('../images/sprites/walking_right_2.png')]
-walk_left = [pygame.image.load('../images/sprites/walking_left_1.png')]
-char = [pygame.image.load('../images/sprites/look_left.png'), pygame.image.load('../images/sprites/look_right.png')]
+walk_right = [pygame.image.load('../images/sprites/sune/walking_right_2.png')]
+walk_left = [pygame.image.load('../images/sprites/sune/walking_left_1.png')]
+char = [pygame.image.load('../images/sprites/sune/look_left.png'), pygame.image.load(
+    '../images/sprites/sune/look_right.png')]
 fps_clock = pygame.time.Clock()
 fps = 60
 
