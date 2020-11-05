@@ -11,24 +11,24 @@ gold = (207, 181, 59)
 screen_width = 800
 screen_height = 600
 screen = pygame.display.set_mode((screen_width, screen_height))
-bg_image = [pygame.image.load('images/end_screen_0.png')]
-player1 = pygame.image.load('images/walking_right_0.png')
-player2 = pygame.image.load('images/walking_right_green_0.png')
-player3 = pygame.image.load('images/walking_right_yellow_0.png')
-player4 = pygame.image.load('images/walking_right_purple_0.png')
+bg_image = pygame.image.load('images/backgrounds/end_screen.png')
+player1 = pygame.image.load('images/sprites/walking_right_0.png')
+player2 = pygame.image.load('images/sprites/walking_right_green_0.png')
+player3 = pygame.image.load('images/sprites/walking_right_yellow_0.png')
+player4 = pygame.image.load('images/sprites/walking_right_purple_0.png')
 
-player1_l = pygame.image.load('images/walking_left_0.png')
-player2_l = pygame.image.load('images/walking_left_0_green.png')
-player3_l = pygame.image.load('images/walking_left_0_yellow.png')
-player4_l = pygame.image.load('images/walking_left_0_purple.png')
+player1_l = pygame.image.load('images/sprites/walking_left_0.png')
+player2_l = pygame.image.load('images/sprites/walking_left_0_green.png')
+player3_l = pygame.image.load('images/sprites/walking_left_0_yellow.png')
+player4_l = pygame.image.load('images/sprites/walking_left_0_purple.png')
 
 matchup = [["Slaktar Sune", "Boxare Bob"], ["Bråkiga Berit", "Hänsynslöse Hannes"], ["Slaktar Sune", "Bråkiga Berit"], ["Boxare Bob", "Hänsynslöse Hannes"], ["Slaktar Sune", "Hänsynslöse Hannes"], ["Boxare Bob", "Bråkiga Berit"]]
-podium = pygame.image.load('images/podium.png')
+podium = pygame.image.load('images/gui/podium.png')
 
 def end_screen(first, second, third, fourth):
 	running = True
 	while running:
-		screen.blit(bg_image[0],(0, 0))
+		screen.blit(bg_image,(0, 0))
 		screen.blit(podium, (700, 500))
 		for event in pygame.event.get():
 			if event.type == pygame.QUIT:

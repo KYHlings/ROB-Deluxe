@@ -14,10 +14,10 @@ font = pygame.font.SysFont("Arial", 30, True)
 # sätter storlek på skärmen
 screen = pygame.display.set_mode((800, 600))
 #laddar upp bilder för de olika betting-valörerna
-ten = pygame.image.load("images/10$.png")
-minus_ten = pygame.image.load("images/-10$.png")
-fifty = pygame.image.load("images/50$.png")
-minus_fifty = pygame.image.load("images/-50$.png")
+ten = pygame.image.load("images/gui/10$.png")
+minus_ten = pygame.image.load("images/gui/-10$.png")
+fifty = pygame.image.load("images/gui/50$.png")
+minus_fifty = pygame.image.load("images/gui/-50$.png")
 # rektanglar för betting-valörerna
 ten_button = pygame.Rect(430, 250, 71, 42)
 minus_ten_button = pygame.Rect(505, 250, 71, 42)
@@ -28,10 +28,10 @@ minus_ten_button_2 = pygame.Rect(705, 250, 71, 42)
 fifty_button_2 = pygame.Rect(630, 300, 71, 42)
 minus_fifty_button_2 = pygame.Rect(705, 300, 71, 42)
 # laddar bilder på avatarer till karaktärerna
-sune_head = pygame.image.load("images/head_sune.png")
-bob_head = pygame.image.load("images/head_bob.png")
-berit_head = pygame.image.load("images/head_berit.png")
-hannes_head = pygame.image.load("images/head_hannes.png")
+sune_head = pygame.image.load("images/sprites/head_sune.png")
+bob_head = pygame.image.load("images/sprites/head_bob.png")
+berit_head = pygame.image.load("images/sprites/head_berit.png")
+hannes_head = pygame.image.load("images/sprites/head_hannes.png")
 # skapar rektanglar för avatarer
 head_sune_rect = pygame.Rect(390, 250, 40, 35)
 head_bob_rect = pygame.Rect(390, 250, 40, 35)
@@ -57,8 +57,8 @@ def lobby_window():
 	pygame.mixer.music.load("sound_and_music/music/casino_music.wav")
 	pygame.mixer.music.play(-1)
 	# laddar in lobby bakgrundsbilden och fight sign bilden
-	casino_bg = pygame.image.load('images/casino.png')
-	fight_sign = pygame.image.load('images/fight_sign.png')
+	casino_bg = pygame.image.load('images/backgrounds/casino.png')
+	fight_sign = pygame.image.load('images/gui/fight_sign.png')
 	# Skapar en osynlig rektangel
 	fight_button = pygame.Rect(250, 50, 300, 100)
 	# Målar rektangeln svart på skärmen
