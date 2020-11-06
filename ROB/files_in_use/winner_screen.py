@@ -10,20 +10,20 @@ screen_width = 800
 screen_height = 600
 screen = pygame.display.set_mode((screen_width, screen_height))
 bg_image = [pygame.image.load('images/backgrounds/arena_bakgrund_0.png'), pygame.image.load('images/backgrounds/arena_bakgrund_1.png')]
-sune_dead = pygame.image.load("images/sprites/player_dead.png")
-berit_dead = pygame.image.load("images/sprites/Berit_dead.png")
-bob_dead = pygame.image.load("images/sprites/Bob_dead.png")
-hannes_dead = pygame.image.load("images/sprites/Hannes_dead.png")
+sune_dead = pygame.image.load("images/sprites/sune/player_dead.png")
+berit_dead = pygame.image.load("images/sprites/berit/Berit_dead.png")
+bob_dead = pygame.image.load("images/sprites/bob/Bob_dead.png")
+hannes_dead = pygame.image.load("images/sprites/hannes/Hannes_dead.png")
 # sune_winner = pygame.image.load("images/sprites//sprites/winner.png")
 # berit_winner = pygame.image.load("images/sprites//sprites/winner_berit.png")
 # bob_winner = pygame.image.load("images/sprites//sprites/winner_bob.png")
 # hannes_winner = pygame.image.load("images/sprites//sprites/winner_hannes.png")
 
 def audience(current_match):
-    hannes = pygame.image.load('images/sprites/walking_right_purple_0.png')
-    berit = pygame.image.load('images/sprites/walking_right_yellow_0.png')
-    sune = pygame.image.load('images/sprites/walking_right_0.png')
-    bob = pygame.image.load('images/sprites/walking_right_green_0.png')
+    hannes = pygame.image.load('images/sprites/hannes/walking_right_purple_0.png')
+    berit = pygame.image.load('images/sprites/berit/walking_right_yellow_0.png')
+    sune = pygame.image.load('images/sprites/sune/walking_right_0.png')
+    bob = pygame.image.load('images/sprites/bob/walking_right_green_0.png')
     if current_match == 0:
         screen.blit(hannes, (40, 170))
         screen.blit(berit, (70, 170))
@@ -45,11 +45,11 @@ def audience(current_match):
 
 
 def winner_screen(winner, loser, current_match):
-    winner_char = pygame.image.load("images/sprites/winner.png")
-    sune_winner = pygame.image.load("images/sprites/winner.png")
-    berit_winner = pygame.image.load("images/sprites/winner_berit.png")
-    bob_winner = pygame.image.load("images/sprites/winner_bob.png")
-    hannes_winner = pygame.image.load("images/sprites/winner_hannes.png")
+    #winner_char = pygame.image.load("images/sprites/winner.png")
+    sune_winner = pygame.image.load("images/sprites/sune/winner.png")
+    berit_winner = pygame.image.load("images/sprites/berit/winner_berit.png")
+    bob_winner = pygame.image.load("images/sprites/bob/winner_bob.png")
+    hannes_winner = pygame.image.load("images/sprites/hannes/winner_hannes.png")
     running = True
     while running:
         screen.blit(bg_image[0],(0, 0))

@@ -11,7 +11,7 @@ def main_menu():
     pygame.mixer.music.play(-1)
     screen = pygame.display.set_mode((800, 600))
 
-    logo = pygame.image.load('images/sprites/logga.png')
+    logo = pygame.image.load('images/gui/logga.png')
     play_sign = pygame.image.load('images/gui/play_game_logga.png')
     quit_sign = pygame.image.load('images/gui/Quitknapp.png')
 
