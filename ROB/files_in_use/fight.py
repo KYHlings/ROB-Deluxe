@@ -325,7 +325,7 @@ def player_movement(player_right, player_left):
 # TODO - Gör så att man inte kan flyga
     # HOPP
     # Om den högra ctrl-tangenten är nedtryckt
-    if keys[pygame.K_RCTRL]:
+    if keys[pygame.K_UP]:
         # hoppets höjd
         player_right.rect.y -= 15
         # dragningskraft
@@ -366,7 +366,7 @@ def player_movement(player_right, player_left):
         player_left.image = player_left.images[player_left.frame]
 
     # HOPP
-    if keys[pygame.K_SPACE]:
+    if keys[pygame.K_w]:
         # hoppets höjd
         player_left.rect.y -= 15
         # dragningskraft
