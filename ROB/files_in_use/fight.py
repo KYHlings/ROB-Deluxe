@@ -53,7 +53,7 @@ effect_KICK = pygame.mixer.Sound('sound_and_music/sound/KICK.wav')
 
 # fps
 fps_clock = pygame.time.Clock()
-fps = 30
+fps = 357
 
 # TODO loopa bakrundsbilderna så att bilden ser "rörlig" ut
 screen.blit(bg_image[0], (0, 0))
@@ -76,7 +76,7 @@ class Player(pygame.sprite.Sprite):
     def __init__(self):
         pygame.sprite.Sprite.__init__(self)
 
-        # bestämmer all hastighet för gubbarnas rörelser i pixlar
+        # bestämmer hoppets hastighet för gubbarnas rörelser i pixlar
         self.vel = 5
         # bestämmer vilken bild som ska visas i images listan över spelarens olika bilder
         self.frame = 0
@@ -288,6 +288,7 @@ def player_movement(player_right, player_left):
     if keys[pygame.K_LEFT] and player_right.rect.x > 0:
         # Gäller när vänster pil-tangent är nedtryckt
         player_right.left = True
+        player_right.left += player_right.vel
         player_right.right = False
         # Kollar ifall player 1 och player 2 kolliderar
         if collision(player_right, player_left) == True:
