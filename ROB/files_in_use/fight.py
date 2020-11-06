@@ -53,7 +53,7 @@ effect_KICK = pygame.mixer.Sound('sound_and_music/sound/KICK.wav')
 
 # fps
 fps_clock = pygame.time.Clock()
-fps = 120
+fps = 30
 
 # TODO loopa bakrundsbilderna så att bilden ser "rörlig" ut
 screen.blit(bg_image[0], (0, 0))
@@ -179,7 +179,7 @@ def player_right_pics(self, match):
     if match == 1:
         self.images = []
         for i in range(1, 3):
-            img = pygame.image.load(f'images/sprites/walking_right_purple_{str(i)}.png')
+            img = pygame.image.load(f'images/sprites/hannes/walking_right_purple_{str(i)}.png')
             self.images.append(img)
             self.image = self.images[0]
             self.rect = self.image.get_rect()
@@ -190,7 +190,7 @@ def player_right_pics(self, match):
     if match == 2:
         self.images = []
         for i in range(1, 3):
-            img = pygame.image.load(f'images/sprites/walking_right_yellow_{str(i)}.png')
+            img = pygame.image.load(f'images/sprites/berit/walking_right_yellow_{str(i)}.png')
             self.images.append(img)
             self.image = self.images[0]
             self.rect = self.image.get_rect()
@@ -201,7 +201,7 @@ def player_right_pics(self, match):
     if match == 3:
         self.images = []
         for i in range(1, 3):
-            img = pygame.image.load(f'images/sprites/walking_right_purple_{str(i)}.png')
+            img = pygame.image.load(f'images/sprites/hannes/walking_right_purple_{str(i)}.png')
             self.images.append(img)
             self.image = self.images[0]
             self.rect = self.image.get_rect()
@@ -212,7 +212,7 @@ def player_right_pics(self, match):
     if match == 4:
         self.images = []
         for i in range(1, 3):
-            img = pygame.image.load(f'images/sprites/walking_right_purple_{str(i)}.png')
+            img = pygame.image.load(f'images/sprites/hannes/walking_right_purple_{str(i)}.png')
             self.images.append(img)
             self.image = self.images[0]
             self.rect = self.image.get_rect()
@@ -222,7 +222,7 @@ def player_right_pics(self, match):
     if match == 5:
         self.images = []
         for i in range(1, 3):
-            img = pygame.image.load(f'images/sprites/walking_right_yellow_{str(i)}.png')
+            img = pygame.image.load(f'images/sprites/berit/walking_right_yellow_{str(i)}.png')
             self.images.append(img)
             self.image = self.images[0]
             self.rect = self.image.get_rect()
@@ -382,10 +382,10 @@ def player_movement(player_right, player_left):
 def punch_and_kick():
     # TODO - Försök fixa så att man kan göra airstrikes med spark de hade vart nice å se
     # kollar om en knapp är nedtryckt
-    if keys.type == pygame.KEYDOWN:
+    if keys.type == pygame.KEYUP:
         # fighter1 slag och spark
         # Om man trycker ner tangenten pil upp
-        if keys.key == pygame.K_UP:
+        if keys.key == pygame.K_RCTRL:
             # Om det sker en collision mellan player_right och player_right samt att man trycker på pil upp så dyker texten "hit" upp på skärmen, en ljudeffekt spelas och player_right.hp minskas med 10
             if collision(player_right, player_left) == True:
                 # TODO - Få 'hit' att stanna på skärmen längre än att bara blinka till / lägga till någon bild eller animation när man slår
@@ -394,6 +394,7 @@ def punch_and_kick():
                 print("slag")
                 player_left.hp -= 10
                 print(f"HP PLAYER 2: {player_left.hp}")
+
         if keys.key == pygame.K_DOWN:
             if collision(player_right, player_left) == True:
                 screen.blit(font.render("Hit!", True, (255, 255, 255)), (player_left.rect.x, 400))
