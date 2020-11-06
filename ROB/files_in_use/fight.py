@@ -77,7 +77,7 @@ class Player(pygame.sprite.Sprite):
         pygame.sprite.Sprite.__init__(self)
 
         # bestämmer all hastighet för gubbarnas rörelser i pixlar
-        self.vel = 5
+        self.vel = 40
         # bestämmer vilken bild som ska visas i images listan över spelarens olika bilder
         self.frame = 0
         # bestämmer vänster och höger riktning
@@ -339,7 +339,6 @@ def player_movement(player_right, player_left):
         player_right.rect.y = 500
     if keys[pygame.K_RCTRL]:
         if collision(player_right, player_left) == True:
-            # TODO - Få 'hit' att stanna på skärmen längre än att bara blinka till / lägga till någon bild eller animation när man slår
             screen.blit(font.render("Hit!", True, (255, 255, 255)), (player_left.rect.x, 400))
             effect_punch.play(0)
             print("slag")
@@ -395,45 +394,7 @@ def player_movement(player_right, player_left):
 
 
 
-        # def punch_and_kick():
-        #     # TODO - Försök fixa så att man kan göra airstrikes med spark de hade vart nice å se
-        #     # kollar om en knapp är nedtryckt
-        #     if keys.type == pygame.KEYUP:
-        #         # fighter1 slag och spark
-        #         # Om man trycker ner tangenten pil upp
-        #         if keys.key == pygame.K_RCTRL:
-        #             # Om det sker en collision mellan player_right och player_right samt att man trycker på pil upp så dyker texten "hit" upp på skärmen, en ljudeffekt spelas och player_right.hp minskas med 10
-        #             if collision(player_right, player_left) == True:
-        #                 # TODO - Få 'hit' att stanna på skärmen längre än att bara blinka till / lägga till någon bild eller animation när man slår
-        #                 screen.blit(font.render("Hit!", True, (255, 255, 255)), (player_left.rect.x, 400))
-        #                 effect_punch.play(0)
-        #                 print("slag")
-        #                 player_left.hp -= 10
-        #                 print(f"HP PLAYER 2: {player_left.hp}")
-        #
-        #         if keys.key == pygame.K_DOWN:
-        #             if collision(player_right, player_left) == True:
-        #                 screen.blit(font.render("Hit!", True, (255, 255, 255)), (player_left.rect.x, 400))
-        #                 print("spark")
-        #                 effect_KICK.play(0)
-        #                 player_left.hp -= 10
-        #                 print(f"HP PLAYER 2: {player_left.hp}")
-        #         # fighter2 slag och spark
-        #         if keys.key == pygame.K_w:
-        #             if collision(player_right, player_left) == True:
-        #                 screen.blit(font.render("Hit!", True, (255, 255, 255)), (player_right.rect.x, 400))
-        #                 effect_punch.play(0)
-        #                 print("slag")
-        #                 player_right.hp -= 10
-        #                 print(f"HP PLAYER 1: {player_right.hp}")
-        #
-        #         if keys.key == pygame.K_s:
-        #             if collision(player_right, player_left) == True:
-        #                 screen.blit(font.render("Hit!", True, (255, 255, 255)), (player_right.rect.x, 400))
-        #                 effect_KICK.play(0)
-        #                 print("spark")
-        #                 player_right.hp -= 10
-        #                 print(f"HP PLAYER 1: {player_right.hp}")
+
 
 # Skapar en funktion med player_right och player_right som indata
 def player_dead(player_right, player_left):
@@ -516,7 +477,5 @@ def fight(current_match):
             # Om keys.type är lika med pygame.QUIT så ska programmet stängas ned
             if keys.type == pygame.QUIT:
                 sys.exit()
-            # Kollar knapptryckningar i punch_and_kick-funktionen
-           # punch_and_kick()
 
 
