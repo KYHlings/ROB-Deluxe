@@ -96,6 +96,7 @@ class Player(pygame.sprite.Sprite):
         self.dead = False
         self.jumping = False
         self.recently_hit = False
+        self.time_hit = None
 
     def hoppi_ti_hopp(self):
         if self.jumping:
@@ -356,11 +357,16 @@ def player_movement(player_right, player_left):
 
     if keys[pygame.K_RCTRL]:
         if collision(player_right, player_left):
-            screen.blit(font.render("Hit!", True, (255, 255, 255)), (player_left.rect.x, 400))
+            player_left.recently_hit = True
+            player_left.time_hit = pygame.time.get_ticks()
+
             effect_punch.play(0)
             print("slag")
             player_left.hp -= 10
             print(f"HP PLAYER 2: {player_left.hp}")
+
+    if player_left.recently_hit:
+        player_left.recently_hit = player_hit_left(player_left.time_hit)
     # FIGTER 2
     # vänster
     if keys[pygame.K_a] and player_left.rect.x > player_left.vel:
@@ -406,17 +412,21 @@ def player_movement(player_right, player_left):
 
     if keys[pygame.K_LCTRL]:
         if collision(player_right, player_left):
-            player_right
+            player_right.recently_hit = True
+            player_right.time_hit = pygame.time.get_ticks()
+
             effect_punch.play(0)
             print("slag")
             player_right.hp -= 10
             print(f"HP PLAYER 1: {player_right.hp}")
 
+    if player_right.recently_hit:
+        player_right.recently_hit = player_hit_right(player_right.time_hit)
 
-def player_hit_right(player_recently_hit, hit_timer):
+def player_hit_right(hit_timer):
     if pygame.time.get_ticks() - hit_timer >= 1500:
         return False
-    if player_recently_hit:
+    else:
         screen.blit(font.render("Hit!", True, (255, 255, 255)), (player_right.rect.x, 400))
         return True
 
