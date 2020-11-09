@@ -95,6 +95,7 @@ class Player(pygame.sprite.Sprite):
         # skapar en variabel som bestämmer om spelaren lever eller inte
         self.dead = False
         self.jumping = False
+        self.recently_hit = False
 
     def hoppi_ti_hopp(self):
         if self.jumping:
@@ -405,11 +406,27 @@ def player_movement(player_right, player_left):
 
     if keys[pygame.K_LCTRL]:
         if collision(player_right, player_left):
-            screen.blit(font.render("Hit!", True, (255, 255, 255)), (player_right.rect.x, 400))
+            player_right
             effect_punch.play(0)
             print("slag")
             player_right.hp -= 10
             print(f"HP PLAYER 1: {player_right.hp}")
+
+
+def player_hit_right(player_recently_hit, hit_timer):
+    if pygame.time.get_ticks() - hit_timer >= 1500:
+        return False
+    if player_recently_hit:
+        screen.blit(font.render("Hit!", True, (255, 255, 255)), (player_right.rect.x, 400))
+        return True
+
+
+def player_hit_left(player_recently_hit, hit_timer):
+    if pygame.time.get_ticks() - hit_timer >= 1500:
+        return False
+    if player_recently_hit:
+        screen.blit(font.render("Hit!", True, (255, 255, 255)), (player_left.rect.x, 400))
+        return True
 
 
 # Skapar en funktion med player_right och player_right som indata
