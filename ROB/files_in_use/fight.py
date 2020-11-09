@@ -13,7 +13,8 @@ screen_width = 800
 screen_height = 600
 screen = pygame.display.set_mode((screen_width, screen_height))
 # laddar in bilder på bakgrund och gubbarna
-bg_image = [pygame.image.load('images/backgrounds/arena_bakgrund_0.png'), pygame.image.load('images/backgrounds/arena_bakgrund_1.png')]
+bg_image = [pygame.image.load('images/backgrounds/arena_bakgrund_0.png'),
+            pygame.image.load('images/backgrounds/arena_bakgrund_1.png')]
 hannes = pygame.image.load('images/sprites/hannes/walking_right_purple_0.png')
 berit = pygame.image.load('images/sprites/berit/walking_right_yellow_0.png')
 sune = pygame.image.load('images/sprites/sune/walking_right_0.png')
@@ -21,6 +22,7 @@ bob = pygame.image.load('images/sprites/bob/walking_right_green_0.png')
 matchup = [["Slaktar Sune", "Boxare Bob"], ["Bråkiga Berit", "Hänsynslöse Hannes"], ["Slaktar Sune", "Bråkiga Berit"],
            ["Boxare Bob", "Hänsynslöse Hannes"], ["Slaktar Sune", "Hänsynslöse Hannes"],
            ["Boxare Bob", "Bråkiga Berit"]]
+
 
 # tar current_match som indata i funktionen audience
 def audience(current_match, hannes, berit, sune, bob):
@@ -60,9 +62,10 @@ screen.blit(bg_image[0], (0, 0))
 screen.blit(bg_image[1], (0, 0))
 font = pygame.font.SysFont("Arial", 15)
 
-#gör en funktion för musiken i fightrutan
+
+# gör en funktion för musiken i fightrutan
 def fight_music():
-    #stoppar föregående låt
+    # stoppar föregående låt
     pygame.mixer.music.stop()
     # laddar in fight-låten
     pygame.mixer.music.load('sound_and_music/music/fight_music.ogg')
@@ -72,7 +75,7 @@ def fight_music():
 
 # gör en klass som heter player så tar vi pygame.sprite.Sprite som indata som bestämmer att objektet är en sprite
 class Player(pygame.sprite.Sprite):
-     # sätter grundinställningar för varje Player som skapas
+    # sätter grundinställningar för varje Player som skapas
     def __init__(self):
         pygame.sprite.Sprite.__init__(self)
 
@@ -95,9 +98,10 @@ class Player(pygame.sprite.Sprite):
 
     def hoppi_ti_hopp(self):
         if self.jumping:
-            self.rect.y -=8
+            self.rect.y -= 8
             if self.rect.y < 350:
                 self.jumping = False
+
 
 # skapar en funktion med self och match som indata som gör att rätt bild laddas in till rätt match
 def player_left_pics(self, match):
@@ -116,8 +120,6 @@ def player_left_pics(self, match):
             self.image = self.images[0]
             # vi sätter en rektangel som är samma storlek som den första bilden
             self.rect = self.image.get_rect()
-
-
 
     # Berit vs Hannes
     if match == 1:
@@ -145,7 +147,6 @@ def player_left_pics(self, match):
             self.images.append(img)
             self.image = self.images[0]
             self.rect = self.image.get_rect()
-
 
     # Sune vs Hannes
     if match == 4:
@@ -235,7 +236,9 @@ def player_right_pics(self, match):
             self.rect = self.image.get_rect()
             player_right.image = pygame.transform.flip(player_right.images[player_right.frame], True, False)
 
-# Gör en instans av klassen Player och lagrar den i variabeln player_right. Sätter grundinställningarna på player_right. Gör så att vi kan ändra saker åt varje gubbe
+
+# Gör en instans av klassen Player och lagrar den i variabeln player_right. Sätter grundinställningarna på
+# player_right. Gör så att vi kan ändra saker åt varje gubbe
 player_right = Player()
 # Sätter player_right till 100 hp
 player_right.hp = 100
@@ -249,6 +252,7 @@ player_left.hp = 100
 player_list = pygame.sprite.Group()
 player_list.add(player_right, player_left)
 
+
 # skapar en funktion med which och current_match som indata
 def player_name_hp_bar(which, current_match):
     font = pygame.font.SysFont("Arial", 20)
@@ -257,6 +261,7 @@ def player_name_hp_bar(which, current_match):
         screen.blit(font.render(f"{matchup[current_match][0]}", True, (255, 255, 255)), (50, 20))
     if which == 2:
         screen.blit(font.render(f"{matchup[current_match][1]}", True, (255, 255, 255)), (550, 20))
+
 
 # skapar en funktion för health bar med båda spelarna som indata
 def healthbar(player_right, player_left):
@@ -273,12 +278,14 @@ def healthbar(player_right, player_left):
         pygame.draw.rect(screen, (0, 255, 0), hp_bar2)
     pygame.display.update()
 
+
 # Skapar en funktion med player 1 och player 2 som indata som kollar om kollision har skett
 def collision(player_right, player_left):
     # kollar om kollision har skett
     col = pygame.sprite.collide_rect(player_right, player_left)
-    if col == True:
+    if col:
         return True
+
 
 # Skapar en funktion med player 1 och player 2 som indata
 def player_movement(player_right, player_left):
@@ -289,18 +296,17 @@ def player_movement(player_right, player_left):
     keys = pygame.key.get_pressed()
 
     # TODO det finns en bug där man flyger utanför skärmen om spelarna kolliderar och går åt ett håll tillsammans
-    # FIGHTER 1
-    # vänster
-    # Skapar en if-sats som ska göra att vänster pil-tangent tar gubben åt vänster. Gubben kommer aldrig utanför skärmens vänstra kant (0 på x-axeln)
+    #  FIGHTER 1 vänster Skapar en if-sats som ska göra att vänster pil-tangent tar gubben åt vänster. Gubben kommer
+    #  aldrig utanför skärmens vänstra kant (0 på x-axeln)
     if keys[pygame.K_LEFT] and player_right.rect.x > 0:
         # Gäller när vänster pil-tangent är nedtryckt
         player_right.left = True
         player_right.left += player_right.vel
         player_right.right = False
         # Kollar ifall player 1 och player 2 kolliderar
-        if collision(player_right, player_left) == True:
+        if collision(player_right, player_left):
             # Gör att spelaren åker tillbaka 5 pixlar vid kollision
-            if player_right.left == True:
+            if player_right.left:
                 player_right.rect.x += 5
         # Player 1's x-värde ändras med -1 pixel när han går åt vänster
         player_right.rect.x -= 1
@@ -319,8 +325,8 @@ def player_movement(player_right, player_left):
         # Gäller när höger pil-tangent är nedtryckt
         player_right.left = False
         player_right.right = True
-        if collision(player_right, player_left) == True:
-            if player_right.right == True:
+        if collision(player_right, player_left):
+            if player_right.right:
                 # studsar tillbaka efter kollision
                 player_right.rect.x -= 5
         # Player1's x-värde ändras med 1 pixel när man går åt höger
@@ -330,24 +336,24 @@ def player_movement(player_right, player_left):
             player_right.frame = 0
         # Eftersom bilderna vi har laddat in redan är åt höger så behöver vi ej flippa
         player_right.image = player_right.images[player_right.frame]
-# TODO - Gör så att man inte kan flyga
-    # HOPP
-    # Om den högra ctrl-tangenten är nedtryckt
-    if keys[pygame.K_UP]:
-        # hoppets höjd
-        player_right.rect.y -= 15
-        # dragningskraft
-        player_right.vel = 3
-        # invisible border max hopphöjd
-        if player_right.rect.y < 200:
-            # ändrar dragningskraften till 20 pixlar
-            player_right.vel = 20
-    # lägsta punkt
+    # TODO - Gör så att man inte kan flyga
+    if player_right.rect.y > 500:
+        if keys[pygame.K_UP]:
+            player_right.jumping = True
+            # hoppets höjd
+
+            # dragningskraft
+            player_right.vel = 3
+            # invisible border max hopphöjd
+            if player_right.rect.y < 200:
+                player_right.vel = 20
+        # lägsta punkt
+    player_right.hoppi_ti_hopp()
     if player_right.rect.y > 500:
         player_right.rect.y = 500
 
     if keys[pygame.K_RCTRL]:
-        if collision(player_right, player_left) == True:
+        if collision(player_right, player_left):
             screen.blit(font.render("Hit!", True, (255, 255, 255)), (player_left.rect.x, 400))
             effect_punch.play(0)
             print("slag")
@@ -358,8 +364,8 @@ def player_movement(player_right, player_left):
     if keys[pygame.K_a] and player_left.rect.x > player_left.vel:
         player_left.left = True
         player_left.right = False
-        if collision(player_right, player_left) == True:
-            if player_left.left == True:
+        if collision(player_right, player_left):
+            if player_left.left:
                 player_left.rect.x += 5
         player_left.rect.x -= 1
         player_left.image = pygame.transform.flip(player_left.images[player_left.frame], True, False)
@@ -371,8 +377,8 @@ def player_movement(player_right, player_left):
     if keys[pygame.K_d] and player_left.rect.x < screen_width - 40:
         player_left.left = False
         player_left.right = True
-        if collision(player_right, player_left) == True:
-            if player_left.right == True:
+        if collision(player_right, player_left):
+            if player_left.right:
                 player_left.rect.x -= 5
         player_left.rect.x += 1
         player_left.frame += 1
@@ -392,22 +398,17 @@ def player_movement(player_right, player_left):
             if player_left.rect.y < 200:
                 player_left.vel = 20
         # lägsta punkt
-    print(player_left.rect.y)
     player_left.hoppi_ti_hopp()
     if player_left.rect.y > 500:
         player_left.rect.y = 500
 
-
     if keys[pygame.K_LCTRL]:
-        if collision(player_right, player_left) == True:
+        if collision(player_right, player_left):
             screen.blit(font.render("Hit!", True, (255, 255, 255)), (player_right.rect.x, 400))
             effect_punch.play(0)
             print("slag")
             player_right.hp -= 10
             print(f"HP PLAYER 1: {player_right.hp}")
-
-
-
 
 
 # Skapar en funktion med player_right och player_right som indata
@@ -420,6 +421,7 @@ def player_dead(player_right, player_left):
     if player_left.hp <= 0:
         player_left.dead = True
         effect_dead.play(0)
+
 
 # Skapar fight-funktionen med current_match som indata
 def fight(current_match):
@@ -442,23 +444,26 @@ def fight(current_match):
     # Så länge running är True kommer spelet köras
     while running:
 
-        # Anropar en funktion som skriver ut spelare 1 och 2's namn ovanför hp-baren, namnen är beroende av vilken match som körs via current_match
+        # Anropar en funktion som skriver ut spelare 1 och 2's namn ovanför hp-baren, namnen är beroende av vilken
+        # match som körs via current_match
         player_name_hp_bar(1, current_match)
         player_name_hp_bar(2, current_match)
-        #Anropar funktionen player_dead med player_right och player 2 som indata
+        # Anropar funktionen player_dead med player_right och player 2 som indata
         player_dead(player_right, player_left)
         # Om det är True att player_right är död
-        if player_right.dead == True:
-            # Då blir vinnaren player_left i den nuvarande matchen via matchup listan och förloraren blir player_left i samma match
+        if player_right.dead:
+            # Då blir vinnaren player_left i den nuvarande matchen via matchup listan och förloraren blir player_left
+            # i samma match
             winner = matchup[current_match][0]
             loser = matchup[current_match][1]
         # Om det är True att player_right är död
-        if player_left.dead == True:
-            # Då blir vinnaren player_right i den nuvarande matchen via matchup listan och förloraren blir player_right i samma match
+        if player_left.dead:
+            # Då blir vinnaren player_right i den nuvarande matchen via matchup listan och förloraren blir
+            # player_right i samma match
             winner = matchup[current_match][1]
             loser = matchup[current_match][0]
         # Om någon av spelarna är död
-        if player_right.dead == True or player_left.dead == True:
+        if player_right.dead or player_left.dead:
             # återställer hp för båda
             player_right.hp = 100
             player_left.hp = 100
@@ -491,5 +496,3 @@ def fight(current_match):
             # Om keys.type är lika med pygame.QUIT så ska programmet stängas ned
             if keys.type == pygame.QUIT:
                 sys.exit()
-
-
