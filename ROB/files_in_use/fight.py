@@ -91,6 +91,13 @@ class Player(pygame.sprite.Sprite):
         self.hp = 100
         # skapar en variabel som bestämmer om spelaren lever eller inte
         self.dead = False
+        self.jumping = False
+
+    def hoppi_ti_hopp(self):
+        if self.jumping:
+            self.rect.y -=8
+            if self.rect.y < 350:
+                self.jumping = False
 
 # skapar en funktion med self och match som indata som gör att rätt bild laddas in till rätt match
 def player_left_pics(self, match):
@@ -338,6 +345,7 @@ def player_movement(player_right, player_left):
     # lägsta punkt
     if player_right.rect.y > 500:
         player_right.rect.y = 500
+
     if keys[pygame.K_RCTRL]:
         if collision(player_right, player_left) == True:
             screen.blit(font.render("Hit!", True, (255, 255, 255)), (player_left.rect.x, 400))
@@ -373,19 +381,22 @@ def player_movement(player_right, player_left):
         player_left.image = player_left.images[player_left.frame]
 
     # HOPP
-    if player_left.rect.y > 541:
+    if player_left.rect.y > 500:
         if keys[pygame.K_w]:
+            player_left.jumping = True
             # hoppets höjd
-            player_left.rect.y -= 15
+
             # dragningskraft
             player_left.vel = 3
             # invisible border max hopphöjd
             if player_left.rect.y < 200:
                 player_left.vel = 20
         # lägsta punkt
-        print(player_left.rect.y)
-        if player_left.rect.y > 500:
-            player_left.rect.y = 500
+    print(player_left.rect.y)
+    player_left.hoppi_ti_hopp()
+    if player_left.rect.y > 500:
+        player_left.rect.y = 500
+
 
     if keys[pygame.K_LCTRL]:
         if collision(player_right, player_left) == True:
