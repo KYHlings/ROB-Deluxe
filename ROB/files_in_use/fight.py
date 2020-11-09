@@ -113,7 +113,7 @@ def player_left_pics(self, match):
         # skapar en loop som går mellan siffrorna 0-2
         for i in range(1, 3):
             # vi skapar en variabel img som lagrar 3 st bilder (str(i) loopar igenom namnen 0-2)
-            img = pygame.image.load(f'images/sprites/sune/walking_right_{str(i)}.png')
+            img = pygame.image.load(f'images/sprites/sune/walking_right_{i}.png')
             # Lägger variabeln img i den tomma listan images
             self.images.append(img)
             # skapar ny variabel sätter värdet av första bilden (index 0) i listan self.images
@@ -125,7 +125,7 @@ def player_left_pics(self, match):
     if match == 1:
         self.images = []
         for i in range(1, 3):
-            img = pygame.image.load(f'images/sprites/berit/walking_right_yellow_{str(i)}.png')
+            img = pygame.image.load(f'images/sprites/berit/walking_right_yellow_{i}.png')
             self.images.append(img)
             self.image = self.images[0]
             self.rect = self.image.get_rect()
@@ -134,7 +134,7 @@ def player_left_pics(self, match):
     if match == 2:
         self.images = []
         for i in range(1, 3):
-            img = pygame.image.load(f'images/sune/walking_right_{str(i)}.png')
+            img = pygame.image.load(f'images/sune/walking_right_{i}.png')
             self.images.append(img)
             self.image = self.images[0]
             self.rect = self.image.get_rect()
@@ -143,7 +143,7 @@ def player_left_pics(self, match):
     if match == 3:
         self.images = []
         for i in range(1, 3):
-            img = pygame.image.load(f'images/bob/walking_right_green_{str(i)}.png')
+            img = pygame.image.load(f'images/bob/walking_right_green_{i}.png')
             self.images.append(img)
             self.image = self.images[0]
             self.rect = self.image.get_rect()
@@ -152,7 +152,7 @@ def player_left_pics(self, match):
     if match == 4:
         self.images = []
         for i in range(1, 3):
-            img = pygame.image.load(f'images/sune/walking_right_{str(i)}.png')
+            img = pygame.image.load(f'images/sune/walking_right_{i}.png')
             self.images.append(img)
             self.image = self.images[0]
             self.rect = self.image.get_rect()
@@ -161,7 +161,7 @@ def player_left_pics(self, match):
     if match == 5:
         self.images = []
         for i in range(1, 3):
-            img = pygame.image.load(f'images/bob/walking_right_green_{str(i)}.png')
+            img = pygame.image.load(f'images/bob/walking_right_green_{i}.png')
             self.images.append(img)
             self.image = self.images[0]
             self.rect = self.image.get_rect()
@@ -175,7 +175,7 @@ def player_right_pics(self, match):
     if match == 0:
         self.images = []
         for i in range(1, 3):
-            img = pygame.image.load(f'images/sprites/bob/walking_right_green_{str(i)}.png')
+            img = pygame.image.load(f'images/sprites/bob/walking_right_green_{i}.png')
             self.images.append(img)
             self.image = self.images[0]
             self.rect = self.image.get_rect()
@@ -187,7 +187,7 @@ def player_right_pics(self, match):
     if match == 1:
         self.images = []
         for i in range(1, 3):
-            img = pygame.image.load(f'images/sprites/hannes/walking_right_purple_{str(i)}.png')
+            img = pygame.image.load(f'images/sprites/hannes/walking_right_purple_{i}.png')
             self.images.append(img)
             self.image = self.images[0]
             self.rect = self.image.get_rect()
@@ -198,7 +198,7 @@ def player_right_pics(self, match):
     if match == 2:
         self.images = []
         for i in range(1, 3):
-            img = pygame.image.load(f'images/sprites/berit/walking_right_yellow_{str(i)}.png')
+            img = pygame.image.load(f'images/sprites/berit/walking_right_yellow_{i}.png')
             self.images.append(img)
             self.image = self.images[0]
             self.rect = self.image.get_rect()
@@ -209,7 +209,7 @@ def player_right_pics(self, match):
     if match == 3:
         self.images = []
         for i in range(1, 3):
-            img = pygame.image.load(f'images/sprites/hannes/walking_right_purple_{str(i)}.png')
+            img = pygame.image.load(f'images/sprites/hannes/walking_right_purple_{i}.png')
             self.images.append(img)
             self.image = self.images[0]
             self.rect = self.image.get_rect()
@@ -220,7 +220,7 @@ def player_right_pics(self, match):
     if match == 4:
         self.images = []
         for i in range(1, 3):
-            img = pygame.image.load(f'images/sprites/hannes/walking_right_purple_{str(i)}.png')
+            img = pygame.image.load(f'images/sprites/hannes/walking_right_purple_{i}.png')
             self.images.append(img)
             self.image = self.images[0]
             self.rect = self.image.get_rect()
@@ -230,7 +230,7 @@ def player_right_pics(self, match):
     if match == 5:
         self.images = []
         for i in range(1, 3):
-            img = pygame.image.load(f'images/sprites/berit/walking_right_yellow_{str(i)}.png')
+            img = pygame.image.load(f'images/sprites/berit/walking_right_yellow_{i}.png')
             self.images.append(img)
             self.image = self.images[0]
             self.rect = self.image.get_rect()
@@ -256,7 +256,8 @@ player_list.add(player_right, player_left)
 # skapar en funktion med which och current_match som indata
 def player_name_hp_bar(which, current_match):
     font = pygame.font.SysFont("Arial", 20)
-    # bestämmer vart spelarnas namn skall visas. Spelarnas namn ändras efter varje match genom att kolla i matchup listan
+    # bestämmer vart spelarnas namn skall visas. Spelarnas namn ändras efter varje match genom att kolla i matchup
+    # listan
     if which == 1:
         screen.blit(font.render(f"{matchup[current_match][0]}", True, (255, 255, 255)), (50, 20))
     if which == 2:

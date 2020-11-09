@@ -61,7 +61,7 @@ def show_stats(score1, score2, score3, score4):
 def lobby_window():
     # stoppar main_menu/fight musiken och laddar lobby-musiken
     pygame.mixer.music.stop()
-    pygame.mixer.music.load("sound_and_music/music/casino_music.wav")
+    pygame.mixer.music.load("sound_and_music/music/rob_lounge.mp3")
     pygame.mixer.music.play(-1)
     # laddar in lobby bakgrundsbilden och fight sign bilden
     casino_bg = pygame.image.load('images/backgrounds/casino.png')
@@ -79,7 +79,7 @@ def lobby_window():
 
 def player_bars(winner):
     # Målar ut en text-sträng som visar den föregående vinnaren, med anitalias som True, färgen på texten vit och
-	# koordinater
+    # koordinater
     screen.blit(font.render(f"Previous winnner: {winner}", True, (255, 255, 255)), (100, 530))
     # Uppdaterar skärmen
     pygame.display.update()
