@@ -423,6 +423,7 @@ def player_movement(player_right, player_left):
     if player_right.recently_hit:
         player_right.recently_hit = player_hit_right(player_right.time_hit)
 
+
 def player_hit_right(hit_timer):
     if pygame.time.get_ticks() - hit_timer >= 1500:
         return False
@@ -431,10 +432,10 @@ def player_hit_right(hit_timer):
         return True
 
 
-def player_hit_left(player_recently_hit, hit_timer):
+def player_hit_left(hit_timer):
     if pygame.time.get_ticks() - hit_timer >= 1500:
         return False
-    if player_recently_hit:
+    else:
         screen.blit(font.render("Hit!", True, (255, 255, 255)), (player_left.rect.x, 400))
         return True
 

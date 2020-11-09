@@ -64,7 +64,7 @@ def lobby_window():
     pygame.mixer.music.load("sound_and_music/music/rob_lounge.mp3")
     pygame.mixer.music.play(-1)
     # laddar in lobby bakgrundsbilden och fight sign bilden
-    casino_bg = pygame.image.load('images/backgrounds/casino.png')
+    casino_bg = pygame.image.load('images/backgrounds/dice_bg.jpg')
     fight_sign = pygame.image.load('images/gui/fight_sign.png')
     # Skapar en osynlig rektangel
     fight_button = pygame.Rect(250, 50, 300, 100)
