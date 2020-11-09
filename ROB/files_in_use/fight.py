@@ -53,7 +53,7 @@ effect_KICK = pygame.mixer.Sound('sound_and_music/sound/KICK.wav')
 
 # fps
 fps_clock = pygame.time.Clock()
-fps = 357
+fps = 600
 
 # TODO loopa bakrundsbilderna så att bilden ser "rörlig" ut
 screen.blit(bg_image[0], (0, 0))
@@ -373,17 +373,19 @@ def player_movement(player_right, player_left):
         player_left.image = player_left.images[player_left.frame]
 
     # HOPP
-    if keys[pygame.K_w]:
-        # hoppets höjd
-        player_left.rect.y -= 15
-        # dragningskraft
-        player_left.vel = 3
-        # invisible border max hopphöjd
-        if player_left.rect.y < 200:
-            player_left.vel = 20
-    # lägsta punkt
-    if player_left.rect.y > 500:
-        player_left.rect.y = 500
+    if player_left.rect.y > 541:
+        if keys[pygame.K_w]:
+            # hoppets höjd
+            player_left.rect.y -= 15
+            # dragningskraft
+            player_left.vel = 3
+            # invisible border max hopphöjd
+            if player_left.rect.y < 200:
+                player_left.vel = 20
+        # lägsta punkt
+        print(player_left.rect.y)
+        if player_left.rect.y > 500:
+            player_left.rect.y = 500
 
     if keys[pygame.K_LCTRL]:
         if collision(player_right, player_left) == True:
