@@ -68,7 +68,7 @@ def fight_music():
     # stoppar föregående låt
     pygame.mixer.music.stop()
     # laddar in fight-låten
-    pygame.mixer.music.load('sound_and_music/music/fight_music.ogg')
+    pygame.mixer.music.load('sound_and_music/music/rob_fight.mp3')
     # spelar fightlåten om och om igen
     pygame.mixer.music.play(-1)
 

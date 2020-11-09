@@ -7,7 +7,7 @@ def main_menu():
     pygame.mixer.init()
 
 
-    pygame.mixer.music.load("sound_and_music/music/menu_music.ogg")
+    pygame.mixer.music.load("sound_and_music/music/rob_title.mp3")
     pygame.mixer.music.play(-1)
     screen = pygame.display.set_mode((800, 600))
 
