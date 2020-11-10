@@ -178,6 +178,7 @@ def player_right_pics(self, match):
         self.images = []
         for i in range(1, 3):
             img = pygame.image.load(f'images/sprites/green{i}.png').convert_alpha()
+            player_right.mask = pygame.mask.from_surface(img)
             self.images.append(img)
             self.image = self.images[0]
             self.rect = self.image.get_rect()
@@ -228,6 +229,7 @@ def player_right_pics(self, match):
             self.image = self.images[0]
             self.rect = self.image.get_rect()
             player_right.image = pygame.transform.flip(player_right.images[player_right.frame], True, False)
+
 
     # Bob vs Berit
     if match == 5:
@@ -284,10 +286,18 @@ def healthbar(player_right, player_left):
 
 
 # Skapar en funktion med player 1 och player 2 som indata som kollar om kollision har skett
-def collision(player_right, player_left):
-    # kollar om kollision har skett
-    col = pygame.sprite.collide_rect(player_right, player_left)
-    if col:
+ #def collision(player_right, player_left):
+#     # kollar om kollision har skett
+#     col = pygame.sprite.collide_rect(player_right, player_left)
+#     if col:
+#         return True
+def collision(player_1, player_2):
+    # Checks collision between mobs and player
+    (mx, my) = (player_1.rect[0], player_1.rect[1])
+    px = mx - player_2.rect[0]
+    py = my - player_2.rect[1]
+    overlap = player_2.player_mask.overlap(player_1.mob_mask, (px, py))
+    if overlap:
         return True
 
 
