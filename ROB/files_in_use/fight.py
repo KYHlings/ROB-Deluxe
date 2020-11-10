@@ -355,7 +355,7 @@ def player_movement(player_right, player_left):
         # Gör så bilderna plussas på och animation skapas av att gubben går till vänster
         player_right.frame += 1
         # Om man plussat upp till index 2 så går den tillbaka till 0 (0, 1, 2...0, 1, 2...)
-        if player_right.frame == 2:
+        if player_right.frame == 16:
             player_right.frame = 0
 
     # höger
@@ -372,7 +372,7 @@ def player_movement(player_right, player_left):
         # Player1's x-värde ändras med 1 pixel när man går åt höger
         player_right.rect.x += 1
         player_right.frame += 1
-        if player_right.frame == 2:
+        if player_right.frame == 16:
             player_right.frame = 0
         # Eftersom bilderna vi har laddat in redan är åt höger så behöver vi ej flippa
         player_right.image = player_right.images[player_right.frame]
@@ -380,17 +380,21 @@ def player_movement(player_right, player_left):
     if player_right.rect.y > 450:
         if keys[pygame.K_UP]:
             player_right.jumping = True
+            player_right.ascending = True
             # hoppets höjd
-
             # dragningskraft
             player_right.vel = 3
             # invisible border max hopphöjd
             if player_right.rect.y < 100:
                 player_right.vel = 20
+
+
         # lägsta punkt
     player_right.hoppi_ti_hopp()
     if player_right.rect.y > 450:
         player_right.rect.y = 450
+
+
 
     if keys[pygame.K_RCTRL]:
         player_right.attacking = True
@@ -568,6 +572,10 @@ def fight(current_match):
         #print(player_left.jumping)
         if player_left.jumping:
             player_left.image = player_left.images[4]
+
+        if player_right.jumping:
+            player_right.image = player_right.images[4]
+            player_right.image = pygame.transform.flip(player_right.image, True, False)
         #print(player_right.attack_time)
         if player_right.attacking:
             if player_right.attack_time < 8 or player_right.attacking > 20:
