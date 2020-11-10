@@ -1,5 +1,6 @@
 import pygame
 import sys
+
 # TODO - Fixa så man kan se vem som vann bettet i winner-screen
 
 pygame.init()
@@ -9,51 +10,54 @@ black = (0, 0, 0)
 screen_width = 800
 screen_height = 600
 screen = pygame.display.set_mode((screen_width, screen_height))
-bg_image = [pygame.image.load('images/backgrounds/arena_bakgrund_0.png'), pygame.image.load('images/backgrounds/arena_bakgrund_1.png')]
-sune_dead = pygame.image.load("images/sprites/sune/player_dead.png")
-berit_dead = pygame.image.load("images/sprites/berit/Berit_dead.png")
-bob_dead = pygame.image.load("images/sprites/bob/Bob_dead.png")
-hannes_dead = pygame.image.load("images/sprites/hannes/Hannes_dead.png")
+bg_image = pygame.image.load('images/backgrounds/arena_background.jpg')
+bg_image = pygame.transform.scale(bg_image, (800, 600))
+
+
+# sune_dead = pygame.image.load("images/sprites/sune/player_dead.png")
+# berit_dead = pygame.image.load("images/sprites/berit/Berit_dead.png")
+# bob_dead = pygame.image.load("images/sprites/bob/Bob_dead.png")
+# hannes_dead = pygame.image.load("images/sprites/hannes/Hannes_dead.png")
 # sune_winner = pygame.image.load("images/sprites//sprites/winner.png")
 # berit_winner = pygame.image.load("images/sprites//sprites/winner_berit.png")
 # bob_winner = pygame.image.load("images/sprites//sprites/winner_bob.png")
 # hannes_winner = pygame.image.load("images/sprites//sprites/winner_hannes.png")
 
-def audience(current_match):
-    hannes = pygame.image.load('images/sprites/hannes/walking_right_purple_0.png')
-    berit = pygame.image.load('images/sprites/berit/walking_right_yellow_0.png')
-    sune = pygame.image.load('images/sprites/sune/walking_right_0.png')
-    bob = pygame.image.load('images/sprites/bob/walking_right_green_0.png')
-    if current_match == 0:
-        screen.blit(hannes, (40, 170))
-        screen.blit(berit, (70, 170))
-    if current_match == 1:
-        screen.blit(sune, (40, 170))
-        screen.blit(bob, (70, 170))
-    if current_match == 2:
-        screen.blit(hannes, (40, 170))
-        screen.blit(bob, (70, 170))
-    if current_match == 3:
-        screen.blit(sune, (40, 170))
-        screen.blit(berit, (70, 170))
-    if current_match == 4:
-        screen.blit(bob, (40, 170))
-        screen.blit(berit, (70, 170))
-    if current_match == 5:
-        screen.blit(sune, (40, 170))
-        screen.blit(hannes, (70, 170))
+# def audience(current_match):
+#     hannes = pygame.image.load('images/sprites/hannes/walking_right_purple_0.png')
+#     berit = pygame.image.load('images/sprites/berit/walking_right_yellow_0.png')
+#     sune = pygame.image.load('images/sprites/sune/walking_right_0.png')
+#     bob = pygame.image.load('images/sprites/bob/walking_right_green_0.png')
+#     if current_match == 0:
+#         screen.blit(hannes, (40, 170))
+#         screen.blit(berit, (70, 170))
+#     if current_match == 1:
+#         screen.blit(sune, (40, 170))
+#         screen.blit(bob, (70, 170))
+#     if current_match == 2:
+#         screen.blit(hannes, (40, 170))
+#         screen.blit(bob, (70, 170))
+#     if current_match == 3:
+#         screen.blit(sune, (40, 170))
+#         screen.blit(berit, (70, 170))
+#     if current_match == 4:
+#         screen.blit(bob, (40, 170))
+#         screen.blit(berit, (70, 170))
+#     if current_match == 5:
+#         screen.blit(sune, (40, 170))
+#         screen.blit(hannes, (70, 170))
 
 
 def winner_screen(winner, loser, current_match):
-    #winner_char = pygame.image.load("images/sprites/winner.png")
-    sune_winner = pygame.image.load("images/sprites/sune/winner.png")
-    berit_winner = pygame.image.load("images/sprites/berit/winner_berit.png")
-    bob_winner = pygame.image.load("images/sprites/bob/winner_bob.png")
-    hannes_winner = pygame.image.load("images/sprites/hannes/winner_hannes.png")
+    # winner_char = pygame.image.load("images/sprites/winner.png")
+    sune_winner = pygame.image.load("images/sprites/sune/red1.png")
+    berit_winner = pygame.image.load("images/sprites/berit/yellow1.png")
+    bob_winner = pygame.image.load("images/sprites/bob/green1.png")
+    hannes_winner = pygame.image.load("images/sprites/hannes/blue1.png")
     running = True
     while running:
-        screen.blit(bg_image[0],(0, 0))
-        audience(current_match)
+        screen.blit(bg_image, (0, 0))
+        # audience(current_match)
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 sys.exit()
@@ -70,31 +74,18 @@ def winner_screen(winner, loser, current_match):
                     if winner == "Bråkiga Berit":
                         berit_winner = pygame.transform.flip(berit_winner, True, False)
 
-
-        screen.blit(font.render(f"Winner is: {winner}", True, (255, 255, 255)), (screen_width/4, 50))
-        screen.blit(font2.render(f"Press [SPACE] to celebrate", True, (255, 255, 255)), (screen_width/3, 90))
-        screen.blit(font2.render("Press [ENTER] to continue", True, (255, 255, 255)), (screen_width/3, 105))
-        winner_loser_cel(berit_winner, bob_winner, hannes_winner, loser, sune_winner, winner)
-        #for pix in range(550, 400):
-
-            #pygame.display.update()
+        screen.blit(font.render(f"Winner is: {winner}", True, (255, 255, 255)), (screen_width / 4, 50))
+        screen.blit(font2.render(f"Press [SPACE] to celebrate", True, (255, 255, 255)), (screen_width / 3, 90))
+        screen.blit(font2.render("Press [ENTER] to continue", True, (255, 255, 255)), (screen_width / 3, 105))
+        winner_cel(berit_winner, bob_winner, hannes_winner, sune_winner, winner)
         pygame.display.update()
 
-
-def winner_loser_cel(berit_winner, bob_winner, hannes_winner, loser, sune_winner, winner):
-    if loser == "Slaktar Sune":
-        screen.blit(sune_dead, (400, 550))
-    if loser == "Boxare Bob":
-        screen.blit(bob_dead, (400, 550))
-    if loser == "Hänsynslöse Hannes":
-        screen.blit(hannes_dead, (400, 550))
-    if loser == "Bråkiga Berit":
-        screen.blit(berit_dead, (400, 550))
+def winner_cel(berit_winner, bob_winner, hannes_winner, sune_winner, winner):
     if winner == "Slaktar Sune":
-        screen.blit(sune_winner, (400, 500))
+        screen.blit(sune_winner, (350, 450))
     if winner == "Boxare Bob":
-        screen.blit(bob_winner, (400, 500))
+        screen.blit(bob_winner, (350, 450))
     if winner == "Hänsynslöse Hannes":
-        screen.blit(hannes_winner, (400, 500))
+        screen.blit(hannes_winner, (350, 450))
     if winner == "Bråkiga Berit":
-        screen.blit(berit_winner, (400, 500))
+        screen.blit(berit_winner, (350, 450))
