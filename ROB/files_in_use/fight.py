@@ -54,7 +54,7 @@ effect_KICK = pygame.mixer.Sound('sound_and_music/sound/KICK.wav')
 
 # fps
 fps_clock = pygame.time.Clock()
-fps = 9999
+fps = 120
 
 # TODO loopa bakrundsbilderna så att bilden ser "rörlig" ut
 screen.blit(bg_image, (0, 0))
@@ -119,15 +119,16 @@ def player_left_pics(self, match):
         # Återställer self.images listan så att den blir tom inför nästa fight
         # skapar en loop som går mellan siffrorna 0-2
         self.images = []
-        for i in range(1, 17):
-            if i == 1 or i == 2 or i == 3 or i == 4:
+        for i in range(1, 33):
+            if i == 1 or i == 2 or i == 3 or i == 4 or i == 5 or i == 6 or i == 7 or i == 8:
                 j = 1
-            if i == 5 or i == 6 or i == 7 or i == 8:
+            if i == 9 or i == 10 or i == 11 or i == 12 or i == 13 or i == 14 or i == 15 or i == 16:
                 j = 2
-            if i == 9 or i == 10 or i == 11 or i == 12:
+            if i == 17 or i == 18 or i == 19 or i == 20 or i == 21 or i == 22 or i == 23 or i == 24:
                 j = 3
-            if i == 13 or i == 14 or i == 15 or i == 16:
+            if i == 25 or i == 26 or i == 27 or i == 28 or i == 29 or i == 30 or i == 31 or i == 32:
                 j = 4
+
             img = pygame.image.load(f'images/sprites/sune/red{j}.png').convert_alpha()
             self.mask = pygame.mask.from_surface(img)
             self.images.append(img)
@@ -139,14 +140,14 @@ def player_left_pics(self, match):
     # Berit vs Hannes
     if match == 1:
         self.images = []
-        for i in range(1, 17):
-            if i == 1 or i == 2 or i == 3 or i == 4:
+        for i in range(1, 33):
+            if i == 1 or i == 2 or i == 3 or i == 4 or i == 5 or i == 6 or i == 7 or i == 8:
                 j = 1
-            if i == 5 or i == 6 or i == 7 or i == 8:
+            if i == 9 or i == 10 or i == 11 or i == 12 or i == 13 or i == 14 or i == 15 or i == 16:
                 j = 2
-            if i == 9 or i == 10 or i == 11 or i == 12:
+            if i == 17 or i == 18 or i == 19 or i == 20 or i == 21 or i == 22 or i == 23 or i == 24:
                 j = 3
-            if i == 13 or i == 14 or i == 15 or i == 16:
+            if i == 25 or i == 26 or i == 27 or i == 28 or i == 29 or i == 30 or i == 31 or i == 32:
                 j = 4
             img = pygame.image.load(f'images/sprites/berit/yellow{j}.png').convert_alpha()
             self.mask = pygame.mask.from_surface(img)
@@ -159,15 +160,16 @@ def player_left_pics(self, match):
     # Sune vs Berit
     if match == 2:
         self.images = []
-        for i in range(1, 17):
-            if i == 1 or i == 2 or i == 3 or i == 4:
+        for i in range(1, 33):
+            if i == 1 or i == 2 or i == 3 or i == 4 or i == 5 or i == 6 or i == 7 or i == 8:
                 j = 1
-            if i == 5 or i == 6 or i == 7 or i == 8:
+            if i == 9 or i == 10 or i == 11 or i == 12 or i == 13 or i == 14 or i == 15 or i == 16:
                 j = 2
-            if i == 9 or i == 10 or i == 11 or i == 12:
+            if i == 17 or i == 18 or i == 19 or i == 20 or i == 21 or i == 22 or i == 23 or i == 24:
                 j = 3
-            if i == 13 or i == 14 or i == 15 or i == 16:
+            if i == 25 or i == 26 or i == 27 or i == 28 or i == 29 or i == 30 or i == 31 or i == 32:
                 j = 4
+
             img = pygame.image.load(f'images/sprites/sune/red{j}.png').convert_alpha()
             self.mask = pygame.mask.from_surface(img)
             self.images.append(img)
@@ -179,15 +181,16 @@ def player_left_pics(self, match):
     # Bob vs Hannes
     if match == 3:
         self.images = []
-        for i in range(1, 17):
-            if i == 1 or i == 2 or i == 3 or i == 4:
+        for i in range(1, 33):
+            if i == 1 or i == 2 or i == 3 or i == 4 or i == 5 or i == 6 or i == 7 or i == 8:
                 j = 1
-            if i == 5 or i == 6 or i == 7 or i == 8:
+            if i == 9 or i == 10 or i == 11 or i == 12 or i == 13 or i == 14 or i == 15 or i == 16:
                 j = 2
-            if i == 9 or i == 10 or i == 11 or i == 12:
+            if i == 17 or i == 18 or i == 19 or i == 20 or i == 21 or i == 22 or i == 23 or i == 24:
                 j = 3
-            if i == 13 or i == 14 or i == 15 or i == 16:
+            if i == 25 or i == 26 or i == 27 or i == 28 or i == 29 or i == 30 or i == 31 or i == 32:
                 j = 4
+
             img = pygame.image.load(f'images/sprites/bob/green{j}.png').convert_alpha()
             self.mask = pygame.mask.from_surface(img)
             self.images.append(img)
@@ -199,15 +202,16 @@ def player_left_pics(self, match):
     # Sune vs Hannes
     if match == 4:
         self.images = []
-        for i in range(1, 17):
-            if i == 1 or i == 2 or i == 3 or i == 4:
+        for i in range(1, 33):
+            if i == 1 or i == 2 or i == 3 or i == 4 or i == 5 or i == 6 or i == 7 or i == 8:
                 j = 1
-            if i == 5 or i == 6 or i == 7 or i == 8:
+            if i == 9 or i == 10 or i == 11 or i == 12 or i == 13 or i == 14 or i == 15 or i == 16:
                 j = 2
-            if i == 9 or i == 10 or i == 11 or i == 12:
+            if i == 17 or i == 18 or i == 19 or i == 20 or i == 21 or i == 22 or i == 23 or i == 24:
                 j = 3
-            if i == 13 or i == 14 or i == 15 or i == 16:
+            if i == 25 or i == 26 or i == 27 or i == 28 or i == 29 or i == 30 or i == 31 or i == 32:
                 j = 4
+
             img = pygame.image.load(f'images/sprites/sune/red{j}.png').convert_alpha()
             self.mask = pygame.mask.from_surface(img)
             self.images.append(img)
@@ -219,15 +223,16 @@ def player_left_pics(self, match):
     # Bob vs Berit
     if match == 5:
         self.images = []
-        for i in range(1, 17):
-            if i == 1 or i == 2 or i == 3 or i == 4:
+        for i in range(1, 33):
+            if i == 1 or i == 2 or i == 3 or i == 4 or i == 5 or i == 6 or i == 7 or i == 8:
                 j = 1
-            if i == 5 or i == 6 or i == 7 or i == 8:
+            if i == 9 or i == 10 or i == 11 or i == 12 or i == 13 or i == 14 or i == 15 or i == 16:
                 j = 2
-            if i == 9 or i == 10 or i == 11 or i == 12:
+            if i == 17 or i == 18 or i == 19 or i == 20 or i == 21 or i == 22 or i == 23 or i == 24:
                 j = 3
-            if i == 13 or i == 14 or i == 15 or i == 16:
+            if i == 25 or i == 26 or i == 27 or i == 28 or i == 29 or i == 30 or i == 31 or i == 32:
                 j = 4
+
             img = pygame.image.load(f'images/sprites/bob/green{j}.png').convert_alpha()
             self.mask = pygame.mask.from_surface(img)
             self.images.append(img)
@@ -244,15 +249,16 @@ def player_right_pics(self, match):
     # TODO kan möjligvis krasha på index error för att player_right.frame är 2, håll koll vid testning.
     if match == 0:
         self.images = []
-        for i in range(1, 17):
-            if i == 1 or i == 2 or i == 3 or i == 4:
+        for i in range(1, 33):
+            if i == 1 or i == 2 or i == 3 or i == 4 or i == 5 or i == 6 or i == 7 or i == 8:
                 j = 1
-            if i == 5 or i == 6 or i == 7 or i == 8:
+            if i == 9 or i == 10 or i == 11 or i == 12 or i == 13 or i == 14 or i == 15 or i == 16:
                 j = 2
-            if i == 9 or i == 10 or i == 11 or i == 12:
+            if i == 17 or i == 18 or i == 19 or i == 20 or i == 21 or i == 22 or i == 23 or i == 24:
                 j = 3
-            if i == 13 or i == 14 or i == 15 or i == 16:
+            if i == 25 or i == 26 or i == 27 or i == 28 or i == 29 or i == 30 or i == 31 or i == 32:
                 j = 4
+
             img = pygame.image.load(f'images/sprites/bob/green{j}.png').convert_alpha()
             self.mask = pygame.mask.from_surface(img)
             self.images.append(img)
@@ -267,15 +273,16 @@ def player_right_pics(self, match):
 
     if match == 1:
         self.images = []
-        for i in range(1, 17):
-            if i == 1 or i == 2 or i == 3 or i == 4:
+        for i in range(1, 33):
+            if i == 1 or i == 2 or i == 3 or i == 4 or i == 5 or i == 6 or i == 7 or i == 8:
                 j = 1
-            if i == 5 or i == 6 or i == 7 or i == 8:
+            if i == 9 or i == 10 or i == 11 or i == 12 or i == 13 or i == 14 or i == 15 or i == 16:
                 j = 2
-            if i == 9 or i == 10 or i == 11 or i == 12:
+            if i == 17 or i == 18 or i == 19 or i == 20 or i == 21 or i == 22 or i == 23 or i == 24:
                 j = 3
-            if i == 13 or i == 14 or i == 15 or i == 16:
+            if i == 25 or i == 26 or i == 27 or i == 28 or i == 29 or i == 30 or i == 31 or i == 32:
                 j = 4
+
             img = pygame.image.load(f'images/sprites/hannes/blue{j}.png').convert_alpha()
             self.mask = pygame.mask.from_surface(img)
             self.images.append(img)
@@ -290,15 +297,16 @@ def player_right_pics(self, match):
 
     if match == 2:
         self.images = []
-        for i in range(1, 17):
-            if i == 1 or i == 2 or i == 3 or i == 4:
+        for i in range(1, 33):
+            if i == 1 or i == 2 or i == 3 or i == 4 or i == 5 or i == 6 or i == 7 or i == 8:
                 j = 1
-            if i == 5 or i == 6 or i == 7 or i == 8:
+            if i == 9 or i == 10 or i == 11 or i == 12 or i == 13 or i == 14 or i == 15 or i == 16:
                 j = 2
-            if i == 9 or i == 10 or i == 11 or i == 12:
+            if i == 17 or i == 18 or i == 19 or i == 20 or i == 21 or i == 22 or i == 23 or i == 24:
                 j = 3
-            if i == 13 or i == 14 or i == 15 or i == 16:
+            if i == 25 or i == 26 or i == 27 or i == 28 or i == 29 or i == 30 or i == 31 or i == 32:
                 j = 4
+
             img = pygame.image.load(f'images/sprites/berit/yellow{j}.png').convert_alpha()
             self.mask = pygame.mask.from_surface(img)
             self.images.append(img)
@@ -313,15 +321,16 @@ def player_right_pics(self, match):
 
     if match == 3:
         self.images = []
-        for i in range(1, 17):
-            if i == 1 or i == 2 or i == 3 or i == 4:
+        for i in range(1, 33):
+            if i == 1 or i == 2 or i == 3 or i == 4 or i == 5 or i == 6 or i == 7 or i == 8:
                 j = 1
-            if i == 5 or i == 6 or i == 7 or i == 8:
+            if i == 9 or i == 10 or i == 11 or i == 12 or i == 13 or i == 14 or i == 15 or i == 16:
                 j = 2
-            if i == 9 or i == 10 or i == 11 or i == 12:
+            if i == 17 or i == 18 or i == 19 or i == 20 or i == 21 or i == 22 or i == 23 or i == 24:
                 j = 3
-            if i == 13 or i == 14 or i == 15 or i == 16:
+            if i == 25 or i == 26 or i == 27 or i == 28 or i == 29 or i == 30 or i == 31 or i == 32:
                 j = 4
+
             img = pygame.image.load(f'images/sprites/hannes/blue{j}.png').convert_alpha()
             self.mask = pygame.mask.from_surface(img)
             self.images.append(img)
@@ -336,15 +345,16 @@ def player_right_pics(self, match):
 
     if match == 4:
         self.images = []
-        for i in range(1, 17):
-            if i == 1 or i == 2 or i == 3 or i == 4:
+        for i in range(1, 33):
+            if i == 1 or i == 2 or i == 3 or i == 4 or i == 5 or i == 6 or i == 7 or i == 8:
                 j = 1
-            if i == 5 or i == 6 or i == 7 or i == 8:
+            if i == 9 or i == 10 or i == 11 or i == 12 or i == 13 or i == 14 or i == 15 or i == 16:
                 j = 2
-            if i == 9 or i == 10 or i == 11 or i == 12:
+            if i == 17 or i == 18 or i == 19 or i == 20 or i == 21 or i == 22 or i == 23 or i == 24:
                 j = 3
-            if i == 13 or i == 14 or i == 15 or i == 16:
+            if i == 25 or i == 26 or i == 27 or i == 28 or i == 29 or i == 30 or i == 31 or i == 32:
                 j = 4
+
             img = pygame.image.load(f'images/sprites/hannes/blue{j}.png').convert_alpha()
             self.mask = pygame.mask.from_surface(img)
             self.images.append(img)
@@ -358,15 +368,16 @@ def player_right_pics(self, match):
     # Bob vs Berit
     if match == 5:
         self.images = []
-        for i in range(1, 17):
-            if i == 1 or i == 2 or i == 3 or i == 4:
+        for i in range(1, 33):
+            if i == 1 or i == 2 or i == 3 or i == 4 or i == 5 or i == 6 or i == 7 or i == 8:
                 j = 1
-            if i == 5 or i == 6 or i == 7 or i == 8:
+            if i == 9 or i == 10 or i == 11 or i == 12 or i == 13 or i == 14 or i == 15 or i == 16:
                 j = 2
-            if i == 9 or i == 10 or i == 11 or i == 12:
+            if i == 17 or i == 18 or i == 19 or i == 20 or i == 21 or i == 22 or i == 23 or i == 24:
                 j = 3
-            if i == 13 or i == 14 or i == 15 or i == 16:
+            if i == 25 or i == 26 or i == 27 or i == 28 or i == 29 or i == 30 or i == 31 or i == 32:
                 j = 4
+
             img = pygame.image.load(f'images/sprites/berit/yellow{j}.png').convert_alpha()
             self.mask = pygame.mask.from_surface(img)
             self.images.append(img)
@@ -465,7 +476,7 @@ def player_movement(player_right, player_left):
         # Gör så bilderna plussas på och animation skapas av att gubben går till vänster
         player_right.frame += 1
         # Om man plussat upp till index 2 så går den tillbaka till 0 (0, 1, 2...0, 1, 2...)
-        if player_right.frame == 16:
+        if player_right.frame == 32:
             player_right.frame = 0
 
     # höger
@@ -482,7 +493,7 @@ def player_movement(player_right, player_left):
         # Player1's x-värde ändras med 1 pixel när man går åt höger
         player_right.rect.x += 1
         player_right.frame += 1
-        if player_right.frame == 16:
+        if player_right.frame == 32:
             player_right.frame = 0
         # Eftersom bilderna vi har laddat in redan är åt höger så behöver vi ej flippa
         player_right.image = player_right.images[player_right.frame]
@@ -519,7 +530,7 @@ def player_movement(player_right, player_left):
         player_left.rect.x -= 1
         player_left.image = pygame.transform.flip(player_left.images[player_left.frame], True, False)
         player_left.frame += 1
-        if player_left.frame == 16:
+        if player_left.frame == 32:
             player_left.frame = 0
 
     # höger
@@ -531,7 +542,7 @@ def player_movement(player_right, player_left):
                 player_left.rect.x -= 5
         player_left.rect.x += 1
         player_left.frame += 1
-        if player_left.frame == 16:
+        if player_left.frame == 32:
             player_left.frame = 0
         player_left.image = player_left.images[player_left.frame]
 
@@ -676,10 +687,10 @@ def fight(current_match):
 
         # print(player_left.jumping)
         if player_left.jumping:
-            player_left.image = player_left.images[4]
+            player_left.image = player_left.images[31]
 
         if player_right.jumping:
-            player_right.image = player_right.images[4]
+            player_right.image = player_right.images[31]
             player_right.image = pygame.transform.flip(player_right.image, True, False)
         # print(player_right.attack_time)
         if player_right.attacking:
