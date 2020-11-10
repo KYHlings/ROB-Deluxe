@@ -55,7 +55,7 @@ effect_KICK = pygame.mixer.Sound('sound_and_music/sound/KICK.wav')
 
 # fps
 fps_clock = pygame.time.Clock()
-fps = 20
+fps = 60
 
 # TODO loopa bakrundsbilderna så att bilden ser "rörlig" ut
 screen.blit(bg_image[0], (0, 0))
@@ -106,22 +106,37 @@ class Player(pygame.sprite.Sprite):
 
 
 # skapar en funktion med self och match som indata som gör att rätt bild laddas in till rätt match
-def player_left_pics(self, match):
+def player_left_pics(self, match, jumping):
     # Sune är röd, Bob är grön, Berit är gul, Hannes är lila
     # Sune vs Bob
     if match == 0:
         # Återställer self.images listan så att den blir tom inför nästa fight
         # skapar en loop som går mellan siffrorna 0-2
         self.images = []
-        for i in range(1, 13):
+        if jumping:
+            img = pygame.image.load(f'images/sprites/bob/green2.png').convert_alpha()
+        else:
+            for i in range(1, 17):
+                print(i)
+                if i == 1 or i == 2 or i == 3 or i == 4:
+                    j = 1
+                if i == 5 or i == 6 or i == 7 or i == 8:
+                    j = 2
+                if i == 9 or i == 10 or i == 11 or i == 12:
+                    j = 3
+                if i == 13 or i == 14 or i == 15 or i == 16:
+                    j = 4
+                print(j)
+                img = pygame.image.load(f'images/sprites/bob/green{j}.png').convert_alpha()
+        for i in range(1, 17):
             print(i)
-            if i == 1 or i == 2 or i == 3:
+            if i == 1 or i == 2 or i == 3 or i == 4:
                 j = 1
-            if i == 4 or i == 5 or i == 6:
+            if i == 5 or i == 6 or i == 7 or i == 8:
                 j = 2
-            if i == 7 or i == 8 or i == 9:
+            if i == 9 or i == 10 or i == 11 or i == 12:
                 j = 3
-            if i == 10 or i == 11 or i == 12:
+            if i == 13 or i == 14 or i == 15 or i ==16:
                 j = 4
             print(j)
             img = pygame.image.load(f'images/sprites/bob/green{j}.png').convert_alpha()
@@ -397,7 +412,7 @@ def player_movement(player_right, player_left):
         player_left.rect.x -= 1
         player_left.image = pygame.transform.flip(player_left.images[player_left.frame], True, False)
         player_left.frame += 1
-        if player_left.frame == 2:
+        if player_left.frame == 16:
             player_left.frame = 0
 
     # höger
@@ -409,7 +424,7 @@ def player_movement(player_right, player_left):
                 player_left.rect.x -= 5
         player_left.rect.x += 1
         player_left.frame += 1
-        if player_left.frame == 4:
+        if player_left.frame == 16:
             player_left.frame = 0
         player_left.image = player_left.images[player_left.frame]
 
