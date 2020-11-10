@@ -33,27 +33,27 @@ minus_ten_button_2 = pygame.Rect(705, 250, 71, 42)
 fifty_button_2 = pygame.Rect(630, 300, 71, 42)
 minus_fifty_button_2 = pygame.Rect(705, 300, 71, 42)
 # laddar bilder på avatarer till karaktärerna
-sune_head = pygame.image.load("images/sprites/sune/head_sune.png")
-bob_head = pygame.image.load("images/sprites/bob/head_bob.png")
-berit_head = pygame.image.load("images/sprites/berit/head_berit.png")
-hannes_head = pygame.image.load("images/sprites/hannes/head_hannes.png")
-# skapar rektanglar för avatarer
-head_sune_rect = pygame.Rect(390, 250, 40, 35)
-head_bob_rect = pygame.Rect(390, 250, 40, 35)
-head_berit_rect = pygame.Rect(390, 250, 40, 35)
-head_hannes_rect = pygame.Rect(390, 250, 40, 35)
-# målar ut avatarerna på skärmen
-screen.blit(sune_head, (390, 250))
-screen.blit(bob_head, (390, 300))
+# sune_head = pygame.image.load("images/sprites/sune/head_sune.png")
+# bob_head = pygame.image.load("images/sprites/bob/head_bob.png")
+# berit_head = pygame.image.load("images/sprites/berit/head_berit.png")
+# hannes_head = pygame.image.load("images/sprites/hannes/head_hannes.png")
+# # skapar rektanglar för avatarer
+# head_sune_rect = pygame.Rect(390, 250, 40, 35)
+# head_bob_rect = pygame.Rect(390, 250, 40, 35)
+# head_berit_rect = pygame.Rect(390, 250, 40, 35)
+# head_hannes_rect = pygame.Rect(390, 250, 40, 35)
+# # målar ut avatarerna på skärmen
+# screen.blit(sune_head, (390, 250))
+# screen.blit(bob_head, (390, 300))
 
 
 # målar ut texten till SCORE-rutan
 def show_stats(score1, score2, score3, score4):
     screen.blit(font.render(f"SCORE: ", True, (255, 255, 255)), (50, 150))
-    screen.blit(font.render(f"Slaktar Sune: {score1}", True, (255, 255, 255)), (50, 200))
-    screen.blit(font.render(f"Boxare Bob: {score2}", True, (255, 255, 255)), (50, 250))
-    screen.blit(font.render(f"Bråkiga Berit: {score3}", True, (255, 255, 255)), (50, 300))
-    screen.blit(font.render(f"Hänsynslöse Hannes: {score4}", True, (255, 255, 255)), (50, 350))
+    screen.blit(font.render(f"Slaktar Sune: {score1}", True, (255, 0, 0)), (50, 200))
+    screen.blit(font.render(f"Boxare Bob: {score2}", True, (0, 255, 0)), (50, 250))
+    screen.blit(font.render(f"Bråkiga Berit: {score3}", True, (255, 255, 0)), (50, 300))
+    screen.blit(font.render(f"Hänsynslöse Hannes: {score4}", True, (0, 0, 255)), (50, 350))
     screen.blit(font.render(f"MUSIC: ", True, (255, 255, 255)), (550, 10))
     minus, mute, plus = volume_buttons()
 
@@ -115,8 +115,8 @@ def lobby():
     show_stats(score_player1, score_player2, score_player3, score_player4)
     # TODO - Avatarerna bredvid betting-funktionen försvinner efter första matchen. Meningen med dom är att låsa betten inför matchen.
     # Målar ut avatarerna på Sune och Bob
-    screen.blit(sune_head, (390, 250))
-    screen.blit(bob_head, (390, 300))
+    # screen.blit(sune_head, (390, 250))
+    # screen.blit(bob_head, (390, 300))
     # Skapar en while-loop som kör så länge running är True
     while running:
 
