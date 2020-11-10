@@ -23,7 +23,6 @@ matchup = [["Slaktar Sune", "Boxare Bob"], ["Bråkiga Berit", "Hänsynslöse Han
            ["Boxare Bob", "Hänsynslöse Hannes"], ["Slaktar Sune", "Hänsynslöse Hannes"],
            ["Boxare Bob", "Bråkiga Berit"]]
 
-
 # tar current_match som indata i funktionen audience
 # def audience(current_match, hannes, berit, sune, bob):
 #     # bestämmer vem som ska stå i publiken beroende på vilken siffra current_match blir
@@ -129,59 +128,112 @@ def player_left_pics(self, match):
                 j = 3
             if i == 13 or i == 14 or i == 15 or i == 16:
                 j = 4
-            img = pygame.image.load(f'images/sprites/bob/green{j}.png').convert_alpha()
-            player_left.mask = pygame.mask.from_surface(img)
+            img = pygame.image.load(f'images/sprites/sune/red{j}.png').convert_alpha()
+            self.mask = pygame.mask.from_surface(img)
             self.images.append(img)
             self.image = self.images[0]
-            self.fight_images = [pygame.image.load(f'images/sprites/bob/green_windup.png').convert_alpha(),
-                                 pygame.image.load(f'images/sprites/bob/green_fight.png').convert_alpha()]
+            self.fight_images = [pygame.image.load(f'images/sprites/sune/red_windup.png').convert_alpha(),
+                                 pygame.image.load(f'images/sprites/sune/red_fight.png').convert_alpha()]
             self.rect = self.image.get_rect()
-            pygame.draw.rect(img, (255, 0, 0), self.rect, 2)
-
 
     # Berit vs Hannes
     if match == 1:
         self.images = []
-        for i in range(1, 3):
-            img = pygame.image.load(f'images/sprites/berit/walking_right_yellow_{i}.png').convert_alpha()
+        for i in range(1, 17):
+            if i == 1 or i == 2 or i == 3 or i == 4:
+                j = 1
+            if i == 5 or i == 6 or i == 7 or i == 8:
+                j = 2
+            if i == 9 or i == 10 or i == 11 or i == 12:
+                j = 3
+            if i == 13 or i == 14 or i == 15 or i == 16:
+                j = 4
+            img = pygame.image.load(f'images/sprites/berit/yellow{j}.png').convert_alpha()
+            self.mask = pygame.mask.from_surface(img)
             self.images.append(img)
             self.image = self.images[0]
+            self.fight_images = [pygame.image.load(f'images/sprites/berit/yellow_windup.png').convert_alpha(),
+                                 pygame.image.load(f'images/sprites/berit/yellow_fight.png').convert_alpha()]
             self.rect = self.image.get_rect()
 
     # Sune vs Berit
     if match == 2:
         self.images = []
-        for i in range(1, 3):
-            img = pygame.image.load(f'images/sune/walking_right_{i}.png').convert_alpha()
+        for i in range(1, 17):
+            if i == 1 or i == 2 or i == 3 or i == 4:
+                j = 1
+            if i == 5 or i == 6 or i == 7 or i == 8:
+                j = 2
+            if i == 9 or i == 10 or i == 11 or i == 12:
+                j = 3
+            if i == 13 or i == 14 or i == 15 or i == 16:
+                j = 4
+            img = pygame.image.load(f'images/sprites/sune/red{j}.png').convert_alpha()
+            self.mask = pygame.mask.from_surface(img)
             self.images.append(img)
             self.image = self.images[0]
+            self.fight_images = [pygame.image.load(f'images/sprites/sune/red_windup.png').convert_alpha(),
+                                 pygame.image.load(f'images/sprites/sune/red_fight.png').convert_alpha()]
             self.rect = self.image.get_rect()
 
     # Bob vs Hannes
     if match == 3:
         self.images = []
-        for i in range(1, 3):
-            img = pygame.image.load(f'images/bob/walking_right_green_{i}.png').convert_alpha()
+        for i in range(1, 17):
+            if i == 1 or i == 2 or i == 3 or i == 4:
+                j = 1
+            if i == 5 or i == 6 or i == 7 or i == 8:
+                j = 2
+            if i == 9 or i == 10 or i == 11 or i == 12:
+                j = 3
+            if i == 13 or i == 14 or i == 15 or i == 16:
+                j = 4
+            img = pygame.image.load(f'images/sprites/bob/green{j}.png').convert_alpha()
+            self.mask = pygame.mask.from_surface(img)
             self.images.append(img)
             self.image = self.images[0]
+            self.fight_images = [pygame.image.load(f'images/sprites/bob/green_windup.png').convert_alpha(),
+                                 pygame.image.load(f'images/sprites/bob/green_fight.png').convert_alpha()]
             self.rect = self.image.get_rect()
 
     # Sune vs Hannes
     if match == 4:
         self.images = []
-        for i in range(1, 3):
-            img = pygame.image.load(f'images/sune/walking_right_{i}.png').convert_alpha()
+        for i in range(1, 17):
+            if i == 1 or i == 2 or i == 3 or i == 4:
+                j = 1
+            if i == 5 or i == 6 or i == 7 or i == 8:
+                j = 2
+            if i == 9 or i == 10 or i == 11 or i == 12:
+                j = 3
+            if i == 13 or i == 14 or i == 15 or i == 16:
+                j = 4
+            img = pygame.image.load(f'images/sprites/sune/red{j}.png').convert_alpha()
+            self.mask = pygame.mask.from_surface(img)
             self.images.append(img)
             self.image = self.images[0]
+            self.fight_images = [pygame.image.load(f'images/sprites/sune/red_windup.png').convert_alpha(),
+                                 pygame.image.load(f'images/sprites/sune/red_fight.png').convert_alpha()]
             self.rect = self.image.get_rect()
 
     # Bob vs Berit
     if match == 5:
         self.images = []
-        for i in range(1, 3):
-            img = pygame.image.load(f'images/bob/walking_right_green_{i}.png').convert_alpha()
+        for i in range(1, 17):
+            if i == 1 or i == 2 or i == 3 or i == 4:
+                j = 1
+            if i == 5 or i == 6 or i == 7 or i == 8:
+                j = 2
+            if i == 9 or i == 10 or i == 11 or i == 12:
+                j = 3
+            if i == 13 or i == 14 or i == 15 or i == 16:
+                j = 4
+            img = pygame.image.load(f'images/sprites/bob/green{j}.png').convert_alpha()
+            self.mask = pygame.mask.from_surface(img)
             self.images.append(img)
             self.image = self.images[0]
+            self.fight_images = [pygame.image.load(f'images/sprites/bob/green_windup.png').convert_alpha(),
+                                 pygame.image.load(f'images/sprites/bob/green_fight.png').convert_alpha()]
             self.rect = self.image.get_rect()
 
 
@@ -202,13 +254,12 @@ def player_right_pics(self, match):
             if i == 13 or i == 14 or i == 15 or i == 16:
                 j = 4
             img = pygame.image.load(f'images/sprites/bob/green{j}.png').convert_alpha()
-            player_right.mask = pygame.mask.from_surface(img)
+            self.mask = pygame.mask.from_surface(img)
             self.images.append(img)
             self.image = self.images[0]
             self.fight_images = [pygame.image.load(f'images/sprites/bob/green_windup.png').convert_alpha(),
                                  pygame.image.load(f'images/sprites/bob/green_fight.png').convert_alpha()]
             self.rect = self.image.get_rect()
-            pygame.draw.rect(img, (255, 0, 0), self.rect, 2)
 
         player_right.image = pygame.transform.flip(player_right.images[player_right.frame], True, False)
 
@@ -216,56 +267,115 @@ def player_right_pics(self, match):
 
     if match == 1:
         self.images = []
-        for i in range(1, 3):
-            img = pygame.image.load(f'images/sprites/hannes/walking_right_purple_{i}.png').convert_alpha()
+        for i in range(1, 17):
+            if i == 1 or i == 2 or i == 3 or i == 4:
+                j = 1
+            if i == 5 or i == 6 or i == 7 or i == 8:
+                j = 2
+            if i == 9 or i == 10 or i == 11 or i == 12:
+                j = 3
+            if i == 13 or i == 14 or i == 15 or i == 16:
+                j = 4
+            img = pygame.image.load(f'images/sprites/hannes/blue{j}.png').convert_alpha()
+            self.mask = pygame.mask.from_surface(img)
             self.images.append(img)
             self.image = self.images[0]
+            self.fight_images = [pygame.image.load(f'images/sprites/hannes/blue_windup.png').convert_alpha(),
+                                 pygame.image.load(f'images/sprites/hannes/blue_fight.png').convert_alpha()]
             self.rect = self.image.get_rect()
-            player_right.image = pygame.transform.flip(player_right.images[player_right.frame], True, False)
+
+        player_right.image = pygame.transform.flip(player_right.images[player_right.frame], True, False)
 
     # Sune vs Berit
 
     if match == 2:
         self.images = []
-        for i in range(1, 3):
-            img = pygame.image.load(f'images/sprites/berit/walking_right_yellow_{i}.png').convert_alpha()
+        for i in range(1, 17):
+            if i == 1 or i == 2 or i == 3 or i == 4:
+                j = 1
+            if i == 5 or i == 6 or i == 7 or i == 8:
+                j = 2
+            if i == 9 or i == 10 or i == 11 or i == 12:
+                j = 3
+            if i == 13 or i == 14 or i == 15 or i == 16:
+                j = 4
+            img = pygame.image.load(f'images/sprites/berit/yellow{j}.png').convert_alpha()
+            self.mask = pygame.mask.from_surface(img)
             self.images.append(img)
             self.image = self.images[0]
+            self.fight_images = [pygame.image.load(f'images/sprites/berit/yellow_windup.png').convert_alpha(),
+                                 pygame.image.load(f'images/sprites/berit/yellow_fight.png').convert_alpha()]
             self.rect = self.image.get_rect()
-            player_right.image = pygame.transform.flip(player_right.images[player_right.frame], True, False)
+
+        player_right.image = pygame.transform.flip(player_right.images[player_right.frame], True, False)
 
     # Bob vs Hannes
 
     if match == 3:
         self.images = []
-        for i in range(1, 3):
-            img = pygame.image.load(f'images/sprites/hannes/walking_right_purple_{i}.png').convert_alpha()
+        for i in range(1, 17):
+            if i == 1 or i == 2 or i == 3 or i == 4:
+                j = 1
+            if i == 5 or i == 6 or i == 7 or i == 8:
+                j = 2
+            if i == 9 or i == 10 or i == 11 or i == 12:
+                j = 3
+            if i == 13 or i == 14 or i == 15 or i == 16:
+                j = 4
+            img = pygame.image.load(f'images/sprites/hannes/blue{j}.png').convert_alpha()
+            self.mask = pygame.mask.from_surface(img)
             self.images.append(img)
             self.image = self.images[0]
+            self.fight_images = [pygame.image.load(f'images/sprites/hannes/blue_windup.png').convert_alpha(),
+                                 pygame.image.load(f'images/sprites/hannes/blue_fight.png').convert_alpha()]
             self.rect = self.image.get_rect()
-            player_right.image = pygame.transform.flip(player_right.images[player_right.frame], True, False)
+
+        player_right.image = pygame.transform.flip(player_right.images[player_right.frame], True, False)
 
     # Sune vs Hannes
 
     if match == 4:
         self.images = []
-        for i in range(1, 3):
-            img = pygame.image.load(f'images/sprites/hannes/walking_right_purple_{i}.png').convert_alpha()
+        for i in range(1, 17):
+            if i == 1 or i == 2 or i == 3 or i == 4:
+                j = 1
+            if i == 5 or i == 6 or i == 7 or i == 8:
+                j = 2
+            if i == 9 or i == 10 or i == 11 or i == 12:
+                j = 3
+            if i == 13 or i == 14 or i == 15 or i == 16:
+                j = 4
+            img = pygame.image.load(f'images/sprites/hannes/blue{j}.png').convert_alpha()
+            self.mask = pygame.mask.from_surface(img)
             self.images.append(img)
             self.image = self.images[0]
+            self.fight_images = [pygame.image.load(f'images/sprites/hannes/blue_windup.png').convert_alpha(),
+                                 pygame.image.load(f'images/sprites/hannes/blue_fight.png').convert_alpha()]
             self.rect = self.image.get_rect()
-            player_right.image = pygame.transform.flip(player_right.images[player_right.frame], True, False)
 
+        player_right.image = pygame.transform.flip(player_right.images[player_right.frame], True, False)
 
     # Bob vs Berit
     if match == 5:
         self.images = []
-        for i in range(1, 3):
-            img = pygame.image.load(f'images/sprites/berit/walking_right_yellow_{i}.png').convert_alpha()
+        for i in range(1, 17):
+            if i == 1 or i == 2 or i == 3 or i == 4:
+                j = 1
+            if i == 5 or i == 6 or i == 7 or i == 8:
+                j = 2
+            if i == 9 or i == 10 or i == 11 or i == 12:
+                j = 3
+            if i == 13 or i == 14 or i == 15 or i == 16:
+                j = 4
+            img = pygame.image.load(f'images/sprites/berit/yellow{j}.png').convert_alpha()
+            self.mask = pygame.mask.from_surface(img)
             self.images.append(img)
             self.image = self.images[0]
+            self.fight_images = [pygame.image.load(f'images/sprites/berit/yellow_windup.png').convert_alpha(),
+                                 pygame.image.load(f'images/sprites/berit/yellow_fight.png').convert_alpha()]
             self.rect = self.image.get_rect()
-            player_right.image = pygame.transform.flip(player_right.images[player_right.frame], True, False)
+
+        player_right.image = pygame.transform.flip(player_right.images[player_right.frame], True, False)
 
 
 # Gör en instans av klassen Player och lagrar den i variabeln player_right. Sätter grundinställningarna på
@@ -312,7 +422,7 @@ def healthbar(player_right, player_left):
 
 
 # Skapar en funktion med player 1 och player 2 som indata som kollar om kollision har skett
- #def collision(player_right, player_left):
+# def collision(player_right, player_left):
 #     # kollar om kollision har skett
 #     col = pygame.sprite.collide_rect(player_right, player_left)
 #     if col:
@@ -388,13 +498,10 @@ def player_movement(player_right, player_left):
             if player_right.rect.y < 100:
                 player_right.vel = 20
 
-
         # lägsta punkt
     player_right.hoppi_ti_hopp()
     if player_right.rect.y > 450:
         player_right.rect.y = 450
-
-
 
     if keys[pygame.K_RCTRL]:
         player_right.attacking = True
@@ -454,11 +561,10 @@ def player_movement(player_right, player_left):
         if collision(player_left, player_right):
             player_left.recently_hit = True
             player_left.time_hit = pygame.time.get_ticks()
+            player_left.rect.x -= 50
 
             effect_punch.play(0)
-            print("slag")
             player_left.hp -= 10
-            print(f"HP PLAYER 2: {player_left.hp}")
 
     if player_left.attacking:
         if player_left.attack_time > 25:
@@ -467,11 +573,10 @@ def player_movement(player_right, player_left):
         if collision(player_right, player_left):
             player_right.recently_hit = True
             player_right.time_hit = pygame.time.get_ticks()
+            player_right.rect.x += 50
 
             effect_punch.play(0)
-            print("slag")
             player_right.hp -= 10
-            print(f"HP PLAYER 2: {player_right.hp}")
 
     if player_right.recently_hit:
         player_right.recently_hit = player_hit_right(player_right.time_hit)
@@ -569,18 +674,17 @@ def fight(current_match):
         screen.blit(bg_image, (0, 0))
         # Ritar ut player_right och player_left på skärmen
 
-        #print(player_left.jumping)
+        # print(player_left.jumping)
         if player_left.jumping:
             player_left.image = player_left.images[4]
 
         if player_right.jumping:
             player_right.image = player_right.images[4]
             player_right.image = pygame.transform.flip(player_right.image, True, False)
-        #print(player_right.attack_time)
+        # print(player_right.attack_time)
         if player_right.attacking:
             if player_right.attack_time < 8 or player_right.attacking > 20:
                 player_right.image = player_right.fight_images[0]
-                print("FUCK!!!!!!!!!!!!!!!!!!!!!!!<3")
             else:
                 player_right.image = player_right.fight_images[1]
             player_right.image = pygame.transform.flip(player_right.image, True, False)
@@ -589,14 +693,13 @@ def fight(current_match):
         if player_left.attacking:
             if player_left.attack_time < 8 or player_left.attacking > 20:
                 player_left.image = player_left.fight_images[0]
-                print("FUCK!!!!!!!!!!!!!!!!!!!!!!!<3")
             else:
                 player_left.image = player_left.fight_images[1]
             player_left.attack_time += 1
-            #print(player_right.attack_time)
+            # print(player_right.attack_time)
         player_list.draw(screen)
         # Anropar funktionen audience
-        #audience(current_match, hannes, berit, sune, bob)
+        # audience(current_match, hannes, berit, sune, bob)
         # Anropar funktionen player_movement
         player_movement(player_right, player_left)
         # Loopar igenom alla möjliga events i pygame som lagras keys
