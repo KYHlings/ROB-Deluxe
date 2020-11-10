@@ -97,11 +97,15 @@ class Player(pygame.sprite.Sprite):
         self.jumping = False
         self.recently_hit = False
         self.time_hit = None
+        self.ascending = False
 
     def hoppi_ti_hopp(self):
-        if self.jumping:
+        if self.ascending:
             self.rect.y -= 7
             if self.rect.y < 300:
+                self.ascending = False
+        else:
+            if self.rect.y >= 450:
                 self.jumping = False
 
 
@@ -416,6 +420,7 @@ def player_movement(player_right, player_left):
     if player_left.rect.y > 450:
         if keys[pygame.K_w]:
             player_left.jumping = True
+            player_left.ascending = True
             # hoppets höjd
             # dragningskraft
             player_left.vel = 3
@@ -532,6 +537,10 @@ def fight(current_match):
         # Målar upp en bakgrundsbild som täcker hela skärmen
         screen.blit(bg_image[0], (0, 0))
         # Ritar ut player_right och player_left på skärmen
+
+        #print(player_left.jumping)
+        if player_left.jumping:
+            player_left.image = player_left.images[4]
         player_list.draw(screen)
         # Anropar funktionen audience
         #audience(current_match, hannes, berit, sune, bob)
