@@ -90,6 +90,7 @@ class Player(pygame.sprite.Sprite):
         self.rect = (0, 0, 0, 0)
         # skapar en tom lista där vi senare ska lagra dom bilder karaktärerna ska ha
         self.images = []
+        self.fight_images = []
         # skapar vi en variabel för karaktärernas health points
         self.hp = 100
         # skapar en variabel som bestämmer om spelaren lever eller inte
@@ -98,6 +99,8 @@ class Player(pygame.sprite.Sprite):
         self.recently_hit = False
         self.time_hit = None
         self.ascending = False
+        self.attacking = False
+        self.attack_time = 0
 
     def hoppi_ti_hopp(self):
         if self.ascending:
@@ -130,6 +133,8 @@ def player_left_pics(self, match):
             player_left.mask = pygame.mask.from_surface(img)
             self.images.append(img)
             self.image = self.images[0]
+            self.fight_images = [pygame.image.load(f'images/sprites/bob/green_windup.png').convert_alpha(),
+                                 pygame.image.load(f'images/sprites/bob/green_fight.png').convert_alpha()]
             self.rect = self.image.get_rect()
             pygame.draw.rect(img, (255, 0, 0), self.rect, 2)
 
@@ -378,14 +383,7 @@ def player_movement(player_right, player_left):
         player_right.rect.y = 450
 
     if keys[pygame.K_RCTRL]:
-        if collision(player_right, player_left):
-            player_left.recently_hit = True
-            player_left.time_hit = pygame.time.get_ticks()
-
-            effect_punch.play(0)
-            print("slag")
-            player_left.hp -= 10
-            print(f"HP PLAYER 2: {player_left.hp}")
+        player_left.attacking = True
 
     if player_left.recently_hit:
         player_left.recently_hit = player_hit_left(player_left.time_hit)
@@ -441,6 +439,19 @@ def player_movement(player_right, player_left):
             print("slag")
             player_right.hp -= 10
             print(f"HP PLAYER 1: {player_right.hp}")
+
+    if player_left.attacking:
+        if player_left.attack_time > 15:
+            player_left.attacking = False
+            player_left.attack_time = 0
+        if collision(player_right, player_left):
+            player_left.recently_hit = True
+            player_left.time_hit = pygame.time.get_ticks()
+
+            effect_punch.play(0)
+            print("slag")
+            player_left.hp -= 10
+            print(f"HP PLAYER 2: {player_left.hp}")
 
     if player_right.recently_hit:
         player_right.recently_hit = player_hit_right(player_right.time_hit)
@@ -541,6 +552,12 @@ def fight(current_match):
         #print(player_left.jumping)
         if player_left.jumping:
             player_left.image = player_left.images[4]
+        if player_left.attacking:
+            if player_left.attack_time < 5 and player_left.attacking > 10:
+                player_left.image = player_left.fight_images[0]
+            else:
+                player_left.image = player_left.fight_images[0]
+            player_left.attack_time +=1
         player_list.draw(screen)
         # Anropar funktionen audience
         #audience(current_match, hannes, berit, sune, bob)
