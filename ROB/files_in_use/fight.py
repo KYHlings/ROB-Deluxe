@@ -532,6 +532,9 @@ def fight(current_match):
         # Målar upp en bakgrundsbild som täcker hela skärmen
         screen.blit(bg_image[0], (0, 0))
         # Ritar ut player_right och player_left på skärmen
+        for player in player_list:
+            if player.jumping:
+                player.image = player.images[]
         player_list.draw(screen)
         # Anropar funktionen audience
         #audience(current_match, hannes, berit, sune, bob)
