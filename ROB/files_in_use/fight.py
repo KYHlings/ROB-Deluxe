@@ -15,36 +15,36 @@ screen = pygame.display.set_mode((screen_width, screen_height))
 # laddar in bilder på bakgrund och gubbarna
 bg_image = [pygame.image.load('images/backgrounds/arena_bakgrund_0.png'),
             pygame.image.load('images/backgrounds/arena_bakgrund_1.png')]
-hannes = pygame.image.load('images/sprites/hannes/walking_right_purple_0.png').convert_alpha()
-berit = pygame.image.load('images/sprites/berit/walking_right_yellow_0.png').convert_alpha()
-sune = pygame.image.load('images/sprites/sune/walking_right_0.png').convert_alpha()
-bob = pygame.image.load('images/sprites/green1.png').convert_alpha()
+# hannes = pygame.image.load('images/sprites/hannes/walking_right_purple_0.png').convert_alpha()
+# berit = pygame.image.load('images/sprites/berit/walking_right_yellow_0.png').convert_alpha()
+# sune = pygame.image.load('images/sprites/sune/walking_right_0.png').convert_alpha()
+# bob = pygame.image.load('images/sprites/green1.png').convert_alpha()
 matchup = [["Slaktar Sune", "Boxare Bob"], ["Bråkiga Berit", "Hänsynslöse Hannes"], ["Slaktar Sune", "Bråkiga Berit"],
            ["Boxare Bob", "Hänsynslöse Hannes"], ["Slaktar Sune", "Hänsynslöse Hannes"],
            ["Boxare Bob", "Bråkiga Berit"]]
 
 
 # tar current_match som indata i funktionen audience
-def audience(current_match, hannes, berit, sune, bob):
-    # bestämmer vem som ska stå i publiken beroende på vilken siffra current_match blir
-    if current_match == 0:
-        screen.blit(hannes, (40, 170))
-        screen.blit(berit, (70, 170))
-    if current_match == 1:
-        screen.blit(sune, (40, 170))
-        screen.blit(bob, (70, 170))
-    if current_match == 2:
-        screen.blit(hannes, (40, 170))
-        screen.blit(bob, (70, 170))
-    if current_match == 3:
-        screen.blit(sune, (40, 170))
-        screen.blit(berit, (70, 170))
-    if current_match == 4:
-        screen.blit(bob, (40, 170))
-        screen.blit(berit, (70, 170))
-    if current_match == 5:
-        screen.blit(sune, (40, 170))
-        screen.blit(hannes, (70, 170))
+# def audience(current_match, hannes, berit, sune, bob):
+#     # bestämmer vem som ska stå i publiken beroende på vilken siffra current_match blir
+#     if current_match == 0:
+#         screen.blit(hannes, (40, 170))
+#         screen.blit(berit, (70, 170))
+#     if current_match == 1:
+#         screen.blit(sune, (40, 170))
+#         screen.blit(bob, (70, 170))
+#     if current_match == 2:
+#         screen.blit(hannes, (40, 170))
+#         screen.blit(bob, (70, 170))
+#     if current_match == 3:
+#         screen.blit(sune, (40, 170))
+#         screen.blit(berit, (70, 170))
+#     if current_match == 4:
+#         screen.blit(bob, (40, 170))
+#         screen.blit(berit, (70, 170))
+#     if current_match == 5:
+#         screen.blit(sune, (40, 170))
+#         screen.blit(hannes, (70, 170))
 
 
 # Todo - Skapa en ny modul för alla musikfiler
@@ -55,7 +55,7 @@ effect_KICK = pygame.mixer.Sound('sound_and_music/sound/KICK.wav')
 
 # fps
 fps_clock = pygame.time.Clock()
-fps = 600
+fps = 20
 
 # TODO loopa bakrundsbilderna så att bilden ser "rörlig" ut
 screen.blit(bg_image[0], (0, 0))
@@ -113,8 +113,8 @@ def player_left_pics(self, match):
         # Återställer self.images listan så att den blir tom inför nästa fight
         # skapar en loop som går mellan siffrorna 0-2
         self.images = []
-        for i in range(1, 4):
-            img = pygame.image.load(f'images/sprites/green{i}.png').convert_alpha()
+        for i in range(1, 5):
+            img = pygame.image.load(f'images/sprites/bob/green{i}.png').convert_alpha()
             player_left.mask = pygame.mask.from_surface(img)
             self.images.append(img)
             self.image = self.images[0]
@@ -399,7 +399,7 @@ def player_movement(player_right, player_left):
                 player_left.rect.x -= 5
         player_left.rect.x += 1
         player_left.frame += 1
-        if player_left.frame == 2:
+        if player_left.frame == 4:
             player_left.frame = 0
         player_left.image = player_left.images[player_left.frame]
 
@@ -526,7 +526,7 @@ def fight(current_match):
         # Ritar ut player_right och player_left på skärmen
         player_list.draw(screen)
         # Anropar funktionen audience
-        audience(current_match, hannes, berit, sune, bob)
+        #audience(current_match, hannes, berit, sune, bob)
         # Anropar funktionen player_movement
         player_movement(player_right, player_left)
         # Loopar igenom alla möjliga events i pygame som lagras keys
