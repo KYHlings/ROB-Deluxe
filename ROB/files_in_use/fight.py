@@ -113,31 +113,21 @@ def player_left_pics(self, match):
         # Återställer self.images listan så att den blir tom inför nästa fight
         # skapar en loop som går mellan siffrorna 0-2
         self.images = []
-        if self.jumping:
-            img = pygame.image.load(f'images/sprites/bob/green2.png').convert_alpha()
+        for i in range(1, 17):
+            if i == 1 or i == 2 or i == 3 or i == 4:
+                j = 1
+            if i == 5 or i == 6 or i == 7 or i == 8:
+                j = 2
+            if i == 9 or i == 10 or i == 11 or i == 12:
+                j = 3
+            if i == 13 or i == 14 or i == 15 or i == 16:
+                j = 4
+            img = pygame.image.load(f'images/sprites/bob/green{j}.png').convert_alpha()
             player_left.mask = pygame.mask.from_surface(img)
             self.images.append(img)
             self.image = self.images[0]
             self.rect = self.image.get_rect()
             pygame.draw.rect(img, (255, 0, 0), self.rect, 2)
-        else:
-            for i in range(1, 17):
-                print(i)
-                if i == 1 or i == 2 or i == 3 or i == 4:
-                    j = 1
-                if i == 5 or i == 6 or i == 7 or i == 8:
-                    j = 2
-                if i == 9 or i == 10 or i == 11 or i == 12:
-                    j = 3
-                if i == 13 or i == 14 or i == 15 or i == 16:
-                    j = 4
-                print(j)
-                img = pygame.image.load(f'images/sprites/bob/green{j}.png').convert_alpha()
-                player_left.mask = pygame.mask.from_surface(img)
-                self.images.append(img)
-                self.image = self.images[0]
-                self.rect = self.image.get_rect()
-                pygame.draw.rect(img, (255, 0, 0), self.rect, 2)
 
 
     # Berit vs Hannes
@@ -427,7 +417,6 @@ def player_movement(player_right, player_left):
         if keys[pygame.K_w]:
             player_left.jumping = True
             # hoppets höjd
-
             # dragningskraft
             player_left.vel = 3
             # invisible border max hopphöjd
