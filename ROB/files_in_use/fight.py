@@ -106,15 +106,20 @@ class Player(pygame.sprite.Sprite):
 
 
 # skapar en funktion med self och match som indata som gör att rätt bild laddas in till rätt match
-def player_left_pics(self, match, jumping):
+def player_left_pics(self, match):
     # Sune är röd, Bob är grön, Berit är gul, Hannes är lila
     # Sune vs Bob
     if match == 0:
         # Återställer self.images listan så att den blir tom inför nästa fight
         # skapar en loop som går mellan siffrorna 0-2
         self.images = []
-        if jumping:
+        if self.jumping:
             img = pygame.image.load(f'images/sprites/bob/green2.png').convert_alpha()
+            player_left.mask = pygame.mask.from_surface(img)
+            self.images.append(img)
+            self.image = self.images[0]
+            self.rect = self.image.get_rect()
+            pygame.draw.rect(img, (255, 0, 0), self.rect, 2)
         else:
             for i in range(1, 17):
                 print(i)
@@ -128,23 +133,12 @@ def player_left_pics(self, match, jumping):
                     j = 4
                 print(j)
                 img = pygame.image.load(f'images/sprites/bob/green{j}.png').convert_alpha()
-        for i in range(1, 17):
-            print(i)
-            if i == 1 or i == 2 or i == 3 or i == 4:
-                j = 1
-            if i == 5 or i == 6 or i == 7 or i == 8:
-                j = 2
-            if i == 9 or i == 10 or i == 11 or i == 12:
-                j = 3
-            if i == 13 or i == 14 or i == 15 or i ==16:
-                j = 4
-            print(j)
-            img = pygame.image.load(f'images/sprites/bob/green{j}.png').convert_alpha()
-            player_left.mask = pygame.mask.from_surface(img)
-            self.images.append(img)
-            self.image = self.images[0]
-            self.rect = self.image.get_rect()
-            pygame.draw.rect(img, (255, 0, 0), self.rect, 2)
+                player_left.mask = pygame.mask.from_surface(img)
+                self.images.append(img)
+                self.image = self.images[0]
+                self.rect = self.image.get_rect()
+                pygame.draw.rect(img, (255, 0, 0), self.rect, 2)
+
 
     # Berit vs Hannes
     if match == 1:
