@@ -113,8 +113,18 @@ def player_left_pics(self, match):
         # Återställer self.images listan så att den blir tom inför nästa fight
         # skapar en loop som går mellan siffrorna 0-2
         self.images = []
-        for i in range(1, 5):
-            img = pygame.image.load(f'images/sprites/bob/green{i}.png').convert_alpha()
+        for i in range(1, 13):
+            print(i)
+            if i == 1 or i == 2 or i == 3:
+                j = 1
+            if i == 4 or i == 5 or i == 6:
+                j = 2
+            if i == 7 or i == 8 or i == 9:
+                j = 3
+            if i == 10 or i == 11 or i == 12:
+                j = 4
+            print(j)
+            img = pygame.image.load(f'images/sprites/bob/green{j}.png').convert_alpha()
             player_left.mask = pygame.mask.from_surface(img)
             self.images.append(img)
             self.image = self.images[0]
@@ -175,7 +185,7 @@ def player_right_pics(self, match):
     if match == 0:
         self.images = []
         for i in range(1, 3):
-            img = pygame.image.load(f'images/sprites/green{i}.png').convert_alpha()
+            img = pygame.image.load(f'images/sprites/bob/green{i}.png').convert_alpha()
             player_right.mask = pygame.mask.from_surface(img)
             self.images.append(img)
             self.image = self.images[0]
