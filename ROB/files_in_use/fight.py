@@ -100,8 +100,8 @@ class Player(pygame.sprite.Sprite):
 
     def hoppi_ti_hopp(self):
         if self.jumping:
-            self.rect.y -= 8
-            if self.rect.y < 350:
+            self.rect.y -= 7
+            if self.rect.y < 300:
                 self.jumping = False
 
 
@@ -349,7 +349,7 @@ def player_movement(player_right, player_left):
         # Eftersom bilderna vi har laddat in redan är åt höger så behöver vi ej flippa
         player_right.image = player_right.images[player_right.frame]
     # TODO - Gör så att man inte kan flyga
-    if player_right.rect.y > 500:
+    if player_right.rect.y > 450:
         if keys[pygame.K_UP]:
             player_right.jumping = True
             # hoppets höjd
@@ -357,12 +357,12 @@ def player_movement(player_right, player_left):
             # dragningskraft
             player_right.vel = 3
             # invisible border max hopphöjd
-            if player_right.rect.y < 200:
+            if player_right.rect.y < 100:
                 player_right.vel = 20
         # lägsta punkt
     player_right.hoppi_ti_hopp()
-    if player_right.rect.y > 500:
-        player_right.rect.y = 500
+    if player_right.rect.y > 450:
+        player_right.rect.y = 450
 
     if keys[pygame.K_RCTRL]:
         if collision(player_right, player_left):
@@ -404,7 +404,7 @@ def player_movement(player_right, player_left):
         player_left.image = player_left.images[player_left.frame]
 
     # HOPP
-    if player_left.rect.y > 500:
+    if player_left.rect.y > 450:
         if keys[pygame.K_w]:
             player_left.jumping = True
             # hoppets höjd
@@ -412,12 +412,12 @@ def player_movement(player_right, player_left):
             # dragningskraft
             player_left.vel = 3
             # invisible border max hopphöjd
-            if player_left.rect.y < 200:
+            if player_left.rect.y < 100:
                 player_left.vel = 20
         # lägsta punkt
     player_left.hoppi_ti_hopp()
-    if player_left.rect.y > 500:
-        player_left.rect.y = 500
+    if player_left.rect.y > 450:
+        player_left.rect.y = 450
 
     if keys[pygame.K_LCTRL]:
         if collision(player_right, player_left):
@@ -471,13 +471,13 @@ def fight(current_match):
     # Anropar funktionen player_right_pics som ger player_right rätt bildinställningar för nuvarande match
     player_right_pics(player_right, current_match)
     # Anger startpostionen för player_right
-    player_right.rect.x = 720
-    player_right.rect.y = 500
+    player_right.rect.x = 680
+    player_right.rect.y = 450
     # Anropar funktionen player_left_pics som ger player_right rätt bildinställningar för nuvarande match
     player_left_pics(player_left, current_match)
     # Anger startpositionen för player_right
-    player_left.rect.x = 60
-    player_left.rect.y = 500
+    player_left.rect.x = 0
+    player_left.rect.y = 450
 
     # Så länge running är True kommer spelet köras
     while running:
