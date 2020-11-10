@@ -54,7 +54,7 @@ effect_KICK = pygame.mixer.Sound('sound_and_music/sound/KICK.wav')
 
 # fps
 fps_clock = pygame.time.Clock()
-fps = 120
+fps = 90
 
 # TODO loopa bakrundsbilderna så att bilden ser "rörlig" ut
 screen.blit(bg_image, (0, 0))
@@ -100,6 +100,8 @@ class Player(pygame.sprite.Sprite):
         self.ascending = False
         self.attacking = False
         self.attack_time = 0
+        self.facing_left = False
+        self.getting_hit_image = None
 
     def hoppi_ti_hopp(self):
         if self.ascending:
@@ -135,6 +137,7 @@ def player_left_pics(self, match):
             self.image = self.images[0]
             self.fight_images = [pygame.image.load(f'images/sprites/sune/red_windup.png').convert_alpha(),
                                  pygame.image.load(f'images/sprites/sune/red_fight.png').convert_alpha()]
+            self.getting_hit_image = pygame.image.load('images/sprites/sune/red_hit.png')
             self.rect = self.image.get_rect()
 
     # Berit vs Hannes
@@ -155,6 +158,7 @@ def player_left_pics(self, match):
             self.image = self.images[0]
             self.fight_images = [pygame.image.load(f'images/sprites/berit/yellow_windup.png').convert_alpha(),
                                  pygame.image.load(f'images/sprites/berit/yellow_fight.png').convert_alpha()]
+            self.getting_hit_image = pygame.image.load('images/sprites/berit/yellow_hit.png')
             self.rect = self.image.get_rect()
 
     # Sune vs Berit
@@ -176,6 +180,7 @@ def player_left_pics(self, match):
             self.image = self.images[0]
             self.fight_images = [pygame.image.load(f'images/sprites/sune/red_windup.png').convert_alpha(),
                                  pygame.image.load(f'images/sprites/sune/red_fight.png').convert_alpha()]
+            self.getting_hit_image = pygame.image.load('images/sprites/sune/red_hit.png')
             self.rect = self.image.get_rect()
 
     # Bob vs Hannes
@@ -197,6 +202,7 @@ def player_left_pics(self, match):
             self.image = self.images[0]
             self.fight_images = [pygame.image.load(f'images/sprites/bob/green_windup.png').convert_alpha(),
                                  pygame.image.load(f'images/sprites/bob/green_fight.png').convert_alpha()]
+            self.getting_hit_image = pygame.image.load('images/sprites/bob/green_hit.png')
             self.rect = self.image.get_rect()
 
     # Sune vs Hannes
@@ -218,6 +224,7 @@ def player_left_pics(self, match):
             self.image = self.images[0]
             self.fight_images = [pygame.image.load(f'images/sprites/sune/red_windup.png').convert_alpha(),
                                  pygame.image.load(f'images/sprites/sune/red_fight.png').convert_alpha()]
+            self.getting_hit_image = pygame.image.load('images/sprites/sune/red_hit.png')
             self.rect = self.image.get_rect()
 
     # Bob vs Berit
@@ -239,6 +246,7 @@ def player_left_pics(self, match):
             self.image = self.images[0]
             self.fight_images = [pygame.image.load(f'images/sprites/bob/green_windup.png').convert_alpha(),
                                  pygame.image.load(f'images/sprites/bob/green_fight.png').convert_alpha()]
+            self.getting_hit_image = pygame.image.load('images/sprites/bob/green_hit.png')
             self.rect = self.image.get_rect()
 
 
@@ -265,6 +273,7 @@ def player_right_pics(self, match):
             self.image = self.images[0]
             self.fight_images = [pygame.image.load(f'images/sprites/bob/green_windup.png').convert_alpha(),
                                  pygame.image.load(f'images/sprites/bob/green_fight.png').convert_alpha()]
+            self.getting_hit_image = pygame.image.load('images/sprites/bob/green_hit.png')
             self.rect = self.image.get_rect()
 
         player_right.image = pygame.transform.flip(player_right.images[player_right.frame], True, False)
@@ -289,6 +298,7 @@ def player_right_pics(self, match):
             self.image = self.images[0]
             self.fight_images = [pygame.image.load(f'images/sprites/hannes/blue_windup.png').convert_alpha(),
                                  pygame.image.load(f'images/sprites/hannes/blue_fight.png').convert_alpha()]
+            self.getting_hit_image = pygame.image.load('images/sprites/hannes/blue_hit.png')
             self.rect = self.image.get_rect()
 
         player_right.image = pygame.transform.flip(player_right.images[player_right.frame], True, False)
@@ -313,6 +323,7 @@ def player_right_pics(self, match):
             self.image = self.images[0]
             self.fight_images = [pygame.image.load(f'images/sprites/berit/yellow_windup.png').convert_alpha(),
                                  pygame.image.load(f'images/sprites/berit/yellow_fight.png').convert_alpha()]
+            self.getting_hit_image = pygame.image.load('images/sprites/berit/yellow_hit.png')
             self.rect = self.image.get_rect()
 
         player_right.image = pygame.transform.flip(player_right.images[player_right.frame], True, False)
@@ -337,6 +348,7 @@ def player_right_pics(self, match):
             self.image = self.images[0]
             self.fight_images = [pygame.image.load(f'images/sprites/hannes/blue_windup.png').convert_alpha(),
                                  pygame.image.load(f'images/sprites/hannes/blue_fight.png').convert_alpha()]
+            self.getting_hit_image = pygame.image.load('images/sprites/hannes/blue_hit.png')
             self.rect = self.image.get_rect()
 
         player_right.image = pygame.transform.flip(player_right.images[player_right.frame], True, False)
@@ -361,6 +373,7 @@ def player_right_pics(self, match):
             self.image = self.images[0]
             self.fight_images = [pygame.image.load(f'images/sprites/hannes/blue_windup.png').convert_alpha(),
                                  pygame.image.load(f'images/sprites/hannes/blue_fight.png').convert_alpha()]
+            self.getting_hit_image = pygame.image.load('images/sprites/hannes/blue_hit.png')
             self.rect = self.image.get_rect()
 
         player_right.image = pygame.transform.flip(player_right.images[player_right.frame], True, False)
@@ -384,6 +397,7 @@ def player_right_pics(self, match):
             self.image = self.images[0]
             self.fight_images = [pygame.image.load(f'images/sprites/berit/yellow_windup.png').convert_alpha(),
                                  pygame.image.load(f'images/sprites/berit/yellow_fight.png').convert_alpha()]
+            self.getting_hit_image = pygame.image.load('images/sprites/berit/yellow_hit.png')
             self.rect = self.image.get_rect()
 
         player_right.image = pygame.transform.flip(player_right.images[player_right.frame], True, False)
@@ -519,6 +533,8 @@ def player_movement(player_right, player_left):
 
     if player_left.recently_hit:
         player_left.recently_hit = player_hit_left(player_left.time_hit)
+    if player_right.recently_hit:
+        player_right.recently_hit = player_hit_right(player_right.time_hit)
     # FIGTER 2
     # vänster
     if keys[pygame.K_a] and player_left.rect.x > player_left.vel:
@@ -564,12 +580,27 @@ def player_movement(player_right, player_left):
 
     if keys[pygame.K_LCTRL]:
         player_left.attacking = True
+    if player_left.jumping:
+        player_left.image = pygame.transform.flip(player_left.images[31],player_left.left,False)
+
+    if player_right.jumping:
+        player_right.image = pygame.transform.flip(player_right.images[31],player_right.left,False)
 
     if player_right.attacking:
-        if player_right.attack_time > 25:
+        if player_right.attack_time < 8 or player_right.attack_time > 20:
+            player_right.image = player_right.fight_images[0]
+        else:
+            player_right.image = player_right.fight_images[1]
+        player_right.attack_time += 1
+        if player_right.attack_time > 30:
             player_right.attacking = False
             player_right.attack_time = 0
-        if collision(player_left, player_right):
+            player_right.image = player_right.images[0]
+        player_right.image = pygame.transform.flip(player_right.image, player_right.left, False)
+        attacking_player = Player()
+        attacking_player.rect = player_right.rect
+        attacking_player.mask = pygame.mask.from_surface(player_right.image)
+        if collision(player_left, attacking_player):
             player_left.recently_hit = True
             player_left.time_hit = pygame.time.get_ticks()
             player_left.rect.x -= 50
@@ -578,10 +609,20 @@ def player_movement(player_right, player_left):
             player_left.hp -= 10
 
     if player_left.attacking:
-        if player_left.attack_time > 25:
+        if player_left.attack_time < 8 or player_left.attack_time > 20:
+            player_left.image = player_left.fight_images[0]
+        else:
+            player_left.image = player_left.fight_images[1]
+        player_left.attack_time += 1
+        if player_left.attack_time > 30:
             player_left.attacking = False
             player_left.attack_time = 0
-        if collision(player_right, player_left):
+            player_left.image = player_left.images[0]
+        player_left.image = pygame.transform.flip(player_left.image, player_left.left, False)
+        attacking_player = Player()
+        attacking_player.rect = player_left.rect
+        attacking_player.mask = pygame.mask.from_surface(player_left.image)
+        if collision(player_right, attacking_player):
             player_right.recently_hit = True
             player_right.time_hit = pygame.time.get_ticks()
             player_right.rect.x += 50
@@ -589,23 +630,28 @@ def player_movement(player_right, player_left):
             effect_punch.play(0)
             player_right.hp -= 10
 
-    if player_right.recently_hit:
-        player_right.recently_hit = player_hit_right(player_right.time_hit)
+
+
+
 
 
 def player_hit_right(hit_timer):
-    if pygame.time.get_ticks() - hit_timer >= 1500:
+    if pygame.time.get_ticks() - hit_timer >= 500:
+        player_right.image = pygame.transform.flip(player_right.images[0], player_right.left, False)
         return False
     else:
-        screen.blit(font.render("Hit!", True, (255, 255, 255)), (player_right.rect.x, 400))
+        screen.blit(font.render("Hit!", True, (255, 255, 255)), (player_right.rect.x+95, 450))
+        player_right.image = pygame.transform.flip(player_right.getting_hit_image, player_right.left,False)
         return True
 
 
 def player_hit_left(hit_timer):
-    if pygame.time.get_ticks() - hit_timer >= 1500:
+    if pygame.time.get_ticks() - hit_timer >= 500:
+        player_left.image = pygame.transform.flip(player_left.images[0], player_left.left, False)
         return False
     else:
-        screen.blit(font.render("Hit!", True, (255, 255, 255)), (player_left.rect.x, 400))
+        screen.blit(font.render("Hit!", True, (255, 255, 255)), (player_left.rect.x+25, 450))
+        player_left.image = pygame.transform.flip(player_left.getting_hit_image, player_left.left, False)
         return True
 
 
@@ -686,27 +732,8 @@ def fight(current_match):
         # Ritar ut player_right och player_left på skärmen
 
         # print(player_left.jumping)
-        if player_left.jumping:
-            player_left.image = player_left.images[31]
-
-        if player_right.jumping:
-            player_right.image = player_right.images[31]
-            player_right.image = pygame.transform.flip(player_right.image, True, False)
         # print(player_right.attack_time)
-        if player_right.attacking:
-            if player_right.attack_time < 8 or player_right.attacking > 20:
-                player_right.image = player_right.fight_images[0]
-            else:
-                player_right.image = player_right.fight_images[1]
-            player_right.image = pygame.transform.flip(player_right.image, True, False)
-            player_right.attack_time += 1
 
-        if player_left.attacking:
-            if player_left.attack_time < 8 or player_left.attacking > 20:
-                player_left.image = player_left.fight_images[0]
-            else:
-                player_left.image = player_left.fight_images[1]
-            player_left.attack_time += 1
             # print(player_right.attack_time)
         player_list.draw(screen)
         # Anropar funktionen audience
