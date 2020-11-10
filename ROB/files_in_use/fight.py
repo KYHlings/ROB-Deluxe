@@ -18,7 +18,7 @@ bg_image = [pygame.image.load('images/backgrounds/arena_bakgrund_0.png'),
 hannes = pygame.image.load('images/sprites/hannes/walking_right_purple_0.png').convert_alpha()
 berit = pygame.image.load('images/sprites/berit/walking_right_yellow_0.png').convert_alpha()
 sune = pygame.image.load('images/sprites/sune/walking_right_0.png').convert_alpha()
-bob = pygame.image.load('images/sprites/green.png').convert_alpha()
+bob = pygame.image.load('images/sprites/green1.png').convert_alpha()
 matchup = [["Slaktar Sune", "Boxare Bob"], ["Bråkiga Berit", "Hänsynslöse Hannes"], ["Slaktar Sune", "Bråkiga Berit"],
            ["Boxare Bob", "Hänsynslöse Hannes"], ["Slaktar Sune", "Hänsynslöse Hannes"],
            ["Boxare Bob", "Bråkiga Berit"]]
@@ -111,17 +111,15 @@ def player_left_pics(self, match):
     # Sune vs Bob
     if match == 0:
         # Återställer self.images listan så att den blir tom inför nästa fight
-        self.images = []
         # skapar en loop som går mellan siffrorna 0-2
-        for i in range(1, 3):
-            # vi skapar en variabel img som lagrar 3 st bilder (str(i) loopar igenom namnen 0-2)
-            img = pygame.image.load(f'images/sprites/sune/walking_right_{i}.png').convert_alpha()
-            # Lägger variabeln img i den tomma listan images
+        self.images = []
+        for i in range(1, 4):
+            img = pygame.image.load(f'images/sprites/green{i}.png').convert_alpha()
+            player_left.mask = pygame.mask.from_surface(img)
             self.images.append(img)
-            # skapar ny variabel sätter värdet av första bilden (index 0) i listan self.images
             self.image = self.images[0]
-            # vi sätter en rektangel som är samma storlek som den första bilden
             self.rect = self.image.get_rect()
+            pygame.draw.rect(img, (255, 0, 0), self.rect, 2)
 
     # Berit vs Hannes
     if match == 1:
@@ -296,7 +294,7 @@ def collision(player_1, player_2):
     (mx, my) = (player_1.rect[0], player_1.rect[1])
     px = mx - player_2.rect[0]
     py = my - player_2.rect[1]
-    overlap = player_2.player_mask.overlap(player_1.mob_mask, (px, py))
+    overlap = player_2.mask.overlap(player_1.mask, (px, py))
     if overlap:
         return True
 
