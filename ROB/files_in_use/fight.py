@@ -15,10 +15,10 @@ screen = pygame.display.set_mode((screen_width, screen_height))
 # laddar in bilder på bakgrund och gubbarna
 bg_image = [pygame.image.load('images/backgrounds/arena_bakgrund_0.png'),
             pygame.image.load('images/backgrounds/arena_bakgrund_1.png')]
-hannes = pygame.image.load('images/sprites/hannes/walking_right_purple_0.png')
-berit = pygame.image.load('images/sprites/berit/walking_right_yellow_0.png')
-sune = pygame.image.load('images/sprites/sune/walking_right_0.png')
-bob = pygame.image.load('images/sprites/green.png')
+hannes = pygame.image.load('images/sprites/hannes/walking_right_purple_0.png').convert_alpha()
+berit = pygame.image.load('images/sprites/berit/walking_right_yellow_0.png').convert_alpha()
+sune = pygame.image.load('images/sprites/sune/walking_right_0.png').convert_alpha()
+bob = pygame.image.load('images/sprites/green.png').convert_alpha()
 matchup = [["Slaktar Sune", "Boxare Bob"], ["Bråkiga Berit", "Hänsynslöse Hannes"], ["Slaktar Sune", "Bråkiga Berit"],
            ["Boxare Bob", "Hänsynslöse Hannes"], ["Slaktar Sune", "Hänsynslöse Hannes"],
            ["Boxare Bob", "Bråkiga Berit"]]
@@ -96,6 +96,7 @@ class Player(pygame.sprite.Sprite):
         self.dead = False
         self.jumping = False
         self.recently_hit = False
+        self.time_hit = None
 
     def hoppi_ti_hopp(self):
         if self.jumping:
@@ -114,7 +115,7 @@ def player_left_pics(self, match):
         # skapar en loop som går mellan siffrorna 0-2
         for i in range(1, 3):
             # vi skapar en variabel img som lagrar 3 st bilder (str(i) loopar igenom namnen 0-2)
-            img = pygame.image.load(f'images/sprites/sune/walking_right_{i}.png')
+            img = pygame.image.load(f'images/sprites/sune/walking_right_{i}.png').convert_alpha()
             # Lägger variabeln img i den tomma listan images
             self.images.append(img)
             # skapar ny variabel sätter värdet av första bilden (index 0) i listan self.images
@@ -126,7 +127,7 @@ def player_left_pics(self, match):
     if match == 1:
         self.images = []
         for i in range(1, 3):
-            img = pygame.image.load(f'images/sprites/berit/walking_right_yellow_{i}.png')
+            img = pygame.image.load(f'images/sprites/berit/walking_right_yellow_{i}.png').convert_alpha()
             self.images.append(img)
             self.image = self.images[0]
             self.rect = self.image.get_rect()
@@ -135,7 +136,7 @@ def player_left_pics(self, match):
     if match == 2:
         self.images = []
         for i in range(1, 3):
-            img = pygame.image.load(f'images/sune/walking_right_{i}.png')
+            img = pygame.image.load(f'images/sune/walking_right_{i}.png').convert_alpha()
             self.images.append(img)
             self.image = self.images[0]
             self.rect = self.image.get_rect()
@@ -144,7 +145,7 @@ def player_left_pics(self, match):
     if match == 3:
         self.images = []
         for i in range(1, 3):
-            img = pygame.image.load(f'images/bob/walking_right_green_{i}.png')
+            img = pygame.image.load(f'images/bob/walking_right_green_{i}.png').convert_alpha()
             self.images.append(img)
             self.image = self.images[0]
             self.rect = self.image.get_rect()
@@ -153,7 +154,7 @@ def player_left_pics(self, match):
     if match == 4:
         self.images = []
         for i in range(1, 3):
-            img = pygame.image.load(f'images/sune/walking_right_{i}.png')
+            img = pygame.image.load(f'images/sune/walking_right_{i}.png').convert_alpha()
             self.images.append(img)
             self.image = self.images[0]
             self.rect = self.image.get_rect()
@@ -162,7 +163,7 @@ def player_left_pics(self, match):
     if match == 5:
         self.images = []
         for i in range(1, 3):
-            img = pygame.image.load(f'images/bob/walking_right_green_{i}.png')
+            img = pygame.image.load(f'images/bob/walking_right_green_{i}.png').convert_alpha()
             self.images.append(img)
             self.image = self.images[0]
             self.rect = self.image.get_rect()
@@ -176,7 +177,7 @@ def player_right_pics(self, match):
     if match == 0:
         self.images = []
         for i in range(1, 3):
-            img = pygame.image.load(f'images/sprites/green{i}.png')
+            img = pygame.image.load(f'images/sprites/green{i}.png').convert_alpha()
             self.images.append(img)
             self.image = self.images[0]
             self.rect = self.image.get_rect()
@@ -189,7 +190,7 @@ def player_right_pics(self, match):
     if match == 1:
         self.images = []
         for i in range(1, 3):
-            img = pygame.image.load(f'images/sprites/hannes/walking_right_purple_{i}.png')
+            img = pygame.image.load(f'images/sprites/hannes/walking_right_purple_{i}.png').convert_alpha()
             self.images.append(img)
             self.image = self.images[0]
             self.rect = self.image.get_rect()
@@ -200,7 +201,7 @@ def player_right_pics(self, match):
     if match == 2:
         self.images = []
         for i in range(1, 3):
-            img = pygame.image.load(f'images/sprites/berit/walking_right_yellow_{i}.png')
+            img = pygame.image.load(f'images/sprites/berit/walking_right_yellow_{i}.png').convert_alpha()
             self.images.append(img)
             self.image = self.images[0]
             self.rect = self.image.get_rect()
@@ -211,7 +212,7 @@ def player_right_pics(self, match):
     if match == 3:
         self.images = []
         for i in range(1, 3):
-            img = pygame.image.load(f'images/sprites/hannes/walking_right_purple_{i}.png')
+            img = pygame.image.load(f'images/sprites/hannes/walking_right_purple_{i}.png').convert_alpha()
             self.images.append(img)
             self.image = self.images[0]
             self.rect = self.image.get_rect()
@@ -222,7 +223,7 @@ def player_right_pics(self, match):
     if match == 4:
         self.images = []
         for i in range(1, 3):
-            img = pygame.image.load(f'images/sprites/hannes/walking_right_purple_{i}.png')
+            img = pygame.image.load(f'images/sprites/hannes/walking_right_purple_{i}.png').convert_alpha()
             self.images.append(img)
             self.image = self.images[0]
             self.rect = self.image.get_rect()
@@ -232,7 +233,7 @@ def player_right_pics(self, match):
     if match == 5:
         self.images = []
         for i in range(1, 3):
-            img = pygame.image.load(f'images/sprites/berit/walking_right_yellow_{i}.png')
+            img = pygame.image.load(f'images/sprites/berit/walking_right_yellow_{i}.png').convert_alpha()
             self.images.append(img)
             self.image = self.images[0]
             self.rect = self.image.get_rect()
@@ -357,11 +358,16 @@ def player_movement(player_right, player_left):
 
     if keys[pygame.K_RCTRL]:
         if collision(player_right, player_left):
-            screen.blit(font.render("Hit!", True, (255, 255, 255)), (player_left.rect.x, 400))
+            player_left.recently_hit = True
+            player_left.time_hit = pygame.time.get_ticks()
+
             effect_punch.play(0)
             print("slag")
             player_left.hp -= 10
             print(f"HP PLAYER 2: {player_left.hp}")
+
+    if player_left.recently_hit:
+        player_left.recently_hit = player_hit_left(player_left.time_hit)
     # FIGTER 2
     # vänster
     if keys[pygame.K_a] and player_left.rect.x > player_left.vel:
@@ -407,25 +413,30 @@ def player_movement(player_right, player_left):
 
     if keys[pygame.K_LCTRL]:
         if collision(player_right, player_left):
-            player_right
+            player_right.recently_hit = True
+            player_right.time_hit = pygame.time.get_ticks()
+
             effect_punch.play(0)
             print("slag")
             player_right.hp -= 10
             print(f"HP PLAYER 1: {player_right.hp}")
 
+    if player_right.recently_hit:
+        player_right.recently_hit = player_hit_right(player_right.time_hit)
 
-def player_hit_right(player_recently_hit, hit_timer):
+
+def player_hit_right(hit_timer):
     if pygame.time.get_ticks() - hit_timer >= 1500:
         return False
-    if player_recently_hit:
+    else:
         screen.blit(font.render("Hit!", True, (255, 255, 255)), (player_right.rect.x, 400))
         return True
 
 
-def player_hit_left(player_recently_hit, hit_timer):
+def player_hit_left(hit_timer):
     if pygame.time.get_ticks() - hit_timer >= 1500:
         return False
-    if player_recently_hit:
+    else:
         screen.blit(font.render("Hit!", True, (255, 255, 255)), (player_left.rect.x, 400))
         return True
 
