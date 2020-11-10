@@ -441,14 +441,7 @@ def player_movement(player_right, player_left):
         player_left.rect.y = 450
 
     if keys[pygame.K_LCTRL]:
-        if collision(player_right, player_left):
-            player_right.recently_hit = True
-            player_right.time_hit = pygame.time.get_ticks()
-
-            effect_punch.play(0)
-            print("slag")
-            player_right.hp -= 10
-            print(f"HP PLAYER 1: {player_right.hp}")
+        player_left.attacking = True
 
     if player_right.attacking:
         if player_right.attack_time > 25:
@@ -462,6 +455,19 @@ def player_movement(player_right, player_left):
             print("slag")
             player_left.hp -= 10
             print(f"HP PLAYER 2: {player_left.hp}")
+
+    if player_left.attacking:
+        if player_left.attack_time > 25:
+            player_left.attacking = False
+            player_left.attack_time = 0
+        if collision(player_right, player_left):
+            player_right.recently_hit = True
+            player_right.time_hit = pygame.time.get_ticks()
+
+            effect_punch.play(0)
+            print("slag")
+            player_right.hp -= 10
+            print(f"HP PLAYER 2: {player_right.hp}")
 
     if player_right.recently_hit:
         player_right.recently_hit = player_hit_right(player_right.time_hit)
@@ -566,11 +572,19 @@ def fight(current_match):
         if player_right.attacking:
             if player_right.attack_time < 8 or player_right.attacking > 20:
                 player_right.image = player_right.fight_images[0]
-                print("FUCK!!!!!!!!!!!!!!!!!!!!!!!")
+                print("FUCK!!!!!!!!!!!!!!!!!!!!!!!<3")
             else:
                 player_right.image = player_right.fight_images[1]
             player_right.image = pygame.transform.flip(player_right.image, True, False)
             player_right.attack_time += 1
+
+        if player_left.attacking:
+            if player_left.attack_time < 8 or player_left.attacking > 20:
+                player_left.image = player_left.fight_images[0]
+                print("FUCK!!!!!!!!!!!!!!!!!!!!!!!<3")
+            else:
+                player_left.image = player_left.fight_images[1]
+            player_left.attack_time += 1
             #print(player_right.attack_time)
         player_list.draw(screen)
         # Anropar funktionen audience
