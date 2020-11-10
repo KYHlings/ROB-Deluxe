@@ -13,8 +13,8 @@ screen_width = 800
 screen_height = 600
 screen = pygame.display.set_mode((screen_width, screen_height))
 # laddar in bilder på bakgrund och gubbarna
-bg_image = [pygame.image.load('images/backgrounds/arena_bakgrund_0.png'),
-            pygame.image.load('images/backgrounds/arena_bakgrund_1.png')]
+bg_image = pygame.image.load('images/backgrounds/arena_background.jpg')
+bg_image = pygame.transform.scale(bg_image, (800, 600))
 # hannes = pygame.image.load('images/sprites/hannes/walking_right_purple_0.png').convert_alpha()
 # berit = pygame.image.load('images/sprites/berit/walking_right_yellow_0.png').convert_alpha()
 # sune = pygame.image.load('images/sprites/sune/walking_right_0.png').convert_alpha()
@@ -58,8 +58,8 @@ fps_clock = pygame.time.Clock()
 fps = 60
 
 # TODO loopa bakrundsbilderna så att bilden ser "rörlig" ut
-screen.blit(bg_image[0], (0, 0))
-screen.blit(bg_image[1], (0, 0))
+screen.blit(bg_image, (0, 0))
+
 font = pygame.font.SysFont("Arial", 15)
 
 
@@ -192,15 +192,25 @@ def player_right_pics(self, match):
     # TODO kan möjligvis krasha på index error för att player_right.frame är 2, håll koll vid testning.
     if match == 0:
         self.images = []
-        for i in range(1, 3):
-            img = pygame.image.load(f'images/sprites/bob/green{i}.png').convert_alpha()
+        for i in range(1, 17):
+            if i == 1 or i == 2 or i == 3 or i == 4:
+                j = 1
+            if i == 5 or i == 6 or i == 7 or i == 8:
+                j = 2
+            if i == 9 or i == 10 or i == 11 or i == 12:
+                j = 3
+            if i == 13 or i == 14 or i == 15 or i == 16:
+                j = 4
+            img = pygame.image.load(f'images/sprites/bob/green{j}.png').convert_alpha()
             player_right.mask = pygame.mask.from_surface(img)
             self.images.append(img)
             self.image = self.images[0]
+            self.fight_images = [pygame.image.load(f'images/sprites/bob/green_windup.png').convert_alpha(),
+                                 pygame.image.load(f'images/sprites/bob/green_fight.png').convert_alpha()]
             self.rect = self.image.get_rect()
             pygame.draw.rect(img, (255, 0, 0), self.rect, 2)
-            # Vänder den högra spelaren så att han kollar åt vänster
-            player_right.image = pygame.transform.flip(player_right.images[player_right.frame], True, False)
+
+        player_right.image = pygame.transform.flip(player_right.images[player_right.frame], True, False)
 
     # Berit vs Hannes
 
@@ -383,7 +393,7 @@ def player_movement(player_right, player_left):
         player_right.rect.y = 450
 
     if keys[pygame.K_RCTRL]:
-        player_left.attacking = True
+        player_right.attacking = True
 
     if player_left.recently_hit:
         player_left.recently_hit = player_hit_left(player_left.time_hit)
@@ -440,11 +450,11 @@ def player_movement(player_right, player_left):
             player_right.hp -= 10
             print(f"HP PLAYER 1: {player_right.hp}")
 
-    if player_left.attacking:
-        if player_left.attack_time > 15:
-            player_left.attacking = False
-            player_left.attack_time = 0
-        if collision(player_right, player_left):
+    if player_right.attacking:
+        if player_right.attack_time > 25:
+            player_right.attacking = False
+            player_right.attack_time = 0
+        if collision(player_left, player_right):
             player_left.recently_hit = True
             player_left.time_hit = pygame.time.get_ticks()
 
@@ -546,18 +556,22 @@ def fight(current_match):
         # Fyller skärmen med svart färg
         screen.fill(black)
         # Målar upp en bakgrundsbild som täcker hela skärmen
-        screen.blit(bg_image[0], (0, 0))
+        screen.blit(bg_image, (0, 0))
         # Ritar ut player_right och player_left på skärmen
 
         #print(player_left.jumping)
         if player_left.jumping:
             player_left.image = player_left.images[4]
-        if player_left.attacking:
-            if player_left.attack_time < 5 and player_left.attacking > 10:
-                player_left.image = player_left.fight_images[0]
+        #print(player_right.attack_time)
+        if player_right.attacking:
+            if player_right.attack_time < 8 or player_right.attacking > 20:
+                player_right.image = player_right.fight_images[0]
+                print("FUCK!!!!!!!!!!!!!!!!!!!!!!!")
             else:
-                player_left.image = player_left.fight_images[0]
-            player_left.attack_time +=1
+                player_right.image = player_right.fight_images[1]
+            player_right.image = pygame.transform.flip(player_right.image, True, False)
+            player_right.attack_time += 1
+            #print(player_right.attack_time)
         player_list.draw(screen)
         # Anropar funktionen audience
         #audience(current_match, hannes, berit, sune, bob)
